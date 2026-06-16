@@ -1,0 +1,822 @@
+<!DOCTYPE html><html lang="ko"><head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>남희수 포트폴리오</title>
+<template id="__bundler_thumbnail" data-bg-color="#16130F">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" data-om-id="14a04880:5">
+    <rect width="1200" height="800" fill="#16130F" data-om-id="14a04880:6"></rect>
+    <text x="120" y="360" font-family="monospace" font-size="40" letter-spacing="14" fill="#A892FF" data-om-id="14a04880:7">PORTFOLIO</text>
+    <text x="116" y="470" font-family="sans-serif" font-size="150" font-weight="800" fill="#F4F1EB" data-om-id="14a04880:8">남희수</text>
+    <rect x="120" y="540" width="120" height="10" rx="5" fill="#A892FF" data-om-id="14a04880:9"></rect>
+  </svg>
+</template>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4F1EB; --ink:#16130F; --ink-soft:#46413A; --muted:#8B857B;
+    --line:#DCD6CB; --card:#FCFAF6; --dark:#16130F; --dark-soft:#221E18;
+    --accent:#5B3DE8; --accent-dark:#A892FF; --accent-soft:#EDE7FF;
+    --type-display:132px; --type-h1:76px; --type-title:60px; --type-subtitle:38px;
+    --type-body:28px; --type-small:24px; --type-tag:24px;
+    --pad-x:120px; --pad-top:92px; --pad-bottom:84px;
+    --gap-title:36px; --gap-item:22px;
+    --sans:'Pretendard',system-ui,sans-serif; --mono:'Space Mono','Pretendard',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  deck-stage:not(:defined){visibility:hidden;}
+  deck-stage{background:#0c0a08;}
+  section{
+    font-family:var(--sans); background:var(--bg); color:var(--ink);
+    padding:var(--pad-top) var(--pad-x) var(--pad-bottom);
+    display:flex; flex-direction:column; overflow:hidden; position:relative;
+    -webkit-font-smoothing:antialiased; letter-spacing:-0.01em; word-break:keep-all;
+  }
+  .runhead{ position:absolute; top:42px; right:var(--pad-x); display:flex; align-items:center; gap:14px; font-family:var(--mono); font-size:24px; letter-spacing:0.04em; z-index:5; }
+  .runhead .step{ color:var(--muted); }
+  .runhead .step.on{ color:var(--accent); font-weight:700; }
+  .runhead .sep{ color:#cfc8bb; }
+  .lead-note{ position:absolute; top:42px; left:var(--pad-x); font-family:var(--mono); font-size:24px; color:#b8b0a2; letter-spacing:0.04em; z-index:5; }
+  section.dark{ background:var(--dark); color:var(--bg); }
+  h1,h2,h3,p{margin:0;}
+
+  /* ---- shared bits ---- */
+  .eyebrow{ display:flex; align-items:center; gap:16px; font-family:var(--mono);
+    font-size:var(--type-small); letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); }
+  .eyebrow .dot{ width:9px; height:9px; border-radius:50%; background:var(--accent); display:inline-block; }
+  .eyebrow .num{ margin-left:auto; font-weight:700; color:var(--ink-soft); }
+  section.dark .eyebrow .num{ color:var(--bg); }
+  .tags{ display:flex; gap:20px; flex-wrap:wrap; font-family:var(--mono); font-size:var(--type-tag);
+    color:var(--accent); letter-spacing:-0.01em; }
+  section.dark .tags{ color:var(--accent-dark); }
+  .accent{ color:var(--accent); }
+  section.dark .accent{ color:var(--accent-dark); }
+
+  /* image slots */
+  image-slot{ display:block; border:1px solid var(--line); background:
+    repeating-linear-gradient(135deg,#ece7dd 0 14px,#f2eee6 14px 28px); }
+  section.dark image-slot{ border-color:#3a352d; background:
+    repeating-linear-gradient(135deg,#201c16 0 14px,#272219 14px 28px); }
+
+  /* ---- entrance ---- */
+  @media (prefers-reduced-motion:no-preference){
+    [data-deck-active] .anim{ animation:rise .6s cubic-bezier(.2,.7,.2,1) both; }
+    [data-deck-active] .anim2{ animation:rise .6s .08s cubic-bezier(.2,.7,.2,1) both; }
+    [data-deck-active] .anim3{ animation:rise .6s .16s cubic-bezier(.2,.7,.2,1) both; }
+    /* opacity stays 1 so content is never stuck hidden in print/export/capture */
+    @keyframes rise{ from{transform:translateY(20px);} to{transform:none;} }
+  }
+
+  /* ================= COVER ================= */
+  .cover{ justify-content:space-between; }
+  .cover-top{ display:flex; justify-content:space-between; align-items:flex-start;
+    font-family:var(--mono); font-size:var(--type-small); color:var(--muted); letter-spacing:0.06em; }
+  .cover-mid{ display:flex; flex-direction:column; gap:32px; }
+  .cover-kicker{ font-family:var(--mono); font-size:34px; letter-spacing:0.32em; text-transform:uppercase;
+    color:var(--accent-dark); }
+  .cover-title{ font-size:var(--type-display); font-weight:800; line-height:0.96; letter-spacing:-0.03em; }
+  .cover-title .ko{ display:block; }
+  .cover-title .en{ display:block; font-family:var(--mono); font-weight:400; font-size:46px;
+    letter-spacing:0.22em; color:var(--muted); margin-top:24px; }
+  .cover-role{ font-size:var(--type-subtitle); color:#cfc8bb; font-weight:500; max-width:1100px; line-height:1.4; text-wrap:balance; }
+  .cover-foot{ display:flex; justify-content:space-between; align-items:flex-end;
+    border-top:1px solid #322d26; padding-top:32px; font-size:var(--type-small); color:#9a9387; }
+  .cover-foot .mono{ font-family:var(--mono); }
+
+  /* ================= DIVIDER ================= */
+  .divider{ justify-content:center; gap:48px; }
+  .divider .eyebrow{ color:#8a8276; }
+  .divider-word{ font-size:200px; font-weight:800; line-height:0.9; letter-spacing:-0.04em; }
+  .divider-sub{ font-size:var(--type-subtitle); color:#cfc8bb; max-width:1200px; line-height:1.45; font-weight:500; text-wrap:balance; }
+  .divider-rule{ width:100%; height:1px; background:#322d26; }
+  .divider-foot{ display:flex; gap:40px; font-family:var(--mono); font-size:var(--type-small);
+    color:#8a8276; text-transform:uppercase; letter-spacing:0.06em; }
+
+  /* ================= ABOUT ================= */
+  .about-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:60px; margin-bottom:24px; }
+  .about-head > div:first-child{ flex-shrink:0; }
+  .about-name{ font-size:78px; font-weight:800; line-height:1; letter-spacing:-0.03em; white-space:nowrap; }
+  .about-name .en{ display:block; font-family:var(--mono); font-weight:400; font-size:28px;
+    letter-spacing:0.2em; color:var(--muted); margin-top:16px; }
+  .about-tagline{ flex:1; min-width:0; text-align:right; font-size:var(--type-subtitle); line-height:1.4;
+    font-weight:600; color:var(--ink); text-wrap:balance; }
+  .about-tagline em{ font-style:normal; color:var(--accent); }
+  .about-badges{ display:flex; gap:12px; justify-content:flex-end; margin-top:14px; }
+  .abadge{ font-family:var(--mono); font-size:22px; padding:6px 15px; border:none; background:var(--accent); border-radius:999px; color:#fff; white-space:nowrap; }
+  .aw-list{ display:flex; gap:12px; flex-wrap:wrap; }
+  .about-body{ flex:1; display:grid; grid-template-columns:392px 1fr; gap:72px; min-height:0; }
+  .about-photo{ display:flex; flex-direction:column; gap:20px; }
+  .photo-meta{ display:grid; grid-template-columns:auto 1fr; gap:8px 16px; font-size:24px;
+    line-height:1.3; }
+  .photo-meta dt{ font-family:var(--mono); color:var(--muted); text-transform:uppercase; font-size:24px; letter-spacing:0.02em; }
+  .photo-meta dd{ margin:0; color:var(--ink-soft); }
+  .about-cols{ display:flex; flex-direction:column; gap:32px; }
+  .about-duo{ display:grid; grid-template-columns:1fr 1fr; gap:32px 48px; align-items:start; }
+  .about-block h3{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--accent); margin-bottom:16px; display:flex; align-items:center; gap:14px; }
+  .about-block h3::after{ content:""; flex:1; height:1px; background:var(--line); }
+  .about-block p{ font-size:var(--type-body); line-height:1.5; color:var(--ink-soft); }
+  /* merged cover+about intro header */
+  .intro-head{ display:flex; flex-direction:column; padding-bottom:22px; margin-bottom:28px; border-bottom:2px solid var(--ink); }
+  .intro-eyebrow{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:24px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  .intro-row{ display:flex; align-items:flex-end; justify-content:space-between; gap:48px; }
+  .intro-name{ font-size:88px; font-weight:800; line-height:0.92; letter-spacing:-0.03em; white-space:nowrap; }
+  .intro-name .en{ display:block; font-family:var(--mono); font-weight:400; font-size:24px; letter-spacing:0.2em; color:var(--muted); margin-top:14px; }
+  .intro-role{ font-size:32px; font-weight:600; line-height:1.4; text-align:right; max-width:820px; padding-bottom:6px; }
+  .intro-role .accent{ color:var(--accent); }
+  /* dark portrait rail intro */
+  .dp{ flex:1; display:grid; grid-template-columns:660px 1fr; min-height:0; margin:calc(var(--pad-top)*-1) calc(var(--pad-x)*-1) calc(var(--pad-bottom)*-1); }
+  .dp-rail{ background:var(--dark); color:var(--bg); padding:76px 58px; display:flex; flex-direction:column; justify-content:space-between; }
+  .dp-rail .eyebrow{ color:#8a8276; }
+  .dp-name{ font-size:78px; font-weight:800; line-height:0.96; letter-spacing:-0.03em; margin-top:18px; }
+  .dp-name .en{ display:block; font-family:var(--mono); font-weight:400; font-size:24px; letter-spacing:0.18em; color:var(--accent-dark); margin-top:14px; }
+  .dp-photo{ align-self:center; width:392px; height:452px; border:1px solid #3a352d; background:repeating-linear-gradient(135deg,#201c16 0 14px,#272219 14px 28px); }
+  .dp-meta{ display:grid; grid-template-columns:auto 1fr; gap:11px 22px; }
+  .dp-meta dt{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.04em; color:#6f685d; }
+  .dp-meta dd{ margin:0; font-size:24px; color:#d8d2c7; }
+  .dp-main{ padding:0 88px; display:flex; flex-direction:column; justify-content:center; gap:34px; }
+  .dp-tag{ font-size:40px; font-weight:700; line-height:1.34; letter-spacing:-0.02em; }
+  .dp-tag .accent{ color:var(--accent); }
+  .dp-mind{ font-size:25px; line-height:1.6; color:var(--ink-soft); }
+  .dp-mind b{ color:var(--ink); font-weight:700; }
+  .dp-rule{ height:1px; background:var(--line); }
+  .dp-sec-label{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); margin-bottom:20px; display:flex; align-items:center; gap:14px; }
+  .dp-sec-label::after{ content:""; flex:1; height:1px; background:var(--line); }
+  .dp-str{ display:grid; grid-template-columns:repeat(3,1fr); gap:30px; }
+  .dp-str .it .n{ font-family:var(--mono); font-size:26px; font-weight:700; color:var(--accent); }
+  .dp-str .it b{ display:block; font-size:28px; font-weight:700; margin:6px 0 5px; letter-spacing:-0.01em; }
+  .dp-str .it span{ font-size:24px; line-height:1.35; color:var(--muted); }
+  .dp-info{ display:grid; grid-template-columns:1fr 1fr; gap:26px 48px; }
+  .dp-info .blk dt{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); margin-bottom:8px; }
+  .dp-info .blk dd{ margin:0; font-size:26px; font-weight:600; line-height:1.4; }
+  .dp-info .blk dd .sub{ display:block; font-size:24px; font-weight:400; color:var(--muted); margin-top:2px; }
+  .dp-profile{ display:grid; grid-template-columns:1fr 1fr; gap:22px 44px; }
+  .dp-profile .about-block h3{ margin-bottom:14px; }
+  .dp-profile .pf-line{ font-size:25px; font-weight:600; color:var(--ink); line-height:1.4; }
+  .dp-profile .pf-line .sub{ display:block; font-size:24px; font-weight:400; color:var(--muted); margin-top:2px; }
+  .dp-profile .skill-grid{ grid-template-columns:1fr; gap:9px; }
+  .dp-profile .skill{ flex-direction:row; align-items:baseline; gap:12px; }
+  .dp-profile .skill b{ font-size:25px; min-width:128px; }
+  .dp-profile .skill span{ font-size:24px; }
+  .dp-re{ display:flex; flex-direction:column; gap:11px; }
+  .dp-re .e .et{ display:flex; align-items:baseline; justify-content:space-between; gap:14px; }
+  .dp-re .e b{ font-size:25px; font-weight:700; }
+  .dp-re .e .d{ font-family:var(--mono); font-size:24px; color:var(--muted); white-space:nowrap; }
+  .dp-re .e .s{ font-size:24px; color:var(--muted); line-height:1.3; }
+  .dp-stack{ display:flex; flex-direction:column; gap:9px; }
+  .dp-stack .row{ display:grid; grid-template-columns:118px 1fr; gap:16px; align-items:baseline; }
+  .dp-stack .row .k{ font-family:var(--mono); font-size:24px; color:var(--muted); }
+  .dp-stack .row .v{ font-size:25px; font-weight:600; }
+  .exp-list{ display:flex; flex-direction:column; }
+  .exp-item{ display:flex; justify-content:space-between; align-items:baseline; gap:24px;
+    padding:13px 0; border-bottom:1px solid var(--line); }
+  .exp-item:last-child{ border-bottom:none; }
+  .exp-item b{ font-size:26px; font-weight:700; white-space:nowrap; }
+  .exp-item span{ font-size:24px; color:var(--muted); text-align:right; white-space:nowrap; }
+  .skill-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px 40px; }
+  .skill{ display:flex; flex-direction:column; gap:8px; }
+  .skill b{ font-size:26px; font-weight:700; }
+  .skill span{ font-size:24px; color:var(--muted); line-height:1.35; }
+  .strengths{ display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+  .strength{ display:flex; flex-direction:column; gap:8px; }
+  .strength .s-no{ font-family:var(--mono); font-size:24px; color:var(--accent); letter-spacing:0.04em; }
+  .strength b{ font-size:27px; font-weight:700; line-height:1.2; }
+  .strength .s-desc{ font-size:24px; color:var(--muted); line-height:1.4; }
+  .eyebrow .s-tag{ font-family:var(--mono); font-size:24px; color:var(--accent); margin-left:24px; letter-spacing:0.02em; white-space:nowrap; }
+
+  /* ================= GAMES GRID ================= */
+  .slide-head{ display:flex; flex-direction:column; gap:var(--gap-title); }
+  .slide-title{ font-size:var(--type-title); font-weight:800; line-height:1.06; letter-spacing:-0.025em; max-width:1500px; }
+  .slide-title .accent{ }
+  .games-grid{ flex:1; display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:1fr 1fr;
+    gap:1px; background:var(--line); border:1px solid var(--line); margin-top:46px; }
+  .game{ background:var(--bg); padding:38px 40px; display:flex; flex-direction:column; gap:14px; }
+  .game .gt{ font-size:32px; font-weight:800; letter-spacing:-0.02em; }
+  .game .gd{ font-size:24px; line-height:1.45; color:var(--ink-soft); flex:1; }
+  .game .gtag{ font-family:var(--mono); font-size:24px; color:var(--accent); }
+
+  /* ================= STATEMENT ================= */
+  .stmt{ justify-content:center; gap:44px; }
+  .stmt-lines{ font-size:72px; font-weight:800; line-height:1.14; letter-spacing:-0.03em; max-width:1640px; }
+  .stmt-lines .em{ color:var(--accent); }
+  .stmt-lines .small{ display:block; font-size:40px; font-weight:600; color:var(--muted); margin-bottom:14px; letter-spacing:-0.02em; }
+  .stmt-body{ font-size:var(--type-body); line-height:1.65; color:var(--ink-soft); max-width:1280px; }
+  .stmt-body strong{ color:var(--ink); font-weight:700; }
+
+  /* ================= EXPERIENCE / INSIGHT ================= */
+  .ei-body{ flex:1; display:grid; grid-template-columns:1fr 720px; gap:80px; align-items:center; margin-top:50px; min-height:0; }
+  .ei-left{ display:flex; flex-direction:column; gap:30px; }
+  .ei-title{ font-size:54px; font-weight:800; line-height:1.12; letter-spacing:-0.025em; }
+  .ei-text{ font-size:var(--type-body); line-height:1.6; color:var(--ink-soft); }
+  .ei-text b{ color:var(--accent); font-weight:700; }
+  .ei-extend{ margin-top:6px; padding-top:26px; border-top:1px solid var(--line); }
+  .ei-extend .lbl{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); margin-bottom:8px; }
+  .ei-extend .val{ font-size:30px; font-weight:700; }
+  .ei-stat{ display:grid; grid-template-columns:auto 1fr; align-items:end; gap:26px; margin-top:4px; }
+  .ei-stat .big{ font-size:88px; font-weight:800; color:var(--accent); letter-spacing:-0.03em; line-height:0.85; }
+  .ei-stat .cap{ font-size:24px; color:var(--ink-soft); line-height:1.4; padding-bottom:8px; }
+  .ei-media{ display:flex; flex-direction:column; gap:16px; height:100%; justify-content:center; }
+  .media-cap{ font-family:var(--mono); font-size:24px; color:var(--muted); }
+
+  /* ===== EI v2 (reference-inspired: script eyebrow + highlight title + icon blocks + media cards) ===== */
+  .ei2{ flex:1; display:grid; grid-template-columns:1fr 580px; gap:88px; min-height:0; align-items:start; margin-top:8px; }
+  .ei2-left{ display:flex; flex-direction:column; justify-content:center; height:100%; }
+  .ei2-script{ font-family:var(--mono); font-weight:700; font-style:italic; font-size:40px; line-height:1; color:var(--accent); letter-spacing:0.01em; margin-bottom:16px; }
+  .ei2-title{ font-size:56px; font-weight:800; line-height:1.08; letter-spacing:-0.03em; }
+  .ei2-title .hl{ background:linear-gradient(transparent 54%, rgba(168,146,255,0.55) 54% 93%, transparent 93%);
+    -webkit-box-decoration-break:clone; box-decoration-break:clone; padding:0 4px; }
+  .ei2-tags{ margin-top:26px; display:flex; gap:20px; font-family:var(--mono); font-size:25px; color:var(--accent); }
+  .ei2-blocks{ margin-top:44px; display:flex; flex-direction:column; gap:34px; }
+  .ei2-bh{ display:flex; align-items:center; gap:14px; margin-bottom:12px; }
+  .ei2-block.ext .ei2-bh{ align-items:center; margin-bottom:14px; }
+  .ei2-bh .ico{ width:33px; height:33px; flex:none; color:var(--accent); }
+  .ei2-block.ext .ei2-bh .ico{ margin-top:0; }
+  .ei2-bh h4{ font-size:30px; font-weight:800; letter-spacing:-0.02em; white-space:nowrap; }
+  .ei2-block.ext .ei2-bh h4{ font-size:26px; line-height:1.3; white-space:normal; }
+  .ext-kicker{ color:var(--accent); }
+  .ei2-block p{ font-size:24px; line-height:1.55; color:var(--ink-soft); margin:0 0 18px; }
+  .ei2-block p b{ color:var(--ink); font-weight:700; }
+  .ei2-block p:last-child{ margin-bottom:0; }
+  .ei2-block.ext p{ color:var(--muted); }
+  .ei2-media{ display:flex; flex-direction:column; gap:24px; }
+  .ei2-card{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; }
+  .ei2-card image-slot{ width:100%; border-radius:9px; }
+  .ei2-cap{ text-align:center; font-family:var(--mono); font-size:24px; color:var(--muted); margin-top:14px; }
+  .ei2-metric{ background:var(--dark); border-radius:16px; padding:28px 38px; color:var(--bg);
+    display:flex; align-items:center; gap:28px; }
+  .ei2-metric .big{ font-size:74px; font-weight:800; color:var(--accent-dark); line-height:0.82; letter-spacing:-0.03em; }
+  .ei2-metric .ml{ font-size:24px; color:#cfc8bb; line-height:1.45; }
+  /* AI tool panel */
+  .toolpanel{ flex:1; min-height:0; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:40px 36px; display:flex; flex-direction:column; justify-content:center; gap:30px; }
+  .tp-head h4{ font-size:32px; font-weight:800; letter-spacing:-0.02em; margin:0 0 8px; }
+  .tp-head p{ font-size:24px; color:var(--muted); line-height:1.4; margin:0; }
+  .tp-group{ display:flex; flex-direction:column; gap:13px; }
+  .tp-cat{ display:flex; align-items:center; gap:12px; font-family:var(--mono); font-size:24px; color:var(--ink-soft); letter-spacing:0.02em; }
+  .tp-cat .m{ width:13px; height:13px; border-radius:4px; flex:none; }
+  .tp-chips{ display:flex; gap:12px; flex-wrap:wrap; }
+  .tool{ display:flex; align-items:center; gap:12px; padding:11px 18px 11px 13px; background:var(--bg); border:1px solid var(--line); border-radius:12px; font-size:25px; font-weight:600; }
+  .tool .logo{ width:34px; height:34px; border-radius:9px; flex:none; display:flex; align-items:center; justify-content:center; }
+  .tool .logo svg{ width:22px; height:22px; display:block; }
+
+  /* ===== PORTFOLIO CASE LAYOUTS (A/B/C) ===== */
+  .stab{ display:flex; gap:0; border-bottom:1px solid var(--line); margin-bottom:36px; }
+  .stab .t{ font-family:var(--mono); font-size:24px; letter-spacing:0.02em; color:var(--muted); padding:0 28px 18px; position:relative; }
+  .stab .t:first-child{ padding-left:0; }
+  .stab .t.on{ color:var(--accent); font-weight:700; }
+  .stab .t.on::after{ content:""; position:absolute; left:0; right:28px; bottom:-1px; height:3px; background:var(--accent); }
+  .stab .t:first-child.on::after{ left:0; }
+  .stab .spacer{ margin-left:auto; font-family:var(--mono); font-size:24px; color:var(--ink-soft); padding-bottom:18px; }
+  .spec{ display:flex; flex-direction:column; }
+  .spec .row{ display:grid; grid-template-columns:120px 1fr; gap:18px; padding:14px 0; border-bottom:1px solid var(--line); }
+  .spec .row:last-child{ border-bottom:none; }
+  .spec dt{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); padding-top:3px; }
+  .spec dd{ margin:0; font-size:26px; font-weight:600; line-height:1.35; }
+  .spec .award{ color:var(--accent); }
+  .narr h4{ display:flex; align-items:center; gap:14px; font-size:30px; font-weight:800; margin-bottom:12px; white-space:nowrap; }
+  .narr h4 .pill{ font-family:var(--mono); font-size:24px; font-weight:700; padding:5px 14px; border-radius:999px; flex:none; }
+  .narr .pp{ background:#F1DEDA; color:#A2412E; }
+  .narr .ps{ background:var(--accent-soft); color:var(--accent); }
+  .nlist{ display:flex; flex-direction:column; gap:14px; counter-reset:n; }
+  .nitem{ display:grid; grid-template-columns:34px 1fr; gap:16px; font-size:25px; line-height:1.5; color:var(--ink-soft); }
+  .nitem::before{ counter-increment:n; content:counter(n); font-family:var(--mono); font-weight:700; color:var(--accent); font-size:24px; padding-top:3px; }
+  .nitem.arrow::before{ content:"\2192"; }
+  .imgcap{ font-family:var(--mono); font-size:24px; color:var(--muted); margin-top:14px; }
+  /* Option A */
+  .a-head{ display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:22px; }
+  .a-desc{ font-size:25px; line-height:1.5; color:var(--ink-soft); max-width:1500px; margin-bottom:22px; padding-bottom:20px; border-bottom:1px solid var(--line); }
+  .a-desc b{ color:var(--ink); font-weight:700; }
+  .a-title{ font-size:56px; font-weight:800; letter-spacing:-0.025em; white-space:nowrap; }
+  .a-eyebrow{ font-family:var(--mono); font-size:24px; color:var(--muted); margin-bottom:12px; }
+  .a-tags{ font-family:var(--mono); font-size:24px; color:var(--accent); }
+  .a-body{ flex:1; display:grid; grid-template-columns:560px 1fr; gap:60px; min-height:0; }
+  .a-rail{ display:flex; flex-direction:column; gap:22px; min-height:0; }
+  .a-media{ flex:1; min-height:0; display:flex; }
+  .a-media image-slot{ width:100%; height:100%; }
+  .a-media .projvid{ width:100%; height:100%; border:1px solid var(--line); border-radius:10px; object-fit:cover; background:repeating-linear-gradient(135deg,#ece7dd 0 14px,#f2eee6 14px 28px); }
+  .a-compare{ flex:1; min-height:0; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .a-compare figure{ margin:0; display:flex; flex-direction:column; gap:8px; min-height:0; }
+  .a-compare image-slot{ width:100%; flex:1; min-height:0; }
+  .cmp-label{ font-family:var(--mono); font-size:24px; letter-spacing:0.02em; display:flex; align-items:baseline; gap:8px; }
+  .cmp-label.before{ color:var(--muted); }
+  .cmp-label.after{ color:var(--accent); }
+  .cmp-label b{ font-size:30px; font-weight:800; }
+  /* Gaussian — big before/after video hero */
+  .g-compare{ flex:1; min-height:0; display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:10px; }
+  .g-fig{ margin:0; display:flex; flex-direction:column; gap:12px; min-height:0; }
+  .g-cap{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+  .g-cap .lab{ font-family:var(--mono); font-size:26px; font-weight:800; }
+  .g-cap .val{ font-family:var(--mono); font-size:24px; }
+  .g-fig.before .lab{ color:var(--muted); } .g-fig.before .val{ color:var(--muted); }
+  .g-fig.after .lab{ color:var(--accent); } .g-fig.after .val{ color:var(--accent); }
+  .g-fig image-slot{ width:100%; flex:1; min-height:0; }
+  .g-fig .cmpvid{ width:100%; flex:1; min-height:0; border:1px solid var(--line); border-radius:10px; object-fit:cover; background:repeating-linear-gradient(135deg,#ece7dd 0 14px,#f2eee6 14px 28px); }
+  .g-foot{ display:grid; grid-template-columns:auto 1fr; gap:48px; align-items:start; margin-top:16px; padding-top:16px; border-top:1px solid var(--line); }
+  .g-foot .chips{ display:flex; gap:10px; flex-wrap:wrap; max-width:560px; }
+  .g-foot .chips .chip{ white-space:nowrap; }
+  .g-narr{ display:grid; grid-template-columns:1fr 1fr; gap:36px; }
+  .g-narr .col h4{ display:flex; align-items:center; gap:12px; font-size:26px; font-weight:800; margin:0 0 8px; white-space:nowrap; }
+  .g-narr .pill{ font-family:var(--mono); font-size:24px; font-weight:700; padding:4px 12px; border-radius:999px; }
+  .g-narr .pp{ background:#F1DEDA; color:#A2412E; } .g-narr .ps{ background:var(--accent-soft); color:var(--accent); }
+  .g-narr p{ font-size:24px; line-height:1.45; color:var(--ink-soft); margin:0; }
+  .g-narr p b{ color:var(--ink); font-weight:700; }
+  .g-stat{ display:flex; align-items:center; gap:24px; flex-wrap:wrap; margin:10px 0 2px; padding:12px 22px; background:var(--dark); border-radius:12px; }
+  .g-stat .item{ display:flex; align-items:baseline; gap:10px; }
+  .g-stat .k{ font-family:var(--mono); font-size:24px; color:#9a9387; text-transform:uppercase; letter-spacing:0.03em; white-space:nowrap; }
+  .g-stat .v{ font-family:var(--mono); font-size:30px; font-weight:700; color:var(--accent-dark); white-space:nowrap; }
+  .g-stat .sep{ width:1px; height:32px; background:#3a352d; }
+  /* Gaussian v2 — 4:3 comparison hero + spec/narrative */
+  .gv-hero{ flex:1; min-height:0; display:flex; gap:34px; justify-content:center; align-items:stretch; margin-top:6px; }
+  .gv-fig{ height:100%; display:flex; flex-direction:column; gap:12px; min-height:0; justify-content:center; }
+  .gv-cap{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+  .gv-cap .lab{ font-family:var(--mono); font-size:26px; font-weight:800; white-space:nowrap; }
+  .gv-cap .val{ font-family:var(--mono); font-size:24px; white-space:nowrap; }
+  .gv-fig.before .lab{ color:var(--muted); } .gv-fig.before .val{ color:var(--muted); }
+  .gv-fig.after .lab{ color:var(--accent); } .gv-fig.after .val{ color:var(--accent); }
+  .gv-fig video{ height:330px; aspect-ratio:4/3; width:auto; max-width:100%; align-self:center; object-fit:cover; border:1px solid var(--line); border-radius:10px; background:repeating-linear-gradient(135deg,#ece7dd 0 14px,#f2eee6 14px 28px); display:block; }
+  .gv-foot{ margin-top:20px; padding-top:18px; border-top:1px solid var(--line); display:grid; grid-template-columns:540px 1fr; gap:48px; }
+  .gv-spec{ display:grid; grid-template-columns:auto 1fr; gap:9px 22px; align-content:start; }
+  .gv-spec dt{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); }
+  .gv-spec dd{ margin:0; font-size:25px; font-weight:600; line-height:1.3; }
+  .gv-narr{ display:flex; flex-direction:column; gap:11px; }
+  .gv-narr .line{ display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:baseline; }
+  .gv-narr .pill{ font-family:var(--mono); font-size:24px; font-weight:700; padding:3px 12px; border-radius:999px; white-space:nowrap; }
+  .gv-narr .pp{ background:#F1DEDA; color:#A2412E; } .gv-narr .ps{ background:var(--accent-soft); color:var(--accent); }
+  .gv-narr p{ font-size:24px; line-height:1.4; color:var(--ink-soft); margin:0; }
+  .gv-narr p b{ color:var(--ink); font-weight:700; }
+  .gv-scope{ font-size:24px; color:var(--muted); line-height:1.38; margin:2px 0 0; }
+  .a-right{ display:flex; flex-direction:column; gap:22px; }
+  .a-lesson{ margin-top:auto; padding:20px 28px; background:var(--dark); color:var(--bg); border-radius:10px; font-size:24px; font-weight:600; line-height:1.45; }
+  .a-lesson b{ color:var(--accent-dark); }
+  /* Option B */
+  .b-head{ display:flex; flex-direction:column; gap:14px; margin-bottom:26px; }
+  .b-desc{ font-size:25px; line-height:1.5; color:var(--ink-soft); max-width:1500px; margin-top:4px; }
+  .b-desc b{ color:var(--ink); font-weight:700; }
+  .b-title{ font-size:56px; font-weight:800; letter-spacing:-0.025em; }
+  .b-chips{ display:flex; gap:12px; flex-wrap:wrap; }
+  .chip{ font-family:var(--mono); font-size:24px; padding:7px 16px; border:1px solid var(--line); border-radius:999px; color:var(--ink-soft); background:var(--card); }
+  .b-body{ flex:1; display:grid; grid-template-columns:1fr 1fr; gap:30px; min-height:0; }
+  .b-media{ grid-column:1 / -1; }
+  .b-cols{ grid-column:1 / -1; display:grid; grid-template-columns:1fr 280px 1fr; gap:30px; align-items:stretch; }
+  .b-panel{ background:var(--card); border:1px solid var(--line); border-radius:12px; padding:32px 34px; display:flex; flex-direction:column; gap:16px; }
+  .b-panel .lbl{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.05em; }
+  .b-panel.before .lbl{ color:#A2412E; }
+  .b-panel.after .lbl{ color:var(--accent); }
+  .b-panel p{ font-size:25px; line-height:1.5; color:var(--ink-soft); }
+  .b-metric{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; background:var(--dark); border-radius:12px; color:var(--bg); }
+  .b-metric .big{ font-size:88px; font-weight:800; color:var(--accent-dark); line-height:0.9; letter-spacing:-0.03em; }
+  .b-metric .cap{ font-family:var(--mono); font-size:24px; color:#cfc8bb; text-align:center; }
+  /* Option C */
+  .c-body{ flex:1; display:grid; grid-template-columns:900px 1fr; gap:70px; min-height:0; }
+  .c-media{ display:flex; flex-direction:column; }
+  .c-right{ display:flex; flex-direction:column; }
+  .c-eyebrow{ font-family:var(--mono); font-size:24px; color:var(--muted); margin-bottom:16px; display:flex; align-items:center; gap:14px; }
+  .c-eyebrow .dot{ width:9px; height:9px; border-radius:50%; background:var(--accent); }
+  .c-title{ font-size:56px; font-weight:800; letter-spacing:-0.03em; line-height:1.05; margin-bottom:20px; }
+  .c-chips{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px; }
+  .c-desc{ font-size:25px; line-height:1.55; color:var(--ink-soft); margin-bottom:20px; padding-bottom:18px; border-bottom:1px solid var(--line); }
+  .c-desc b{ color:var(--ink); font-weight:700; }
+  .c-time{ display:flex; flex-direction:column; gap:0; border-left:2px solid var(--line); }
+  .c-step{ display:grid; grid-template-columns:150px 1fr; gap:24px; padding:0 0 22px 0; position:relative; }
+  .c-step .ph{ font-family:var(--mono); font-size:24px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; padding-left:28px; position:relative; }
+  .c-step .ph::before{ content:""; position:absolute; left:-7px; top:4px; width:13px; height:13px; border-radius:50%; background:var(--accent); border:3px solid var(--bg); }
+  .c-step.prob .ph{ color:#A2412E; }
+  .c-step.prob .ph::before{ background:#C2553C; }
+  .c-step.sol .ph{ color:var(--accent); }
+  .c-step p{ font-size:24px; line-height:1.42; color:var(--ink-soft); }
+  .c-lesson{ margin-top:8px; font-size:30px; font-weight:700; line-height:1.4; }
+
+  /* ===== PORTFOLIO B · Before/After 2분할 + 3스텝 (from 안.html) ===== */
+  .ba-head{ display:flex; flex-direction:column; }
+  .ba-title{ font-size:56px; font-weight:800; letter-spacing:-0.025em; line-height:1.05; }
+  .ba-hero{ flex:1; display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); margin-top:14px; min-height:0; }
+  .ba-pane{ background:var(--bg); padding:16px 26px; display:flex; flex-direction:column; gap:10px; }
+  .ba-pane .tag{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.06em; }
+  .ba-pane.before .tag{ color:var(--muted); }
+  .ba-pane.after .tag{ color:var(--accent); }
+  .ba-img{ flex:1; min-height:0; aspect-ratio:4 / 3; width:auto; max-width:100%; margin:0 auto; }
+  .ba-metric{ display:flex; align-items:baseline; gap:14px; }
+  .ba-metric .big{ font-size:48px; font-weight:800; letter-spacing:-0.03em; line-height:0.9; }
+  .ba-pane.before .big{ color:var(--ink-soft); }
+  .ba-pane.after .big{ color:var(--accent); }
+  .ba-metric .u{ font-size:25px; color:var(--muted); }
+  .ba-phead{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; }
+  .ba-phead .tag{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.06em; }
+  .ba-pane.before .ba-phead .tag{ color:var(--muted); }
+  .ba-pane.after .ba-phead .tag{ color:var(--accent); }
+  .ba-big{ font-size:46px; font-weight:800; letter-spacing:-0.03em; line-height:1; white-space:nowrap; }
+  .ba-big span{ font-size:24px; font-weight:700; margin-left:4px; }
+  .ba-pane.before .ba-big{ color:var(--ink-soft); }
+  .ba-pane.after .ba-big{ color:var(--accent); }
+  .ba-note{ font-size:24px; color:var(--muted); line-height:1.3; }
+  .ba-flow{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:10px; }
+  .ba-step{ display:flex; flex-direction:column; gap:4px; padding-top:10px; border-top:2px solid var(--accent); }
+  .ba-step .st{ font-family:var(--mono); font-size:24px; color:var(--muted); letter-spacing:0.04em; }
+  .ba-step h4{ font-size:26px; font-weight:800; letter-spacing:-0.02em; margin:0 0 2px; }
+  .ba-step p{ font-size:24px; line-height:1.35; color:var(--ink-soft); }
+  .ba-desc{ font-size:25px; line-height:1.45; color:var(--ink-soft); max-width:1500px; margin-top:6px; }
+  .ba-desc b{ color:var(--ink); font-weight:700; }
+  .ba-meta{ font-family:var(--mono); font-size:24px; color:var(--muted); margin-top:6px; }
+  .ba-chips{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+  .ba-chips .chip{ white-space:nowrap; }
+  .ba-chips .chip:first-child{ background:var(--accent); color:#fff; border-color:var(--accent); }
+
+  /* ================= PORTFOLIO CASE ================= */
+  .case-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:40px; }
+  .case-title{ font-size:50px; font-weight:800; letter-spacing:-0.025em; line-height:1.08; }
+  .case-body{ flex:1; display:grid; grid-template-columns:620px 1fr; gap:60px; margin-top:52px; min-height:0; }
+  .case-media{ display:flex; flex-direction:column; gap:14px; }
+  .case-grid{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;
+    gap:1px; background:var(--line); border:1px solid var(--line); }
+  .quad{ background:var(--bg); padding:30px 34px; display:flex; flex-direction:column; gap:12px; }
+  .quad h4{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.04em;
+    color:var(--accent); margin:0; display:flex; align-items:center; gap:10px; }
+  .quad h4 .qn{ color:var(--muted); }
+  .quad p{ font-size:25px; line-height:1.45; color:var(--ink-soft); }
+
+  /* ================= THANK YOU ================= */
+  .thanks{ justify-content:space-between; }
+  .thanks-mid{ display:flex; flex-direction:column; gap:28px; }
+  .thanks-word{ font-size:172px; font-weight:800; letter-spacing:-0.04em; line-height:0.92; }
+  .thanks-sub{ font-size:var(--type-subtitle); color:#cfc8bb; max-width:1100px; line-height:1.4; font-weight:500; }
+  .thanks-foot{ display:flex; gap:60px; border-top:1px solid #322d26; padding-top:30px;
+    font-family:var(--mono); font-size:var(--type-small); color:#9a9387; }
+  .thanks-foot div span{ display:block; color:#6f685d; font-size:24px; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px; }
+</style>
+</head>
+<body style="">
+<deck-stage width="1920" height="1080" style="--deck-rail-w: 188px;">
+
+  <!-- 01 INTRO · dark portrait rail (cover + about) -->
+  <section data-label="About">
+    <div class="runhead"><span class="step on">About</span><span class="sep">·</span><span class="step">Strengths</span><span class="sep">·</span><span class="step">Portfolio</span></div>
+    <div class="dp">
+      <aside class="dp-rail">
+        <div>
+          <div class="eyebrow"><span class="dot"></span><span>About · Portfolio 2026</span></div>
+          <h2 class="dp-name">남희수<span class="en">NAM HEESU · GRAPHICS</span></h2>
+        </div>
+        <image-slot class="dp-photo" id="about-photo" shape="rounded" radius="12" placeholder="증명사진 3.5:4.5" style="height: 500px; margin: 40px 0px 0px;"></image-slot>
+        <dl class="dp-meta" style="margin: 30px 0px 0px;">
+          <dt>Birth</dt><dd>2001.04.11</dd>
+          <dt>Based</dt><dd>경기도 성남시</dd>
+          <dt>Tel</dt><dd>010-5829-3187</dd>
+          <dt>Mail</dt><dd>namisu000@gmail.com</dd>
+        </dl>
+      </aside>
+      <main class="dp-main">
+        <p class="dp-tag" style="">겉으로 보이는 결과가 아니라,<br><span class="accent">한 프레임이 그려지는 과정</span>을 고민하는 그래픽스 개발자가 되겠습니다.</p>
+        <p class="dp-mind">저는 낯선 일도 새 기술도 일단 부딪혀 확인하는 사람입니다. 모르는 것 앞에서 멈추기보다 직접 만들어보고, 
+가장 빠른 피드백 자료로 삼습니다. 이러한 저의 강점을 인턴 기간 동안 녹여내고 싶습니다.</p>
+        <div class="dp-rule"></div>
+        <div>
+          <div class="dp-sec-label" style="">Profile</div>
+          <div class="dp-profile">
+            <div class="about-block"><h3>학력</h3>
+              <div class="dp-re">
+                <div class="e"><div class="et"><b style="">세종대학교</b><span class="d" style="font-size: 20px;">2023.03–2027.02</span></div><span class="s">소프트웨어학과 · 졸업예정</span></div>
+                <div class="e"><div class="et"><b>양영디지털고등학교</b><span class="d" style="font-size: 20px;">2017.03–2020.01</span></div><span class="s">소프트웨어과 · 졸업</span></div>
+              </div>
+            </div>
+            <div class="about-block" style="width: 520px;"><h3>경력</h3>
+              <div class="dp-re">
+                <div class="e"><div class="et"><b>(주)두두아이티</b><span class="d" style="font-size: 20px;">2020.08–2021.05</span></div><span class="s">보안 모의훈련 및 기술 제안서 작성</span></div>
+                <div class="e"><div class="et"><b>(주)리틀송 / 리틀송뮤직</b><span class="d" style="font-size: 20px;">2018.03–2020.08</span></div><span class="s">PHP 웹 개발 · 유지보수</span></div>
+              </div>
+            </div>
+            <div class="about-block" style="width: 520px;"><h3>수상내역</h3>
+              <div class="dp-re">
+                <div class="e"><div class="et"><b>창의설계경진대회 우수상</b><span class="d" style="font-size: 20px;">2026.06.12</span></div></div>
+                <div class="e"><div class="et"><b>SW코딩역량평가 (TOSC) 2등</b><span class="d" style="font-size: 20px;">2024.08.31</span></div></div>
+              </div>
+            </div>
+            <div class="about-block" style="width: 520px;"><h3>기술 스택</h3>
+              <div class="dp-stack">
+                <div class="row"><span class="k">언어</span><span class="v">C · C++ · Python</span></div>
+                <div class="row"><span class="k">그래픽스</span><span class="v">OpenGL · GLSL</span></div>
+                <div class="row"><span class="k">프레임워크</span><span class="v">GLM · OpenCV</span></div>
+                <div class="row"><span class="k">환경·도구</span><span class="v">Visual Studio · Git · Anaconda</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </section>
+
+
+  <!-- 06 EXPERIENCE & INSIGHT DIVIDER -->
+  
+
+
+  <!-- 07 EI · 협업을 통한 성취 -->
+  <section data-label="다시 시작한 도전" style="font-weight: 700">
+    <div class="runhead"><span class="step">About</span><span class="sep">·</span><span class="step on">Strengths</span><span class="sep">·</span><span class="step">Portfolio</span></div>
+    <div class="lead-note">저의 강점을 소개합니다</div>
+    <div class="ei2">
+      <div class="ei2-left" style="height: 896px;">
+        <div class="eyebrow" style="margin-bottom:18px;"><span class="dot" style="background-color: rgba(91, 61, 232, 0);"></span><span><br></span><span class="num"><br></span></div>
+        <h3 class="ei2-title anim" style="font-size: 90px;"><span class="hl" style="font-size: 90px;">실행력</span>이 장점입니다</h3>
+        <div class="ei2-tags anim2" style="font-size: 32px; margin: 20px 0px 0px; font-family: &quot;Noto Sans KR&quot;;">#도전 #결단 #실행력</div>
+        <div class="ei2-blocks anim3">
+          <div class="ei2-block">
+            <div class="ei2-bh" style="gap: 14px; margin: 0px 0px 12px; height: 50px;"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22V4"></path><path d="M5 4h12l-2.5 4L17 12H5"></path></svg><h4>생각에 머물지 않고 현실로 만드는 실행 능력</h4></div>
+            <p style="font-size: 26px; font-weight: 400;">21살 회사를 다니던 시기 제대로 된 기반이 없다는 것을 인정하고 1년간 자금을 모아 <b style="color: rgb(22, 19, 15); font-weight: 700;">대학 진학에 올인</b>했습니다. 어중간한 상태로 시간을 보내는 대신, 스스로 학업에만 집중할 수 있는 조건을 직접 만들어낸 것입니다.</p>
+            <p style="font-size: 26px; font-weight: 400; margin: 16px 0px 0px;">저는 언제나 선택의 기로에서 망설이기보다, <b style="color: rgb(22, 19, 15); font-weight: 700;">지금 당장 제가 할 수 있는 가장 확실한 행동을 결단하고 밀어붙이는 실행력</b>을 가지고 있습니다.</p>
+          </div>
+          <div class="ei2-block ext">
+            <div class="ei2-bh" style="height: 50px;"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M9 7h8v8"></path></svg><h4 style="font-size: 30px;"><span class="ext-kicker" style="font-size: 30px;">개인으로서의 사고 확장</span> · 실패를 자산으로 쓰는 사람</h4></div>
+            <p style="font-size: 26px; font-weight: 400; color: rgb(70, 65, 58);">실패를 두려워하지 않는 것이 제 모토입니다. 시행착오는 제 단점을 가장 빠르게 보여주는 자료이자, <b style="color: rgb(22, 19, 15); font-weight: 700;">곧바로 저를 피드백할 수 있는 재료</b>라고 생각합니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="ei2-media anim3" style="padding: 40px 0px 0px;">
+        <div class="ei2-card"><image-slot id="ei2a-img" style="height: 318px;" shape="rounded" radius="9" placeholder="합격 통지서"></image-slot></div>
+        <div class="ei2-card"><image-slot id="ei2b-img" style="height: 318px;" shape="rounded" radius="9" placeholder="수험 공부 내역"></image-slot></div>
+      </div>
+    </div>
+  </section><section data-label="협업을 통한 성취" style="font-weight: 400">
+    <div class="runhead"><span class="step">About</span><span class="sep">·</span><span class="step on">Strengths</span><span class="sep">·</span><span class="step">Portfolio</span></div>
+    <div class="lead-note">저의 강점을 소개합니다</div>
+    <div class="ei2">
+      <div class="ei2-left">
+        <div class="eyebrow" style="margin-bottom:18px;"><span class="dot" style="background-color: rgba(91, 61, 232, 0);"></span><span style=""><br></span><span class="num" style=""><br></span></div>
+        <h3 class="ei2-title anim" style="font-size: 90px;">협업을 통한 <span class="hl" style="font-size: 90px;">성취</span></h3>
+        <div class="ei2-tags anim2" style="font-size: 32px; margin: 20px 0px 0px; font-family: &quot;Noto Sans KR&quot;; font-weight: 700;">#주도적 #실행력 #협업</div>
+        <div class="ei2-blocks anim3">
+          <div class="ei2-block">
+            <div class="ei2-bh" style="gap: 14px; margin: 0px 0px 12px; height: 50px;"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"></circle><path d="M3 20a6 6 0 0 1 12 0"></path><path d="M16 5.5a3 3 0 0 1 0 5.5"></path><path d="M18 14a6 6 0 0 1 3 5"></path></svg><h4>주도적인 협업 능력</h4></div>
+            <p style="font-size: 26px;">애니메이션·모션이 팀원들에게 낯선 분야였고, 한 팀원은 무기력감에 2주가량 개발에서 멀어졌습니다. 저 역시 처음이라 어려웠지만, 남을 바꾸긴 힘들어도 제 태도는 지금 바꿀 수 있다고 판단했습니다. </p><div style="font-size: 26px;"><div style="font-size: 26px; line-height: 1.55">필요한 정보를 AI로 부딪혀 확인해 Notion으로 공유하고, AI 도구 사용법·프롬프트·자동화 툴까지 팀에 제공했습니다. 먼저 길을 트자 협업이 다시 굴러갔고, <b style="font-size: 26px; font-weight: 700;">창의경진대회 우수상</b>으로 이어졌습니다.</div></div><p></p>
+          </div>
+          <div class="ei2-block ext" style="font-weight: 700">
+            <div class="ei2-bh" style="height: 50px;"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M9 7h8v8"></path></svg><h4 style="font-size: 30px;"><span class="ext-kicker" style="font-size: 30px;">팀원으로서의 사고 확장</span> · 함께 굴러갈 길을 트는 팀원</h4></div>
+            <p style="font-size: 26px; font-weight: 400; color: rgb(70, 65, 58); margin: 0px">좋은 결과는 혼자 잘하는 것보다 팀이 함께 굴러갈 길을 트는 데서 나온다고 배웠습니다.&nbsp;</p><div style="font-weight: 700; font-size: 26px; line-height: 1.55;">늘 좋은 커뮤니케이션을 먼저 시도하는 팀원이 되고자 합니다.</div><p></p>
+          </div>
+        </div>
+      </div>
+      <div class="ei2-media anim3" style="padding: 40px 0px 0px;">
+        <div class="ei2-card"><image-slot id="ei1a-img" style="height:318px" shape="rounded" radius="9" placeholder="창의경진대회 우수상 상장"></image-slot><div class="ei2-cap">창의경진대회 우수상 시상</div></div>
+        <div class="ei2-card"><image-slot id="ei1b-img" style="height:318px" shape="rounded" radius="9" placeholder="Motio 플레이 화면"></image-slot><div class="ei2-cap" style="">Motio 성능 개선</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 EI · 다시 시작한 도전 -->
+  
+
+  <section data-label="AI 활용 능력">
+    <div class="runhead"><span class="step">About</span><span class="sep">·</span><span class="step on">Strengths</span><span class="sep">·</span><span class="step">Portfolio</span></div>
+    <div class="lead-note">저의 강점을 소개합니다</div>
+    <div class="ei2">
+      <div class="ei2-left">
+        <div class="eyebrow" style="margin-bottom:18px;"><span class="dot" style="background-color: rgba(91, 61, 232, 0);"></span><span style=""><br></span><span class="num" style=""><br></span></div>
+        <h3 class="ei2-title anim" style="font-size: 90px;">AI 활용 <span class="hl" style="font-size: 90px;">능력</span></h3>
+        <div class="ei2-tags anim2" style="font-size: 32px; margin: 20px 0px 0px; font-family: &quot;Noto Sans KR&quot;; font-weight: 700;">#AI활용 #교차검증 #실행력</div>
+        <div class="ei2-blocks anim3">
+          <div class="ei2-block">
+            <div class="ei2-bh" style="gap: 14px; margin: 0px 0px 12px; height: 50px;"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.3"></path><path d="M21 4v5h-5"></path></svg><h4>도구를 나눠 쓰고 교차 검증하는 능력</h4></div>
+            <p style="font-size: 26px; margin: 0px; width: 1080px;">AI를 한때는 의도적으로 멀리했지만, <b style="color: rgb(22, 19, 15); font-size: 26px;">새 워크플로우로 자리 잡았다고 판단한 뒤로는</b> 도구를 용도별로 나눠 쓰며 적극 활용하고 있습니다.&nbsp;<span style="letter-spacing: -0.16px;">디버깅·설계, 빠른 정보 탐색, 코드 기반 설명 — 직접 겪은 시행착오를 기준으로 작업마다 맞는 도구로 라우팅합니다.</span></p><div style="height: 0px"><br></div><p></p><div style="font-size: 26px;"><div style="font-size: 26px; line-height: 1.55; width: 1060px;">한 도구의 결과를 그대로 믿지 않고 <b style="font-size: 26px; font-weight: 700;">검색·다른 AI로 교차 검증</b>해 습득합니다. 예전에는 개인적인 경험에 의존해 모델을 판단했다면, 현재는 객관적인 자료를 근거로 평가하고 새로운 기능도 빠르게 학습하며 적응해 나가고 있습니다.</div></div><p></p>
+          </div>
+          <div class="ei2-block ext" style="font-weight: 700">
+            <div class="ei2-bh" style="height: 50px;"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M9 7h8v8"></path></svg><h4 style="font-size: 30px;"><span class="ext-kicker" style="font-size: 30px;">개발자로서의 사고 확장</span> · AI를 검증하며 쓰는 개발자</h4></div>
+            <p style="font-size: 26px; font-weight: 400; color: rgb(70, 65, 58); margin: 0px">도구는 빠르게 변하지만, 그 결과를 검증하고 판단하는 건 결국 사람의 몫이라고 생각합니다.&nbsp;</p><div style="font-weight: 700; font-size: 26px; line-height: 1.55; width: 1050px;">AI를 잘 쓰는 것만큼 잘 의심하는 것이 중요하다 믿으며, 이런 활용 방식을 현업에도 적용해보고 싶습니다.</div><p></p>
+          </div>
+        </div>
+      </div>
+      <div class="ei2-media anim3" style="align-self:stretch;">
+        <div class="toolpanel" style="height: 856px; padding: 40px 36px; margin: 40px 0px 0px;">
+          <div class="tp-head">
+            <h4>AI 활용 툴</h4>
+            <p>용도별로 나눠 쓰고, 결과를 교차 검증해 습득합니다</p>
+          </div>
+          <div class="tp-group">
+            <div class="tp-cat"><span class="m" style="background:#5B3DE8"></span>대화형 AI</div>
+            <div class="tp-chips">
+              <span class="tool"><span class="logo" style="background:#D97757"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"></path></svg></span>Claude</span>
+              <span class="tool"><span class="logo" style="background:#10A37F"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 4l7 4v8l-7 4-7-4V8z"></path><path d="M12 4v8l7 4M12 12l-7 4" stroke-width="1.6"></path></svg></span>ChatGPT</span>
+              <span class="tool"><span class="logo" style="background:#4285F4"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2c.4 5.3 4.5 9.4 9.8 9.8v.4C16.5 12.6 12.4 16.7 12 22c-.4-5.3-4.5-9.4-9.8-9.8v-.4C7.5 11.4 11.6 7.3 12 2z"></path></svg></span>Gemini</span>
+            </div>
+          </div>
+          <div class="tp-group">
+            <div class="tp-cat"><span class="m" style="background:#1F8A5B"></span>코딩 에이전트</div>
+            <div class="tp-chips">
+              <span class="tool"><span class="logo" style="background:#D97757"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8l4 4-4 4M13 16h5"></path></svg></span>Claude Code</span>
+              <span class="tool"><span class="logo" style="background:#111111"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"></path></svg></span>Codex</span>
+            </div>
+          </div>
+          <div class="tp-group">
+            <div class="tp-cat"><span class="m" style="background:#B8862F"></span>검색·연구</div>
+            <div class="tp-chips">
+              <span class="tool"><span class="logo" style="background:#20808D"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="7"></circle><path d="M12 5v14M5 9h14M5 15h14" stroke-width="1.5"></path></svg></span>Perplexity</span>
+              <span class="tool"><span class="logo" style="background:#4285F4"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h10l2 2v14H6z"></path><path d="M9 4v16M12 9h4M12 13h4"></path></svg></span>NotebookLM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 EI · AI 활용 능력 -->
+  
+
+
+  <!-- 12 PORTFOLIO 01 · Object Model Viewer (A) -->
+  <section data-label="Object Model Viewer">
+    <div class="runhead"><span class="step">About</span><span class="sep">·</span><span class="step">Strengths</span><span class="sep">·</span><span class="step on">Portfolio</span></div>
+    <div class="a-head">
+      <div>
+        <div class="a-eyebrow" style="">컴퓨터그래픽스 과제 · 렌더링·메시 처리 · PORTFOLIO 01</div>
+        <h2 class="a-title">Object Model Viewer</h2>
+      </div>
+      <div class="a-tags">#OpenGL #GLSL #OBJ</div>
+    </div>
+    <p class="a-desc" style=""><b>OpenGL로 OBJ 3D 모델을 읽어 렌더링하는 뷰어.</b> 대규모 메시의 법선 계산 병목을 자료구조로 개선한 컴퓨터그래픽스 과제입니다.</p>
+    <div class="a-body">
+      <div class="a-rail">
+        <div class="a-media"><video class="projvid" src="assets/object-model-viewer.mp4" autoplay="" loop="" muted="" playsinline="" preload="metadata"></video></div>
+        <dl class="spec">
+          <div class="row"><dt>기간</dt><dd style=""><span style="letter-spacing: -0.16px;">2026.09</span></dd></div>
+          <div class="row"><dt>기술</dt><dd>C++ · OpenGL · GLSL</dd></div>
+          <div class="row"><dt>역할</dt><dd style="">개인</dd></div>
+          <div class="row"><dt>상태</dt><dd class="award">완성</dd></div>
+        </dl>
+      </div>
+      <div class="a-right">
+        <div class="narr">
+          <h4><span class="pill pp">문제</span> 구현하며 마주친 문제</h4>
+          <div class="nlist">
+            <div class="nitem">다양한 크기의 OBJ 모델을 화면 중앙에 일정한 크기로 배치해야 했습니다.</div>
+            <div class="nitem">정점 법선 계산이 모든 면을 순회하는 방식이라, 정점·면이 많은 모델에선 실행이 멈출 만큼 느려졌습니다.</div>
+          </div>
+        </div>
+        <div class="narr">
+          <h4><span class="pill ps">개선</span> 해결하고자 한 노력</h4>
+          <div class="nlist">
+            <div class="nitem arrow">정점 min/max로 중심을 구해 원점으로 이동하고, 대각선 길이로 스케일을 정규화해 다양한 모델을 동일 화면 크기로 표시했습니다.</div>
+            <div class="nitem arrow">면 법선(cross product)·정점 법선을 계산하고, Phong 셰이딩(vertex/surface normal 토글, specular·shininess 조절)을 적용했습니다.</div>
+            <div class="nitem arrow">정점 법선 계산을 vertexToFaceMap(unordered_map)으로 바꿔, 정점에 연결된 면만 탐색하도록 개선해 전체 순회를 제거했습니다.</div>
+          </div>
+        </div>
+        <div class="a-lesson"><b>배운 점</b> — vertexToFaceMap은 효과는 확실했지만 단순 매핑에 의존한 방식이라 더 정교한 자료구조를 쓰지 못한 점이 아쉬웠습니다. 자료구조·알고리즘 설계가 렌더링 성능에 직접 영향을 준다는 걸 체감했습니다.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 PORTFOLIO 02 · Spherical Panorama Viewer (A) -->
+  <section data-label="Spherical Panorama Viewer">
+    <div class="runhead"><span class="step">About</span><span class="sep">·</span><span class="step">Strengths</span><span class="sep">·</span><span class="step on">Portfolio</span></div>
+    <div class="a-head">
+      <div>
+        <div class="a-eyebrow" style=""><span style="letter-spacing: -0.16px;">컴퓨터그래픽스 과제</span>&nbsp;· 셰이딩·환경 매핑 · PORTFOLIO 02</div>
+        <h2 class="a-title">Spherical Panorama Viewer</h2>
+      </div>
+      <div class="a-tags">#OpenGL #GLSL #환경매핑</div>
+    </div>
+    <p class="a-desc" style=""><b>360° 파노라마 이미지를 구체에 매핑해 둘러보는 뷰어.</b> 환경 매핑·Fresnel·Diffuse Light Map을 셰이더로 구현한 컴퓨터그래픽스 과제입니다.</p>
+    <div class="a-body">
+      <div class="a-rail">
+        <div class="a-media"><video class="projvid" src="assets/spherical-panorama-viewer.mp4" autoplay="" loop="" muted="" playsinline="" preload="metadata"></video></div>
+        <dl class="spec">
+          <div class="row"><dt>기간</dt><dd style="">2026.10</dd></div>
+          <div class="row"><dt>기술</dt><dd>C++ · OpenGL · GLSL</dd></div>
+          <div class="row"><dt>역할</dt><dd style="">개인</dd></div>
+          <div class="row"><dt>상태</dt><dd class="award">완성</dd></div>
+        </dl>
+      </div>
+      <div class="a-right">
+        <div class="narr">
+          <h4><span class="pill pp">문제</span> 구현하며 마주친 문제</h4>
+          <div class="nlist">
+            <div class="nitem">반사 벡터를 구면 좌표로 변환해 360° 텍스처를 정확히 매핑해야 했습니다.</div>
+            <div class="nitem">카메라 pitch가 90°를 넘으면 화면이 좌우 반전되는 문제가 있었습니다.</div>
+          </div>
+        </div>
+        <div class="narr">
+          <h4><span class="pill ps">개선</span> 해결하고자 한 노력</h4>
+          <div class="nlist">
+            <div class="nitem arrow">관찰 벡터를 법선으로 반사시켜 반사 벡터를 구면 좌표(atan/asin)로 변환하고, 수평은 fract로 반복·수직은 clamp로 제한해 환경 매핑을 구현했습니다.</div>
+            <div class="nitem arrow">구면 좌표계(radius·yaw·pitch) 카메라를 구성하고, pitch에 따라 up 벡터를 갱신해 90° 반전 문제를 해결했습니다.</div>
+            <div class="nitem arrow">관찰각 기반 Fresnel 근사로 환경 반사를 mix하고, 법선 방향 텍스처 좌표로 Diffuse Light Map을 샘플링했습니다.</div>
+          </div>
+        </div>
+        <div class="a-lesson"><b>배운 점</b> — Diffuse Light Map 초기 구현에서 텍스처 좌표를 반사 방향으로 계산해 원하는 결과가 안 나왔고, 법선 벡터로 바꿔 해결했습니다. 수식 하나의 차이가 결과를 바꾼다는 걸 직접 확인했습니다.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 PORTFOLIO 03 · Gaussian Splat Viewer (4:3 compare) -->
+  <section data-label="Gaussian Splat Viewer">
+    <div class="runhead"><span class="step">About</span><span class="sep">·</span><span class="step">Strengths</span><span class="sep">·</span><span class="step on">Portfolio</span></div>
+    <div class="a-head">
+      <div>
+        <div class="a-eyebrow">개인 프로젝트 · 실시간 렌더링·GPU · PORTFOLIO 03</div>
+        <h2 class="a-title">Gaussian Splat Viewer</h2>
+      </div>
+      <div class="a-tags">#OpenGL #GLSL #3DGS #ComputeShader</div>
+    </div>
+    <p class="a-desc" style="width: 1600px"><b>외부 3DGS 엔진 없이 raw OpenGL 셰이더 파이프라인으로 직접 구현한 가우시안 스플랫 뷰어.</b> 깊이 정렬 병목을 GPU로 옮겨 회전 시 끊김을 해소했습니다.</p>
+    <div class="gv-hero" style="margin: 0px">
+      <figure class="gv-fig before">
+        <div class="gv-cap"><span class="lab">Before · CPU 정렬</span><span class="val">회전 시 끊김</span></div>
+        <video class="cmpvid" src="assets/gaussian-cpu.mp4" autoplay loop muted playsinline preload="metadata"></video>
+      </figure>
+      <figure class="gv-fig after">
+        <div class="gv-cap"><span class="lab">After · GPU 정렬</span><span class="val">프레임 일정</span></div>
+        <video class="cmpvid" src="assets/gaussian-gpu.mp4" autoplay loop muted playsinline preload="metadata"></video>
+      </figure>
+    </div>
+    <div class="gv-foot">
+      <dl class="gv-spec">
+        <dt>기간</dt><dd>2025.05 – 2025.06</dd>
+        <dt>기술</dt><dd>C++ · OpenGL · GLSL · GLM</dd>
+        <dt>역할</dt><dd>개인 프로젝트 (전 과정 직접 구현)</dd>
+        <dt>상태</dt><dd style="color:var(--accent)">완성</dd>
+      </dl>
+      <div class="gv-narr">
+        <div class="line"><span class="pill pp">문제</span><p>깊이 정렬을 CPU에서 매 프레임 동기적으로 수행해, 시점을 회전할 때 화면이 뚝뚝 끊겼습니다.</p></div>
+        <div class="line"><span class="pill ps">개선</span><p>정렬 전 과정(prefix-sum·scatter)을 <b>compute shader 기반 GPU radix sort로 직접 구현</b>해 GPU에 상주시켰습니다. 끊김이 사라지고 정렬 처리량이 크게 개선돼 프레임 저하가 해소됐습니다.</p></div>
+        <p class="gv-scope">작업 범위 — 정식 3DGS의 EWA 투영·타일 래스터라이저는 범위 밖으로, 지오메트리 셰이더 빌보드 근사와 하드웨어 블렌딩으로 대체했습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 PORTFOLIO 04 · Motio (A) -->
+  <section data-label="Motio">
+    <div class="runhead"><span class="step">About</span><span class="sep">·</span><span class="step">Strengths</span><span class="sep">·</span><span class="step on">Portfolio</span></div>
+    <div class="a-head">
+      <div>
+        <div class="a-eyebrow">팀 프로젝트 · 모션 복원·그래픽스 수학 · PORTFOLIO 04</div>
+        <h2 class="a-title" style="">3D 영상 기반 모션 추출</h2>
+      </div>
+      <div class="a-tags" style="">#SMPL-X #모션복원</div>
+    </div>
+    <p class="a-desc"><b>단안 영상에서 SMPL-X 전신 모션을 복원하는 파이프라인.</b> 손목 회전의 관측 불가능성(null space)을 swing-twist 직교 분해로 풀어낸 창의경진대회 우수상 프로젝트입니다.</p>
+    <div class="a-body">
+      <div class="a-rail">
+        <div class="a-media"><video class="projvid" src="assets/motio.mp4" autoplay="" loop="" muted="" playsinline="" preload="metadata"></video></div>
+        <dl class="spec">
+          <div class="row"><dt>기간</dt><dd>2026.04 – 2026.06</dd></div>
+          <div class="row"><dt>기술</dt><dd style="">Python · SMPL-X</dd></div>
+          <div class="row"><dt>역할</dt><dd>팀 · GVHMR·HaMeR fusion</dd></div>
+          <div class="row"><dt>성과</dt><dd class="award">창의경진대회 우수상</dd></div>
+        </dl>
+      </div>
+      <div class="a-right">
+        <div class="narr">
+          <h4><span class="pill pp">문제</span> 구현하며 마주친 문제</h4>
+          <div class="nlist">
+            <div class="nitem">HaMeR는 가려진 손에 약하고, GVHMR은 손목 axial 회전을 추론하지 못했습니다.</div>
+            <div class="nitem">손목 axial 회전은 단안 2D에서 관측 불가능한 null space라 단순 결합으로는 풀리지 않았습니다.</div>
+          </div>
+        </div>
+        <div class="narr">
+          <h4><span class="pill ps">개선</span> 해결하고자 한 노력</h4>
+          <div class="nlist">
+            <div class="nitem arrow">손목 회전을 swing(관측 가능, HaMeR)·twist(관측 불가, forearm)로 직교 분해해 간섭 없이 처리했습니다.</div>
+            <div class="nitem arrow">GVHMR(body)·HaMeR(hand)을 5단계 graft로 결합해 SMPL-X 시계열을 생성했습니다.</div>
+            <div class="nitem arrow">temporal 안정성을 보존해 jitter를 7.8°에서 3.6°로 줄였습니다.</div>
+          </div>
+        </div>
+        <div class="a-lesson"><b>배운 점</b> — 모델을 검증 없이 채택한 실수에서 출발해, 이후 모델 도입 전 논문·실행 검증을 절차로 고정했습니다. 관측 불가능성을 수학적으로 분해하는 접근을 배웠습니다.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 THANK YOU -->
+  <section class="dark thanks" data-label="Thank you" data-deck-last-visible="">
+    <div class="cover-top anim"><span>PORTFOLIO — 2026</span><span style="">NAM HEESU</span></div>
+    <div class="thanks-mid">
+      <div class="cover-kicker anim2" style="padding: 50px 0px 0px;">감사합니다</div>
+      <h2 class="thanks-word anim2">Thank you</h2>
+      <p class="thanks-sub anim3" style=""><font color="#8b857b" face="Space Mono, Pretendard, system-ui, sans-serif"><span style="font-size: 24px; background-color: rgb(244, 241, 235);"></span></font></p>
+    </div>
+    <div class="thanks-foot anim3">
+      <div><span>Name</span>남희수 · NAM HEE SU</div>
+      <div><span>Mail</span>namisu000@gmail.com</div>
+      <div><span>Tel</span>010-5829-3187</div>
+    </div>
+  </section>
+
+</deck-stage>
+<script src="image-slot.js"></script>
+<script src="deck-stage.js"></script>
+
+
+</body></html>
