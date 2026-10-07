@@ -552,6 +552,8 @@
       // Width/height and left/top are all frame-% — depends only on the
       // frame aspect ratio, so a responsive resize keeps the same crop. The
       // spill layer mirrors the same box so its corners = image corners.
+      // Keep stored crops valid when the slot's frame size changes in layout.
+      this._clampView();
       const k = g.base * this._view.s;
       const w = (g.iw * k / g.fw * 100) + '%';
       const h = (g.ih * k / g.fh * 100) + '%';

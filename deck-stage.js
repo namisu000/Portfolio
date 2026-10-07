@@ -16,6 +16,9 @@
  *      scaled with `transform: scale()` to fit the viewport, letterboxed.
  *      Set the `noscale` attribute to render at authored size (1:1) — the
  *      PPTX exporter sets this so its DOM capture sees unscaled geometry.
+ *      Because the fit cancels browser zoom, Ctrl/Cmd +/−/0, Ctrl+wheel and
+ *      the overlay's magnifier buttons zoom the stage out from the fit
+ *      (40–100%) instead; the level persists to localStorage.
  *  (f) print — `@media print` lays every slide out as its own page at the
  *      design size, so the browser's Print → Save as PDF produces a clean
  *      one-page-per-slide PDF with no extra setup.
@@ -101,6 +104,10 @@
   const VALIDATE_ATTR = 'no_overflowing_text,no_overlapping_text,slide_sized_text';
   const FINE_POINTER_MQ = matchMedia('(hover: hover) and (pointer: fine)');
   const NARROW_MQ = matchMedia('(max-width: 640px)');
+  // Stage zoom levels (1 = fit to window). The stage re-fits on every resize,
+  // which cancels browser zoom, so the deck handles the zoom shortcuts itself.
+  const ZOOM_STEPS = [0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
+  const ZOOM_KEY = 'deck-stage.zoom';
   // Slide-authored controls that should keep a tap instead of it navigating.
   const INTERACTIVE_SEL = 'a[href], button, input, select, textarea, summary, label, video[controls], audio[controls], [role="button"], [onclick], [tabindex]:not([tabindex^="-"]), [contenteditable]:not([contenteditable="false" i])';
 
@@ -264,6 +271,13 @@
       text-align: center;
       font-size: 12px;
     }
+    .btn.zoom-level {
+      min-width: 40px;
+      padding: 0 4px;
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+    }
+    .btn:disabled { opacity: 0.35; pointer-events: none; }
     .count .sep { color: rgba(255,255,255,0.45); margin: 0 3px; font-weight: 400; }
     .count .total { color: rgba(255,255,255,0.55); }
 
@@ -575,8 +589,11 @@
       this._hideTimer = null;
       this._mouseIdleTimer = null;
       this._menuIndex = -1;
+      this._zoom = 1;
+      this._lastWheelZoom = 0;
 
       this._onKey = this._onKey.bind(this);
+      this._onWheel = this._onWheel.bind(this);
       this._onResize = this._onResize.bind(this);
       this._onSlotChange = this._onSlotChange.bind(this);
       this._onMouseMove = this._onMouseMove.bind(this);
@@ -608,6 +625,7 @@
       this._loadNotes();
       this._syncPrintPageRule();
       window.addEventListener('keydown', this._onKey);
+      window.addEventListener('wheel', this._onWheel, { passive: false });
       window.addEventListener('resize', this._onResize);
       window.addEventListener('mousemove', this._onMouseMove, { passive: true });
       window.addEventListener('message', this._onMessage);
@@ -835,6 +853,7 @@
 
     disconnectedCallback() {
       window.removeEventListener('keydown', this._onKey);
+      window.removeEventListener('wheel', this._onWheel);
       window.removeEventListener('resize', this._onResize);
       window.removeEventListener('mousemove', this._onMouseMove);
       window.removeEventListener('message', this._onMessage);
@@ -904,11 +923,22 @@
         </button>
         <span class="divider"></span>
         <button class="btn reset" type="button" aria-label="Reset to first slide" title="Reset (R)">Reset<span class="kbd">R</span></button>
+        <span class="divider"></span>
+        <button class="btn zoom-out" type="button" aria-label="Zoom out" title="Zoom out (Ctrl −)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M5 7h4M10.5 10.5L14 14"/></svg>
+        </button>
+        <button class="btn zoom-level" type="button" aria-label="Reset zoom" title="Fit to window (Ctrl 0)">100%</button>
+        <button class="btn zoom-in" type="button" aria-label="Zoom in" title="Zoom in (Ctrl +)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M5 7h4M7 5v4M10.5 10.5L14 14"/></svg>
+        </button>
       `;
 
       overlay.querySelector('.prev').addEventListener('click', () => this._advance(-1, 'click'));
       overlay.querySelector('.next').addEventListener('click', () => this._advance(1, 'click'));
       overlay.querySelector('.reset').addEventListener('click', () => this._go(0, 'click'));
+      overlay.querySelector('.zoom-out').addEventListener('click', () => this._stepZoom(-1));
+      overlay.querySelector('.zoom-in').addEventListener('click', () => this._stepZoom(1));
+      overlay.querySelector('.zoom-level').addEventListener('click', () => this._setZoom(1));
 
       // Thumbnail rail + context menu. Thumbnails are populated in
       // _renderRail() after _collectSlides().
@@ -1016,6 +1046,16 @@
       this._confirm = confirm;
       this._countEl = overlay.querySelector('.current');
       this._totalEl = overlay.querySelector('.total');
+      this._zoomOutBtn = overlay.querySelector('.zoom-out');
+      this._zoomInBtn = overlay.querySelector('.zoom-in');
+      this._zoomLevelEl = overlay.querySelector('.zoom-level');
+
+      // Restore persisted stage zoom (before the first _fit below).
+      try {
+        const z = parseFloat(localStorage.getItem(ZOOM_KEY));
+        if (ZOOM_STEPS.includes(z)) this._zoom = z;
+      } catch (err) {}
+      this._syncZoomUi();
 
       // Restore persisted rail width.
       let rw = 188;
@@ -1241,8 +1281,42 @@
       if (this._overlay) this._overlay.style.marginLeft = (rw / 2) + 'px';
       const vw = window.innerWidth - rw;
       const vh = window.innerHeight;
-      const s = Math.min(vw / this.designWidth, vh / this.designHeight);
+      const s = Math.min(vw / this.designWidth, vh / this.designHeight) * this._zoom;
       this._canvas.style.transform = `scale(${s})`;
+    }
+
+    _setZoom(z) {
+      if (!ZOOM_STEPS.includes(z)) return;
+      this._zoom = z;
+      try { localStorage.setItem(ZOOM_KEY, String(z)); } catch (err) {}
+      this._syncZoomUi();
+      this._fit();
+      this._flashOverlay();
+    }
+
+    _stepZoom(dir) {
+      const i = ZOOM_STEPS.indexOf(this._zoom);
+      const next = ZOOM_STEPS[Math.max(0, Math.min(ZOOM_STEPS.length - 1, i + dir))];
+      if (next !== this._zoom) this._setZoom(next);
+      else this._flashOverlay();
+    }
+
+    _syncZoomUi() {
+      if (!this._zoomLevelEl) return;
+      this._zoomLevelEl.textContent = Math.round(this._zoom * 100) + '%';
+      this._zoomOutBtn.disabled = this._zoom <= ZOOM_STEPS[0];
+      this._zoomInBtn.disabled = this._zoom >= ZOOM_STEPS[ZOOM_STEPS.length - 1];
+    }
+
+    // Ctrl/Cmd + wheel (and trackpad pinch, which arrives the same way) zooms
+    // the stage instead of the page. One step per burst of wheel events.
+    _onWheel(e) {
+      if (!e.ctrlKey && !e.metaKey) return;
+      e.preventDefault();
+      const now = performance.now();
+      if (now - this._lastWheelZoom < 150) return;
+      this._lastWheelZoom = now;
+      this._stepZoom(e.deltaY > 0 ? -1 : 1);
     }
 
     _onResize() {
@@ -1377,6 +1451,14 @@
         this._closeMenu();
         e.preventDefault();
         return;
+      }
+      // Browser zoom shortcuts zoom the stage instead (browser zoom is
+      // cancelled by the fit-to-window stage).
+      if ((e.ctrlKey || e.metaKey) && !e.altKey) {
+        const k = e.key;
+        if (k === '-' || k === '_') { this._stepZoom(-1); e.preventDefault(); return; }
+        if (k === '=' || k === '+') { this._stepZoom(1); e.preventDefault(); return; }
+        if (k === '0') { this._setZoom(1); e.preventDefault(); return; }
       }
       if (e.metaKey || e.ctrlKey || e.altKey) return;
 

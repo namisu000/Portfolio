@@ -1,631 +1,330 @@
 <!DOCTYPE html><html lang="ko"><head>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>남희수 포트폴리오</title>
-<template id="__bundler_thumbnail" data-bg-color="#16130F">
-  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" data-om-id="14a04880:5">
-    <rect width="1200" height="800" fill="#16130F" data-om-id="14a04880:6"></rect>
-    <text x="120" y="360" font-family="monospace" font-size="40" letter-spacing="14" fill="#A892FF" data-om-id="14a04880:7">PORTFOLIO</text>
-    <text x="116" y="470" font-family="sans-serif" font-size="150" font-weight="800" fill="#F4F1EB" data-om-id="14a04880:8">남희수</text>
-    <rect x="120" y="540" width="120" height="10" rx="5" fill="#A892FF" data-om-id="14a04880:9"></rect>
+<template id="__bundler_thumbnail" data-bg-color="#F3F2EE">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#F3F2EE"></rect>
+    <rect x="640" y="0" width="560" height="800" fill="#0A0A0A"></rect>
+    <text x="80" y="300" font-family="monospace" font-size="28" letter-spacing="6" fill="#7E7B74">GRAPHICS PORTFOLIO 2026</text>
+    <text x="74" y="430" font-family="sans-serif" font-size="140" font-weight="800" fill="#141412">남희수</text>
+    <rect x="80" y="480" width="64" height="6" fill="#E04A2C"></rect>
   </svg>
 </template>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
 <style>
+  /* =====================================================================
+     DESIGN SYSTEM
+     Canvas 1920×1080 · 12-column grid (96 margin, 32 gutter → col ≈ 114.7)
+     Spacing scale (8px base): 8 · 16 · 24 · 32 · 48 · 64 · 96
+     Type scale: 120 display · 64 title · 44 h2 · 28 h3 · 26 lead · 24 body · 22 detail · 20 label
+     Color: neutral paper + ink, black "viewport" for renders, one accent for results only.
+     ===================================================================== */
   :root{
-    --bg:#F4F1EB; --ink:#16130F; --ink-soft:#46413A; --muted:#8B857B;
-    --line:#DCD6CB; --card:#FCFAF6; --dark:#16130F; --dark-soft:#221E18;
-    --accent:#5B3DE8; --accent-dark:#A892FF; --accent-soft:#EDE7FF;
-    --type-display:132px; --type-h1:76px; --type-title:60px; --type-subtitle:38px;
-    --type-body:28px; --type-small:24px; --type-tag:24px;
-    --pad-x:120px; --pad-top:92px; --pad-bottom:84px;
-    --gap-title:36px; --gap-item:22px;
-    --sans:'Pretendard',system-ui,sans-serif; --mono:'Space Mono','Pretendard',system-ui,sans-serif;
+    --bg:#F3F2EE; --ink:#141412; --ink-2:#3D3B37; --muted:#7E7B74; --faint:#AAA79F; --line:#D9D6CE;
+    --black:#000; --night:#0A0A0A; --on-black:#EEECE7; --on-black-2:#9C998F; --on-black-line:#2A2926;
+    --accent:#E04A2C;
+
+    --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px; --s7:96px;
+    --mx:96px; --mt:120px; --mb:72px; --gut:32px;
+    --panel:864px;
+
+    --t-display:120px; --t-title:64px; --t-h2:44px; --t-h3:28px;
+    --t-lead:26px; --t-body:24px; --t-detail:22px; --t-label:20px;
+
+    --sans:'Pretendard',system-ui,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,'Pretendard',monospace;
   }
   *{box-sizing:border-box;}
   deck-stage:not(:defined){visibility:hidden;}
-  deck-stage{background:#0c0a08;}
+  deck-stage{background:#0c0c0b;}
+  h1,h2,h3,h4,p,figure,dl,dd,ol,ul{margin:0;padding:0;}
+  ol,ul{list-style:none;}
+  b,strong{font-weight:700;color:var(--ink);}
+
   section{
     font-family:var(--sans); background:var(--bg); color:var(--ink);
-    padding:var(--pad-top) var(--pad-x) var(--pad-bottom);
-    display:flex; flex-direction:column; overflow:hidden; position:relative;
-    -webkit-font-smoothing:antialiased; letter-spacing:-0.01em; word-break:keep-all;
+    padding:var(--mt) var(--mx) var(--mb);
+    display:flex; flex-direction:column; position:relative; overflow:hidden;
+    -webkit-font-smoothing:antialiased; letter-spacing:-0.012em; word-break:keep-all;
+    font-variant-numeric:tabular-nums;
   }
-  .runhead{ position:absolute; top:42px; right:var(--pad-x); display:flex; align-items:center; gap:14px; font-family:var(--mono); font-size:24px; letter-spacing:0.04em; z-index:5; }
-  .runhead .step{ color:var(--muted); }
-  .runhead .step.on{ color:var(--accent); font-weight:700; }
-  .runhead .sep{ color:#cfc8bb; }
-  .lead-note{ position:absolute; top:42px; left:var(--pad-x); font-family:var(--mono); font-size:24px; color:#b8b0a2; letter-spacing:0.04em; z-index:5; }
-  section.dark{ background:var(--dark); color:var(--bg); }
-  h1,h2,h3,p{margin:0;}
+  .grid{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:var(--gut);}
+  .mono{font-family:var(--mono); letter-spacing:0;}
 
-  /* ---- shared bits ---- */
-  .eyebrow{ display:flex; align-items:center; gap:16px; font-family:var(--mono);
-    font-size:var(--type-small); letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); }
-  .eyebrow .dot{ width:9px; height:9px; border-radius:50%; background:var(--accent); display:inline-block; }
-  .eyebrow .num{ margin-left:auto; font-weight:700; color:var(--ink-soft); }
-  section.dark .eyebrow .num{ color:var(--bg); }
-  .tags{ display:flex; gap:20px; flex-wrap:wrap; font-family:var(--mono); font-size:var(--type-tag);
-    color:var(--accent); letter-spacing:-0.01em; }
-  section.dark .tags{ color:var(--accent-dark); }
+  /* ---------- folio (one consistent running header) ---------- */
+  .folio{ position:absolute; top:48px; left:var(--mx); right:var(--mx); z-index:5;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:var(--t-label); color:var(--muted); }
+  .folio nav{ display:flex; gap:var(--s4); }
+  .folio nav .on{ color:var(--ink); font-weight:600; }
+  .folio.inv{ color:var(--on-black-2); }
+  .folio.inv nav .on{ color:var(--on-black); }
+
+  /* ---------- shared text atoms ---------- */
+  .eyebrow{ display:flex; justify-content:space-between; align-items:baseline; gap:var(--s4);
+    font-size:var(--t-label); color:var(--muted); }
+  .eyebrow .k{ font-family:var(--mono); font-weight:700; color:var(--ink); margin-right:var(--s2); }
+  .eyebrow .tech{ font-family:var(--mono); letter-spacing:0; }
+  .title{ font-size:var(--t-title); font-weight:800; line-height:1.08; letter-spacing:-0.03em; }
+  .desc{ font-size:var(--t-body); line-height:1.5; color:var(--ink-2); }
+  .lbl{ font-size:var(--t-label); font-weight:700; color:var(--ink); padding-top:var(--s2);
+    border-top:1px solid var(--ink); margin-bottom:var(--s2); display:flex; justify-content:space-between; }
+  .lbl .mono{ font-weight:500; color:var(--muted); }
+  .items{ display:flex; flex-direction:column; gap:var(--s1); counter-reset:i; }
+  .items li{ position:relative; padding-left:36px; font-size:var(--t-detail); line-height:1.55; color:var(--ink-2); }
+  .items li::before{ counter-increment:i; content:counter(i,decimal-leading-zero); font-family:var(--mono);
+    font-size:18px; color:var(--faint); position:absolute; left:0; top:0.2em; }
+  .note{ font-size:var(--t-detail); line-height:1.55; color:var(--ink-2); }
   .accent{ color:var(--accent); }
-  section.dark .accent{ color:var(--accent-dark); }
+
+  /* line breaking: avoid short last lines in running text */
+  .desc, .note, .items li, .lesson, .stg p, .role li, .metrics .k, .mstack .k, .idx .nm p, .pipe .st span{ text-wrap:pretty; }
+
+  /* project header: eyebrow row + title | description */
+  .ph{ display:flex; flex-direction:column; gap:var(--s2); }
+  .ph .grid{ align-items:end; }
+  .ph .title{ grid-column:1 / 7; }
+  .ph .desc{ grid-column:7 / 13; }
 
   /* image slots */
-  image-slot{ display:block; border:1px solid var(--line); background:
-    repeating-linear-gradient(135deg,#ece7dd 0 14px,#f2eee6 14px 28px); }
-  section.dark image-slot{ border-color:#3a352d; background:
-    repeating-linear-gradient(135deg,#201c16 0 14px,#272219 14px 28px); }
+  image-slot{ display:block; height:auto; background:#E6E3DC; }
 
-  /* ---- entrance ---- */
-  @media (prefers-reduced-motion:no-preference){
-    [data-deck-active] .anim{ animation:rise .6s cubic-bezier(.2,.7,.2,1) both; }
-    [data-deck-active] .anim2{ animation:rise .6s .08s cubic-bezier(.2,.7,.2,1) both; }
-    [data-deck-active] .anim3{ animation:rise .6s .16s cubic-bezier(.2,.7,.2,1) both; }
-    /* opacity stays 1 so content is never stuck hidden in print/export/capture */
-    @keyframes rise{ from{transform:translateY(20px);} to{transform:none;} }
-  }
+  /* black viewport for renders */
+  video{ display:block; background:var(--black); }
 
-  /* ================= COVER ================= */
-  .cover{ justify-content:space-between; }
-  .cover-top{ display:flex; justify-content:space-between; align-items:flex-start;
-    font-family:var(--mono); font-size:var(--type-small); color:var(--muted); letter-spacing:0.06em; }
-  .cover-mid{ display:flex; flex-direction:column; gap:32px; }
-  .cover-kicker{ font-family:var(--mono); font-size:34px; letter-spacing:0.32em; text-transform:uppercase;
-    color:var(--accent-dark); }
-  .cover-title{ font-size:var(--type-display); font-weight:800; line-height:0.96; letter-spacing:-0.03em; }
-  .cover-title .ko{ display:block; }
-  .cover-title .en{ display:block; font-family:var(--mono); font-weight:400; font-size:46px;
-    letter-spacing:0.22em; color:var(--muted); margin-top:24px; }
-  .cover-role{ font-size:var(--type-subtitle); color:#cfc8bb; font-weight:500; max-width:1100px; line-height:1.4; text-wrap:balance; }
-  .cover-foot{ display:flex; justify-content:space-between; align-items:flex-end;
-    border-top:1px solid #322d26; padding-top:32px; font-size:var(--type-small); color:#9a9387; }
-  .cover-foot .mono{ font-family:var(--mono); }
+  /* =============================== 01 ABOUT =============================== */
+  .about{ padding-top:var(--mt); }
+  .about-body{ flex:1; align-items:start; }
+  .about-side{ grid-column:1 / 4; display:flex; flex-direction:column; gap:var(--s4); }
+  .about-side image-slot{ width:100%; height:524px; }
+  .contact{ display:grid; grid-template-columns:72px 1fr; row-gap:var(--s1); font-size:var(--t-label); }
+  .contact dt{ font-family:var(--mono); font-size:16px; color:var(--muted); text-transform:uppercase; padding-top:3px; }
+  .contact dd{ color:var(--ink); }
+  .about-main{ grid-column:5 / 13; display:flex; flex-direction:column; }
+  .name{ font-size:104px; font-weight:800; line-height:0.95; letter-spacing:-0.04em; }
+  .name-en{ font-family:var(--mono); font-size:var(--t-label); color:var(--muted); margin-top:var(--s3); letter-spacing:0.08em; }
+  .tagline{ font-size:22px; line-height:1.6; color:var(--ink-2); margin-top:var(--s3); }
+  .facts{ margin-top:var(--s5); display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:var(--s6); align-items:start; }
+  .facts-col{ display:flex; flex-direction:column; gap:40px; min-width:0; }
+  .fact .entry{ display:grid; grid-template-columns:1fr auto; column-gap:var(--s2); row-gap:2px; align-items:baseline; margin-bottom:var(--s3); }
+  .fact .entry:last-child{ margin-bottom:0; }
+  .fact .entry b{ grid-column:1; grid-row:1; font-size:26px; font-weight:700; line-height:1.35; letter-spacing:-0.02em; }
+  .fact .entry .d{ grid-column:2; grid-row:1; font-family:var(--mono); font-size:18px; color:var(--muted); white-space:nowrap; }
+  .fact .entry span:not(.d){ grid-column:1 / -1; grid-row:2; font-size:20px; color:var(--muted); line-height:1.4; }
+  .stack{ display:grid; grid-template-columns:104px 1fr; gap:12px var(--s3); align-items:baseline; }
+  .stack dt{ font-size:20px; color:var(--muted); }
+  .stack dd{ font-size:24px; font-weight:700; line-height:1.35; }
 
-  /* ================= DIVIDER ================= */
-  .divider{ justify-content:center; gap:48px; }
-  .divider .eyebrow{ color:#8a8276; }
-  .divider-word{ font-size:200px; font-weight:800; line-height:0.9; letter-spacing:-0.04em; }
-  .divider-sub{ font-size:var(--type-subtitle); color:#cfc8bb; max-width:1200px; line-height:1.45; font-weight:500; text-wrap:balance; }
-  .divider-rule{ width:100%; height:1px; background:#322d26; }
-  .divider-foot{ display:flex; gap:40px; font-family:var(--mono); font-size:var(--type-small);
-    color:#8a8276; text-transform:uppercase; letter-spacing:0.06em; }
+  /* ============================ 02 SELECTED WORK ========================== */
+  .work-head{ align-items:end; }
+  .work-head h2{ grid-column:1 / 7; font-size:var(--t-title); font-weight:800; letter-spacing:-0.03em; line-height:1; }
+  .work-head p{ grid-column:7 / 13; text-align:right; font-size:var(--t-label); color:var(--muted); }
+  .idx{ margin-top:var(--s5); border-top:1px solid var(--ink); }
+  .idx .row{ grid-template-columns:40px repeat(11,minmax(0,1fr)); align-items:center; padding:12px 0; border-bottom:1px solid var(--line); }
+  .idx .no{ grid-column:1 / 2; font-family:var(--mono); font-size:18px; color:var(--muted); }
+  .idx .th{ grid-column:2 / 4; height:100px; background:var(--black); overflow:hidden; }
+  .idx .th img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .idx .th.tbd{ display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:14px; color:var(--on-black-2); letter-spacing:0.08em; }
+  .idx .nm{ grid-column:4 / 9; }
+  .idx .nm h3{ font-size:var(--t-h3); font-weight:800; letter-spacing:-0.02em; line-height:1.25; }
+  .idx .nm p{ font-size:var(--t-label); color:var(--ink-2); margin-top:4px; line-height:1.45; }
+  .idx .tc{ grid-column:9 / 12; font-family:var(--mono); font-size:16px; color:var(--muted); line-height:1.5; }
+  .idx .tc .jd{ display:block; font-family:var(--sans); font-size:16px; color:var(--ink); margin-top:4px; }
+  .idx .tc .jd::before{ content:""; display:inline-block; width:6px; height:6px; background:var(--accent); margin-right:8px; vertical-align:middle; }
+  .idx .yr{ grid-column:12 / 13; text-align:right; font-size:18px; color:var(--ink-2); line-height:1.45; }
 
-  /* ================= ABOUT ================= */
-  .about-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:60px; margin-bottom:24px; }
-  .about-head > div:first-child{ flex-shrink:0; }
-  .about-name{ font-size:78px; font-weight:800; line-height:1; letter-spacing:-0.03em; white-space:nowrap; }
-  .about-name .en{ display:block; font-family:var(--mono); font-weight:400; font-size:28px;
-    letter-spacing:0.2em; color:var(--muted); margin-top:16px; }
-  .about-tagline{ flex:1; min-width:0; text-align:right; font-size:var(--type-subtitle); line-height:1.4;
-    font-weight:600; color:var(--ink); text-wrap:balance; }
-  .about-tagline em{ font-style:normal; color:var(--accent); }
-  .about-badges{ display:flex; gap:12px; justify-content:flex-end; margin-top:14px; }
-  .abadge{ font-family:var(--mono); font-size:22px; padding:6px 15px; border:none; background:var(--accent); border-radius:999px; color:#fff; white-space:nowrap; }
-  .aw-list{ display:flex; gap:12px; flex-wrap:wrap; }
-  .about-body{ flex:1; display:grid; grid-template-columns:392px 1fr; gap:72px; min-height:0; }
-  .about-photo{ display:flex; flex-direction:column; gap:20px; }
-  .photo-meta{ display:grid; grid-template-columns:auto 1fr; gap:8px 16px; font-size:24px;
-    line-height:1.3; }
-  .photo-meta dt{ font-family:var(--mono); color:var(--muted); text-transform:uppercase; font-size:24px; letter-spacing:0.02em; }
-  .photo-meta dd{ margin:0; color:var(--ink-soft); }
-  .about-cols{ display:flex; flex-direction:column; gap:32px; }
-  .about-duo{ display:grid; grid-template-columns:1fr 1fr; gap:32px 48px; align-items:start; }
-  .about-block h3{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.06em;
-    color:var(--accent); margin-bottom:16px; display:flex; align-items:center; gap:14px; }
-  .about-block h3::after{ content:""; flex:1; height:1px; background:var(--line); }
-  .about-block p{ font-size:var(--type-body); line-height:1.5; color:var(--ink-soft); }
-  /* merged cover+about intro header */
-  .intro-head{ display:flex; flex-direction:column; padding-bottom:22px; margin-bottom:28px; border-bottom:2px solid var(--ink); }
-  .intro-eyebrow{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:24px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
-  .intro-row{ display:flex; align-items:flex-end; justify-content:space-between; gap:48px; }
-  .intro-name{ font-size:88px; font-weight:800; line-height:0.92; letter-spacing:-0.03em; white-space:nowrap; }
-  .intro-name .en{ display:block; font-family:var(--mono); font-weight:400; font-size:24px; letter-spacing:0.2em; color:var(--muted); margin-top:14px; }
-  .intro-role{ font-size:32px; font-weight:600; line-height:1.4; text-align:right; max-width:820px; padding-bottom:6px; }
-  .intro-role .accent{ color:var(--accent); }
-  /* dark portrait rail intro */
-  .dp{ flex:1; display:grid; grid-template-columns:660px 1fr; min-height:0; margin:calc(var(--pad-top)*-1) calc(var(--pad-x)*-1) calc(var(--pad-bottom)*-1); }
-  .dp-rail{ background:var(--dark); color:var(--bg); padding:76px 58px; display:flex; flex-direction:column; justify-content:space-between; }
-  .dp-rail .eyebrow{ color:#8a8276; }
-  .dp-name{ font-size:78px; font-weight:800; line-height:0.96; letter-spacing:-0.03em; margin-top:18px; }
-  .dp-name .en{ display:block; font-family:var(--mono); font-weight:400; font-size:24px; letter-spacing:0.18em; color:var(--accent-dark); margin-top:14px; }
-  .dp-photo{ align-self:center; width:392px; height:452px; border:1px solid #3a352d; background:repeating-linear-gradient(135deg,#201c16 0 14px,#272219 14px 28px); }
-  .dp-meta{ display:grid; grid-template-columns:auto 1fr; gap:11px 22px; }
-  .dp-meta dt{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.04em; color:#6f685d; }
-  .dp-meta dd{ margin:0; font-size:24px; color:#d8d2c7; }
-  .dp-main{ padding:0 88px; display:flex; flex-direction:column; justify-content:center; gap:34px; }
-  .dp-tag{ font-size:40px; font-weight:700; line-height:1.34; letter-spacing:-0.02em; }
-  .dp-tag .accent{ color:var(--accent); }
-  .dp-mind{ font-size:25px; line-height:1.6; color:var(--ink-soft); }
-  .dp-mind b{ color:var(--ink); font-weight:700; }
-  .dp-rule{ height:1px; background:var(--line); }
-  .dp-sec-label{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); margin-bottom:20px; display:flex; align-items:center; gap:14px; }
-  .dp-sec-label::after{ content:""; flex:1; height:1px; background:var(--line); }
-  .dp-str{ display:grid; grid-template-columns:repeat(3,1fr); gap:30px; }
-  .dp-str .it .n{ font-family:var(--mono); font-size:26px; font-weight:700; color:var(--accent); }
-  .dp-str .it b{ display:block; font-size:28px; font-weight:700; margin:6px 0 5px; letter-spacing:-0.01em; }
-  .dp-str .it span{ font-size:24px; line-height:1.35; color:var(--muted); }
-  .dp-info{ display:grid; grid-template-columns:1fr 1fr; gap:26px 48px; }
-  .dp-info .blk dt{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); margin-bottom:8px; }
-  .dp-info .blk dd{ margin:0; font-size:26px; font-weight:600; line-height:1.4; }
-  .dp-info .blk dd .sub{ display:block; font-size:24px; font-weight:400; color:var(--muted); margin-top:2px; }
-  .dp-profile{ display:grid; grid-template-columns:1fr 1fr; gap:22px 44px; }
-  .dp-profile .about-block h3{ margin-bottom:14px; }
-  .dp-profile .pf-line{ font-size:25px; font-weight:600; color:var(--ink); line-height:1.4; }
-  .dp-profile .pf-line .sub{ display:block; font-size:24px; font-weight:400; color:var(--muted); margin-top:2px; }
-  .dp-profile .skill-grid{ grid-template-columns:1fr; gap:9px; }
-  .dp-profile .skill{ flex-direction:row; align-items:baseline; gap:12px; }
-  .dp-profile .skill b{ font-size:25px; min-width:128px; }
-  .dp-profile .skill span{ font-size:24px; }
-  .dp-re{ display:flex; flex-direction:column; gap:11px; }
-  .dp-re .e .et{ display:flex; align-items:baseline; justify-content:space-between; gap:14px; }
-  .dp-re .e b{ font-size:25px; font-weight:700; }
-  .dp-re .e .d{ font-family:var(--mono); font-size:24px; color:var(--muted); white-space:nowrap; }
-  .dp-re .e .s{ font-size:24px; color:var(--muted); line-height:1.3; }
-  .dp-stack{ display:flex; flex-direction:column; gap:9px; }
-  .dp-stack .row{ display:grid; grid-template-columns:118px 1fr; gap:16px; align-items:baseline; }
-  .dp-stack .row .k{ font-family:var(--mono); font-size:24px; color:var(--muted); }
-  .dp-stack .row .v{ font-size:25px; font-weight:600; }
-  .exp-list{ display:flex; flex-direction:column; }
-  .exp-item{ display:flex; justify-content:space-between; align-items:baseline; gap:24px;
-    padding:13px 0; border-bottom:1px solid var(--line); }
-  .exp-item:last-child{ border-bottom:none; }
-  .exp-item b{ font-size:26px; font-weight:700; white-space:nowrap; }
-  .exp-item span{ font-size:24px; color:var(--muted); text-align:right; white-space:nowrap; }
-  .skill-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px 40px; }
-  .skill{ display:flex; flex-direction:column; gap:8px; }
-  .skill b{ font-size:26px; font-weight:700; }
-  .skill span{ font-size:24px; color:var(--muted); line-height:1.35; }
-  .strengths{ display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
-  .strength{ display:flex; flex-direction:column; gap:8px; }
-  .strength .s-no{ font-family:var(--mono); font-size:24px; color:var(--accent); letter-spacing:0.04em; }
-  .strength b{ font-size:27px; font-weight:700; line-height:1.2; }
-  .strength .s-desc{ font-size:24px; color:var(--muted); line-height:1.4; }
-  .eyebrow .s-tag{ font-family:var(--mono); font-size:24px; color:var(--accent); margin-left:24px; letter-spacing:0.02em; white-space:nowrap; }
+  /* ===================== PROJECT · compare band (Gaussian) ================ */
+  .band{ margin:var(--s4) calc(var(--mx) * -1) 0; padding:0 var(--mx); background:var(--black); }
+  .cmp{ grid-template-columns:1fr 1fr; }
+  .cmp figure{ position:relative; }
+  .cmp video{ width:100%; aspect-ratio:16 / 9; object-fit:cover; }
+  .ov{ position:absolute; left:var(--s3); top:var(--s3); display:flex; flex-direction:column; gap:4px; }
+  .ov .t{ font-family:var(--mono); font-size:18px; font-weight:700; letter-spacing:0.06em; color:var(--on-black-2); }
+  .ov .v{ font-size:var(--t-detail); font-weight:600; color:var(--on-black); }
+  .cmp figure.after .ov .t{ color:var(--accent); }
+  .cmp figure + figure{ border-left:1px solid var(--on-black-line); }
+  .cols{ margin-top:var(--s4); align-items:start; }
 
-  /* ================= GAMES GRID ================= */
-  .slide-head{ display:flex; flex-direction:column; gap:var(--gap-title); }
-  .slide-title{ font-size:var(--type-title); font-weight:800; line-height:1.06; letter-spacing:-0.025em; max-width:1500px; }
-  .slide-title .accent{ }
-  .games-grid{ flex:1; display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:1fr 1fr;
-    gap:1px; background:var(--line); border:1px solid var(--line); margin-top:46px; }
-  .game{ background:var(--bg); padding:38px 40px; display:flex; flex-direction:column; gap:14px; }
-  .game .gt{ font-size:32px; font-weight:800; letter-spacing:-0.02em; }
-  .game .gd{ font-size:24px; line-height:1.45; color:var(--ink-soft); flex:1; }
-  .game .gtag{ font-family:var(--mono); font-size:24px; color:var(--accent); }
+  /* ===================== PROJECT · Motio hero band ======================== */
+  .strip{ margin:var(--s4) calc(var(--mx) * -1) 0; background:var(--black); }
+  /* The 2160x960 comparison is shown whole (not cropped): 700px tall = 1575px wide,
+     centred in the full-bleed band; the labels row matches that width so each label
+     sits under its panel. */
+  .strip video{ display:block; width:100%; height:700px; object-fit:contain; }
+  .strip-labels{ display:grid; grid-template-columns:repeat(4,1fr); width:1575px; margin:0 auto; }
+  .strip-labels span{ padding:var(--s2) 12px 0; font-size:18px; color:var(--muted); }
+  .strip-labels span.ours{ color:var(--ink); font-weight:700; }
+  /* Comparison player controls: play/pause, seek, speed. */
+  .vplayer{ position:relative; }
+  .vctl{ position:absolute; left:50%; bottom:20px; transform:translateX(-50%); display:flex; align-items:center; gap:14px; padding:8px 14px; background:rgba(0,0,0,0.62); border-radius:999px; color:#fff; font-family:var(--mono); font-size:16px; }
+  .vbtn{ appearance:none; border:0; margin:0; background:transparent; color:rgba(255,255,255,0.78); font:inherit; height:36px; min-width:36px; padding:0 10px; border-radius:999px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; }
+  .vbtn:hover{ background:rgba(255,255,255,0.14); color:#fff; }
+  .vbtn[aria-pressed="true"]{ background:#fff; color:#000; }
+  .vbtn svg{ width:18px; height:18px; fill:currentColor; }
+  .vplay .i-play, .vplayer.paused .vplay .i-pause{ display:none; }
+  .vplayer.paused .vplay .i-play{ display:block; }
+  .vseek{ width:480px; accent-color:var(--accent); cursor:pointer; }
+  .vtime{ min-width:116px; text-align:center; color:rgba(255,255,255,0.78); font-variant-numeric:tabular-nums; }
+  .vrates{ display:flex; gap:4px; }
 
-  /* ================= STATEMENT ================= */
-  .stmt{ justify-content:center; gap:44px; }
-  .stmt-lines{ font-size:72px; font-weight:800; line-height:1.14; letter-spacing:-0.03em; max-width:1640px; }
-  .stmt-lines .em{ color:var(--accent); }
-  .stmt-lines .small{ display:block; font-size:40px; font-weight:600; color:var(--muted); margin-bottom:14px; letter-spacing:-0.02em; }
-  .stmt-body{ font-size:var(--type-body); line-height:1.65; color:var(--ink-soft); max-width:1280px; }
-  .stmt-body strong{ color:var(--ink); font-weight:700; }
+  /* ===================== PROJECT · Motio detail (pipeline) ================ */
+  .pipe{ margin-top:var(--s6); display:grid; grid-template-columns:1fr 32px 1fr 32px 1fr 32px 1fr; align-items:stretch; }
+  .pipe .st{ border-top:2px solid var(--ink); padding-top:var(--s2); display:flex; flex-direction:column; gap:6px; }
+  .pipe .st .n{ font-family:var(--mono); font-size:16px; color:var(--muted); }
+  .pipe .st b{ font-size:var(--t-h3); line-height:1.3; letter-spacing:-0.02em; }
+  .pipe .st span{ font-size:var(--t-label); line-height:1.5; color:var(--muted); }
+  .pipe .st.out{ border-top-color:var(--accent); }
+  .pipe .st.out .n{ color:var(--accent); }
+  .pipe .ar{ display:flex; align-items:flex-start; justify-content:center; padding-top:var(--s2);
+    font-family:var(--mono); color:var(--faint); font-size:var(--t-label); }
+  .detail3{ margin-top:var(--s7); align-items:start; }
+  .detail3 .items li, .detail3 .note{ font-size:var(--t-body); }
 
-  /* ================= EXPERIENCE / INSIGHT ================= */
-  .ei-body{ flex:1; display:grid; grid-template-columns:1fr 720px; gap:80px; align-items:center; margin-top:50px; min-height:0; }
-  .ei-left{ display:flex; flex-direction:column; gap:30px; }
-  .ei-title{ font-size:54px; font-weight:800; line-height:1.12; letter-spacing:-0.025em; }
-  .ei-text{ font-size:var(--type-body); line-height:1.6; color:var(--ink-soft); }
-  .ei-text b{ color:var(--accent); font-weight:700; }
-  .ei-extend{ margin-top:6px; padding-top:26px; border-top:1px solid var(--line); }
-  .ei-extend .lbl{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); margin-bottom:8px; }
-  .ei-extend .val{ font-size:30px; font-weight:700; }
-  .ei-stat{ display:grid; grid-template-columns:auto 1fr; align-items:end; gap:26px; margin-top:4px; }
-  .ei-stat .big{ font-size:88px; font-weight:800; color:var(--accent); letter-spacing:-0.03em; line-height:0.85; }
-  .ei-stat .cap{ font-size:24px; color:var(--ink-soft); line-height:1.4; padding-bottom:8px; }
-  .ei-media{ display:flex; flex-direction:column; gap:16px; height:100%; justify-content:center; }
-  .media-cap{ font-family:var(--mono); font-size:24px; color:var(--muted); }
+  /* ===================== PROJECT · split viewport (course work) =========== */
+  section.split{ padding:0; display:grid; grid-template-columns:var(--panel) 1fr; }
+  section.split.right{ grid-template-columns:1fr var(--panel); }
+  .viewport{ background:var(--black); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .viewport video{ width:100%; height:auto; max-height:100%; }
+  section.split.right .viewport{ grid-column:2; grid-row:1; }
+  .sidetext{ padding:var(--mt) var(--mx) var(--mb) 72px; display:flex; flex-direction:column; min-height:0; }
+  section.split.right .sidetext{ grid-column:1; grid-row:1; padding:var(--mt) 72px var(--mb) var(--mx); }
+  section.split .folio{ left:calc(var(--panel) + 72px); }
+  section.split.right .folio{ left:var(--mx); right:calc(var(--panel) + 72px); }
+  .sidetext .title{ font-size:56px; margin-top:var(--s2); }
+  .sidetext .tech{ font-family:var(--mono); font-size:18px; color:var(--muted); margin-top:var(--s2); }
+  .sidetext .desc{ margin-top:var(--s3); }
+  .sidetext .blk{ margin-top:28px; }
+  .lesson{ font-size:var(--t-detail); line-height:1.55; color:var(--ink-2); }
 
-  /* ===== EI v2 (reference-inspired: script eyebrow + highlight title + icon blocks + media cards) ===== */
-  .ei2{ flex:1; display:grid; grid-template-columns:1fr 580px; gap:88px; min-height:0; align-items:start; margin-top:8px; }
-  .ei2-left{ display:flex; flex-direction:column; justify-content:center; height:100%; }
-  .ei2-script{ font-family:var(--mono); font-weight:700; font-style:italic; font-size:40px; line-height:1; color:var(--accent); letter-spacing:0.01em; margin-bottom:16px; }
-  .ei2-title{ font-size:56px; font-weight:800; line-height:1.08; letter-spacing:-0.03em; }
-  .ei2-title .hl{ background:linear-gradient(transparent 54%, rgba(168,146,255,0.55) 54% 93%, transparent 93%);
-    -webkit-box-decoration-break:clone; box-decoration-break:clone; padding:0 4px; }
-  .ei2-tags{ margin-top:26px; display:flex; gap:20px; font-family:var(--mono); font-size:25px; color:var(--accent); }
-  .ei2-blocks{ margin-top:44px; display:flex; flex-direction:column; gap:34px; }
-  .ei2-bh{ display:flex; align-items:center; gap:14px; margin-bottom:12px; }
-  .ei2-block.ext .ei2-bh{ align-items:center; margin-bottom:14px; }
-  .ei2-bh .ico{ width:33px; height:33px; flex:none; color:var(--accent); }
-  .ei2-block.ext .ei2-bh .ico{ margin-top:0; }
-  .ei2-bh h4{ font-size:30px; font-weight:800; letter-spacing:-0.02em; white-space:nowrap; }
-  .ei2-block.ext .ei2-bh h4{ font-size:26px; line-height:1.3; white-space:normal; }
-  .ext-kicker{ color:var(--accent); }
-  .ei2-block p{ font-size:24px; line-height:1.55; color:var(--ink-soft); margin:0 0 18px; }
-  .ei2-block p b{ color:var(--ink); font-weight:700; }
-  .ei2-block p:last-child{ margin-bottom:0; }
-  .ei2-block.ext p{ color:var(--muted); }
-  .ei2-media{ display:flex; flex-direction:column; gap:24px; }
-  .ei2-card{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; }
-  .ei2-card image-slot{ width:100%; border-radius:9px; }
-  .ei2-cap{ text-align:center; font-family:var(--mono); font-size:24px; color:var(--muted); margin-top:14px; }
-  .ei2-metric{ background:var(--dark); border-radius:16px; padding:28px 38px; color:var(--bg);
-    display:flex; align-items:center; gap:28px; }
-  .ei2-metric .big{ font-size:74px; font-weight:800; color:var(--accent-dark); line-height:0.82; letter-spacing:-0.03em; }
-  .ei2-metric .ml{ font-size:24px; color:#cfc8bb; line-height:1.45; }
-  /* AI tool panel */
-  .toolpanel{ flex:1; min-height:0; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:40px 36px; display:flex; flex-direction:column; justify-content:center; gap:30px; }
-  .tp-head h4{ font-size:32px; font-weight:800; letter-spacing:-0.02em; margin:0 0 8px; }
-  .tp-head p{ font-size:24px; color:var(--muted); line-height:1.4; margin:0; }
-  .tp-group{ display:flex; flex-direction:column; gap:13px; }
-  .tp-cat{ display:flex; align-items:center; gap:12px; font-family:var(--mono); font-size:24px; color:var(--ink-soft); letter-spacing:0.02em; }
-  .tp-cat .m{ width:13px; height:13px; border-radius:4px; flex:none; }
-  .tp-chips{ display:flex; gap:12px; flex-wrap:wrap; }
-  .tool{ display:flex; align-items:center; gap:12px; padding:11px 18px 11px 13px; background:var(--bg); border:1px solid var(--line); border-radius:12px; font-size:25px; font-weight:600; }
-  .tool .logo{ width:34px; height:34px; border-radius:9px; flex:none; display:flex; align-items:center; justify-content:center; }
-  .tool .logo svg{ width:22px; height:22px; display:block; }
+  /* ===================== PROJECT · graphics fundamentals ================ */
+  .fund2{ align-items:center; }
+  .fund2 .fp{ grid-column:1 / 8; }
+  .fund2 .fo{ grid-column:8 / 13; }
+  .fund2 video{ width:100%; height:540px; display:block; }
+  .fund2 .fp video{ object-fit:cover; }
+  .fund2 .fo video{ object-fit:contain; }
+  .fundwrap{ margin-top:var(--s4); }
+  .fund2 video{ background:var(--black); }
+  .fund-txt .fp{ grid-column:1 / 8; }
+  .fund-txt .fo{ grid-column:8 / 13; }
+  .idx .th.fund{ display:grid; grid-template-columns:1fr 1fr; gap:2px; }
 
-  /* ===== PORTFOLIO CASE LAYOUTS (A/B/C) ===== */
-  .stab{ display:flex; gap:0; border-bottom:1px solid var(--line); margin-bottom:36px; }
-  .stab .t{ font-family:var(--mono); font-size:24px; letter-spacing:0.02em; color:var(--muted); padding:0 28px 18px; position:relative; }
-  .stab .t:first-child{ padding-left:0; }
-  .stab .t.on{ color:var(--accent); font-weight:700; }
-  .stab .t.on::after{ content:""; position:absolute; left:0; right:28px; bottom:-1px; height:3px; background:var(--accent); }
-  .stab .t:first-child.on::after{ left:0; }
-  .stab .spacer{ margin-left:auto; font-family:var(--mono); font-size:24px; color:var(--ink-soft); padding-bottom:18px; }
-  .spec{ display:flex; flex-direction:column; }
-  .spec .row{ display:grid; grid-template-columns:120px 1fr; gap:18px; padding:14px 0; border-bottom:1px solid var(--line); }
-  .spec .row:last-child{ border-bottom:none; }
-  .spec dt{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); padding-top:3px; }
-  .spec dd{ margin:0; font-size:26px; font-weight:600; line-height:1.35; }
-  .spec .award{ color:var(--accent); }
-  .narr h4{ display:flex; align-items:center; gap:14px; font-size:30px; font-weight:800; margin-bottom:12px; white-space:nowrap; }
-  .narr h4 .pill{ font-family:var(--mono); font-size:24px; font-weight:700; padding:5px 14px; border-radius:999px; flex:none; }
-  .narr .pp{ background:#F1DEDA; color:#A2412E; }
-  .narr .ps{ background:var(--accent-soft); color:var(--accent); }
-  .nlist{ display:flex; flex-direction:column; gap:14px; counter-reset:n; }
-  .nitem{ display:grid; grid-template-columns:34px 1fr; gap:16px; font-size:25px; line-height:1.5; color:var(--ink-soft); }
-  .nitem::before{ counter-increment:n; content:counter(n); font-family:var(--mono); font-weight:700; color:var(--accent); font-size:24px; padding-top:3px; }
-  .nitem.arrow::before{ content:"\2192"; }
-  .imgcap{ font-family:var(--mono); font-size:24px; color:var(--muted); margin-top:14px; }
-  /* Option A */
-  .a-head{ display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:22px; }
-  .a-desc{ font-size:25px; line-height:1.5; color:var(--ink-soft); max-width:1500px; margin-bottom:22px; padding-bottom:20px; border-bottom:1px solid var(--line); }
-  .a-desc b{ color:var(--ink); font-weight:700; }
-  .a-title{ font-size:56px; font-weight:800; letter-spacing:-0.025em; white-space:nowrap; }
-  .a-eyebrow{ font-family:var(--mono); font-size:24px; color:var(--muted); margin-bottom:12px; }
-  .a-tags{ font-family:var(--mono); font-size:24px; color:var(--accent); }
-  .a-body{ flex:1; display:grid; grid-template-columns:560px 1fr; gap:60px; min-height:0; }
-  .a-rail{ display:flex; flex-direction:column; gap:22px; min-height:0; }
-  .a-media{ flex:1; min-height:0; display:flex; }
-  .a-media image-slot{ width:100%; height:100%; }
-  .a-media .projvid{ width:100%; height:100%; border:1px solid var(--line); border-radius:10px; object-fit:cover; background:repeating-linear-gradient(135deg,#ece7dd 0 14px,#f2eee6 14px 28px); }
-  .a-compare{ flex:1; min-height:0; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  .a-compare figure{ margin:0; display:flex; flex-direction:column; gap:8px; min-height:0; }
-  .a-compare image-slot{ width:100%; flex:1; min-height:0; }
-  .cmp-label{ font-family:var(--mono); font-size:24px; letter-spacing:0.02em; display:flex; align-items:baseline; gap:8px; }
-  .cmp-label.before{ color:var(--muted); }
-  .cmp-label.after{ color:var(--accent); }
-  .cmp-label b{ font-size:30px; font-weight:800; }
-  /* Gaussian — big before/after video hero */
-  .g-compare{ flex:1; min-height:0; display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:10px; }
-  .g-fig{ margin:0; display:flex; flex-direction:column; gap:12px; min-height:0; }
-  .g-cap{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
-  .g-cap .lab{ font-family:var(--mono); font-size:26px; font-weight:800; }
-  .g-cap .val{ font-family:var(--mono); font-size:24px; }
-  .g-fig.before .lab{ color:var(--muted); } .g-fig.before .val{ color:var(--muted); }
-  .g-fig.after .lab{ color:var(--accent); } .g-fig.after .val{ color:var(--accent); }
-  .g-fig image-slot{ width:100%; flex:1; min-height:0; }
-  .g-fig .cmpvid{ width:100%; flex:1; min-height:0; border:1px solid var(--line); border-radius:10px; object-fit:cover; background:repeating-linear-gradient(135deg,#ece7dd 0 14px,#f2eee6 14px 28px); }
-  .g-foot{ display:grid; grid-template-columns:auto 1fr; gap:48px; align-items:start; margin-top:16px; padding-top:16px; border-top:1px solid var(--line); }
-  .g-foot .chips{ display:flex; gap:10px; flex-wrap:wrap; max-width:560px; }
-  .g-foot .chips .chip{ white-space:nowrap; }
-  .g-narr{ display:grid; grid-template-columns:1fr 1fr; gap:36px; }
-  .g-narr .col h4{ display:flex; align-items:center; gap:12px; font-size:26px; font-weight:800; margin:0 0 8px; white-space:nowrap; }
-  .g-narr .pill{ font-family:var(--mono); font-size:24px; font-weight:700; padding:4px 12px; border-radius:999px; }
-  .g-narr .pp{ background:#F1DEDA; color:#A2412E; } .g-narr .ps{ background:var(--accent-soft); color:var(--accent); }
-  .g-narr p{ font-size:24px; line-height:1.45; color:var(--ink-soft); margin:0; }
-  .g-narr p b{ color:var(--ink); font-weight:700; }
-  .g-stat{ display:flex; align-items:center; gap:24px; flex-wrap:wrap; margin:10px 0 2px; padding:12px 22px; background:var(--dark); border-radius:12px; }
-  .g-stat .item{ display:flex; align-items:baseline; gap:10px; }
-  .g-stat .k{ font-family:var(--mono); font-size:24px; color:#9a9387; text-transform:uppercase; letter-spacing:0.03em; white-space:nowrap; }
-  .g-stat .v{ font-family:var(--mono); font-size:30px; font-weight:700; color:var(--accent-dark); white-space:nowrap; }
-  .g-stat .sep{ width:1px; height:32px; background:#3a352d; }
-  /* Gaussian v2 — 4:3 comparison hero + spec/narrative */
-  .gv-hero{ flex:1; min-height:0; display:flex; gap:34px; justify-content:center; align-items:stretch; margin-top:6px; }
-  .gv-fig{ height:100%; display:flex; flex-direction:column; gap:12px; min-height:0; justify-content:center; }
-  .gv-cap{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
-  .gv-cap .lab{ font-family:var(--mono); font-size:26px; font-weight:800; white-space:nowrap; }
-  .gv-cap .val{ font-family:var(--mono); font-size:24px; white-space:nowrap; }
-  .gv-fig.before .lab{ color:var(--muted); } .gv-fig.before .val{ color:var(--muted); }
-  .gv-fig.after .lab{ color:var(--accent); } .gv-fig.after .val{ color:var(--accent); }
-  .gv-fig video{ height:330px; aspect-ratio:4/3; width:auto; max-width:100%; align-self:center; object-fit:cover; border:1px solid var(--line); border-radius:10px; background:repeating-linear-gradient(135deg,#ece7dd 0 14px,#f2eee6 14px 28px); display:block; }
-  .gv-foot{ margin-top:20px; padding-top:18px; border-top:1px solid var(--line); display:grid; grid-template-columns:540px 1fr; gap:48px; }
-  .gv-spec{ display:grid; grid-template-columns:auto 1fr; gap:9px 22px; align-content:start; }
-  .gv-spec dt{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); }
-  .gv-spec dd{ margin:0; font-size:25px; font-weight:600; line-height:1.3; }
-  .gv-narr{ display:flex; flex-direction:column; gap:11px; }
-  .gv-narr .line{ display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:baseline; }
-  .gv-narr .pill{ font-family:var(--mono); font-size:24px; font-weight:700; padding:3px 12px; border-radius:999px; white-space:nowrap; }
-  .gv-narr .pp{ background:#F1DEDA; color:#A2412E; } .gv-narr .ps{ background:var(--accent-soft); color:var(--accent); }
-  .gv-narr p{ font-size:24px; line-height:1.4; color:var(--ink-soft); margin:0; }
-  .gv-narr p b{ color:var(--ink); font-weight:700; }
-  .gv-scope{ font-size:24px; color:var(--muted); line-height:1.38; margin:2px 0 0; }
-  .a-right{ display:flex; flex-direction:column; gap:22px; }
-  .a-lesson{ margin-top:auto; padding:20px 28px; background:var(--dark); color:var(--bg); border-radius:10px; font-size:24px; font-weight:600; line-height:1.45; }
-  .a-lesson b{ color:var(--accent-dark); }
-  /* Option B */
-  .b-head{ display:flex; flex-direction:column; gap:14px; margin-bottom:26px; }
-  .b-desc{ font-size:25px; line-height:1.5; color:var(--ink-soft); max-width:1500px; margin-top:4px; }
-  .b-desc b{ color:var(--ink); font-weight:700; }
-  .b-title{ font-size:56px; font-weight:800; letter-spacing:-0.025em; }
-  .b-chips{ display:flex; gap:12px; flex-wrap:wrap; }
-  .chip{ font-family:var(--mono); font-size:24px; padding:7px 16px; border:1px solid var(--line); border-radius:999px; color:var(--ink-soft); background:var(--card); }
-  .b-body{ flex:1; display:grid; grid-template-columns:1fr 1fr; gap:30px; min-height:0; }
-  .b-media{ grid-column:1 / -1; }
-  .b-cols{ grid-column:1 / -1; display:grid; grid-template-columns:1fr 280px 1fr; gap:30px; align-items:stretch; }
-  .b-panel{ background:var(--card); border:1px solid var(--line); border-radius:12px; padding:32px 34px; display:flex; flex-direction:column; gap:16px; }
-  .b-panel .lbl{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.05em; }
-  .b-panel.before .lbl{ color:#A2412E; }
-  .b-panel.after .lbl{ color:var(--accent); }
-  .b-panel p{ font-size:25px; line-height:1.5; color:var(--ink-soft); }
-  .b-metric{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; background:var(--dark); border-radius:12px; color:var(--bg); }
-  .b-metric .big{ font-size:88px; font-weight:800; color:var(--accent-dark); line-height:0.9; letter-spacing:-0.03em; }
-  .b-metric .cap{ font-family:var(--mono); font-size:24px; color:#cfc8bb; text-align:center; }
-  /* Option C */
-  .c-body{ flex:1; display:grid; grid-template-columns:900px 1fr; gap:70px; min-height:0; }
-  .c-media{ display:flex; flex-direction:column; }
-  .c-right{ display:flex; flex-direction:column; }
-  .c-eyebrow{ font-family:var(--mono); font-size:24px; color:var(--muted); margin-bottom:16px; display:flex; align-items:center; gap:14px; }
-  .c-eyebrow .dot{ width:9px; height:9px; border-radius:50%; background:var(--accent); }
-  .c-title{ font-size:56px; font-weight:800; letter-spacing:-0.03em; line-height:1.05; margin-bottom:20px; }
-  .c-chips{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px; }
-  .c-desc{ font-size:25px; line-height:1.55; color:var(--ink-soft); margin-bottom:20px; padding-bottom:18px; border-bottom:1px solid var(--line); }
-  .c-desc b{ color:var(--ink); font-weight:700; }
-  .c-time{ display:flex; flex-direction:column; gap:0; border-left:2px solid var(--line); }
-  .c-step{ display:grid; grid-template-columns:150px 1fr; gap:24px; padding:0 0 22px 0; position:relative; }
-  .c-step .ph{ font-family:var(--mono); font-size:24px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; padding-left:28px; position:relative; }
-  .c-step .ph::before{ content:""; position:absolute; left:-7px; top:4px; width:13px; height:13px; border-radius:50%; background:var(--accent); border:3px solid var(--bg); }
-  .c-step.prob .ph{ color:#A2412E; }
-  .c-step.prob .ph::before{ background:#C2553C; }
-  .c-step.sol .ph{ color:var(--accent); }
-  .c-step p{ font-size:24px; line-height:1.42; color:var(--ink-soft); }
-  .c-lesson{ margin-top:8px; font-size:30px; font-weight:700; line-height:1.4; }
+  /* ===================== PROJECT · intern (image slots) ================= */
+  .slots{ margin-top:var(--s4); grid-template-columns:repeat(4,minmax(0,1fr)); column-gap:var(--s2); }
+  .slots figure image-slot{ width:100%; height:400px; }
+  .slots figure img, .slots figure video{ width:100%; height:400px; display:block; object-fit:cover; background:var(--black); }
+  .slots figure img, .slots figure video{ cursor:zoom-in; }
 
-  /* ===== PORTFOLIO B · Before/After 2분할 + 3스텝 (from 안.html) ===== */
-  .ba-head{ display:flex; flex-direction:column; }
-  .ba-title{ font-size:56px; font-weight:800; letter-spacing:-0.025em; line-height:1.05; }
-  .ba-hero{ flex:1; display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); margin-top:14px; min-height:0; }
-  .ba-pane{ background:var(--bg); padding:16px 26px; display:flex; flex-direction:column; gap:10px; }
-  .ba-pane .tag{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.06em; }
-  .ba-pane.before .tag{ color:var(--muted); }
-  .ba-pane.after .tag{ color:var(--accent); }
-  .ba-img{ flex:1; min-height:0; aspect-ratio:4 / 3; width:auto; max-width:100%; margin:0 auto; }
-  .ba-metric{ display:flex; align-items:baseline; gap:14px; }
-  .ba-metric .big{ font-size:48px; font-weight:800; letter-spacing:-0.03em; line-height:0.9; }
-  .ba-pane.before .big{ color:var(--ink-soft); }
-  .ba-pane.after .big{ color:var(--accent); }
-  .ba-metric .u{ font-size:25px; color:var(--muted); }
-  .ba-phead{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; }
-  .ba-phead .tag{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.06em; }
-  .ba-pane.before .ba-phead .tag{ color:var(--muted); }
-  .ba-pane.after .ba-phead .tag{ color:var(--accent); }
-  .ba-big{ font-size:46px; font-weight:800; letter-spacing:-0.03em; line-height:1; white-space:nowrap; }
-  .ba-big span{ font-size:24px; font-weight:700; margin-left:4px; }
-  .ba-pane.before .ba-big{ color:var(--ink-soft); }
-  .ba-pane.after .ba-big{ color:var(--accent); }
-  .ba-note{ font-size:24px; color:var(--muted); line-height:1.3; }
-  .ba-flow{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:10px; }
-  .ba-step{ display:flex; flex-direction:column; gap:4px; padding-top:10px; border-top:2px solid var(--accent); }
-  .ba-step .st{ font-family:var(--mono); font-size:24px; color:var(--muted); letter-spacing:0.04em; }
-  .ba-step h4{ font-size:26px; font-weight:800; letter-spacing:-0.02em; margin:0 0 2px; }
-  .ba-step p{ font-size:24px; line-height:1.35; color:var(--ink-soft); }
-  .ba-desc{ font-size:25px; line-height:1.45; color:var(--ink-soft); max-width:1500px; margin-top:6px; }
-  .ba-desc b{ color:var(--ink); font-weight:700; }
-  .ba-meta{ font-family:var(--mono); font-size:24px; color:var(--muted); margin-top:6px; }
-  .ba-chips{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
-  .ba-chips .chip{ white-space:nowrap; }
-  .ba-chips .chip:first-child{ background:var(--accent); color:#fff; border-color:var(--accent); }
+  /* ===================== Lightbox (click a media-row image to enlarge) ===== */
+  .lightbox{ position:fixed; inset:0; z-index:2147483600; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:32px; background:rgba(10,10,10,0.82); cursor:zoom-out; opacity:0; transition:opacity 180ms ease; }
+  .lightbox[hidden]{ display:none; }
+  .lightbox.open{ opacity:1; }
+  .lightbox img, .lightbox video{ max-width:min(92vw,1800px); max-height:84vh; object-fit:contain; box-shadow:0 12px 48px rgba(0,0,0,0.5); }
+  .lightbox img[hidden], .lightbox video[hidden]{ display:none; }
+  .lightbox p{ color:#eee; font-size:15px; }
+  .slots figcaption{ font-size:18px; color:var(--muted); margin-top:var(--s1); }
 
-  /* ================= PORTFOLIO CASE ================= */
-  .case-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:40px; }
-  .case-title{ font-size:50px; font-weight:800; letter-spacing:-0.025em; line-height:1.08; }
-  .case-body{ flex:1; display:grid; grid-template-columns:620px 1fr; gap:60px; margin-top:52px; min-height:0; }
-  .case-media{ display:flex; flex-direction:column; gap:14px; }
-  .case-grid{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;
-    gap:1px; background:var(--line); border:1px solid var(--line); }
-  .quad{ background:var(--bg); padding:30px 34px; display:flex; flex-direction:column; gap:12px; }
-  .quad h4{ font-family:var(--mono); font-size:24px; text-transform:uppercase; letter-spacing:0.04em;
-    color:var(--accent); margin:0; display:flex; align-items:center; gap:10px; }
-  .quad h4 .qn{ color:var(--muted); }
-  .quad p{ font-size:25px; line-height:1.45; color:var(--ink-soft); }
+  /* ===================== RESEARCH · figure band + stage grid ============== */
+  .quad{ margin:var(--s4) calc(var(--mx) * -1) 0; display:grid; grid-template-columns:repeat(4,1fr); background:var(--black); }
+  .quad figure{ position:relative; height:440px; overflow:hidden; }
+  .quad img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .quad figure + figure{ border-left:1px solid var(--on-black-line); }
+  .quad figcaption{ position:absolute; left:var(--s3); bottom:var(--s3); display:flex; flex-direction:column; gap:2px; background:var(--black); padding:8px 12px; }
+  .quad figure:first-child figcaption{ left:calc(var(--mx) - 12px); }
+  .quad figcaption .t{ font-size:var(--t-label); font-weight:600; color:var(--on-black); }
+  .quad figcaption .v{ font-family:var(--mono); font-size:16px; color:var(--on-black-2); }
+  .r-bottom{ margin-top:var(--s4); align-items:start; }
+  .stg{ border-top:1px solid var(--ink); padding-top:var(--s2); }
+  .stg .n{ font-family:var(--mono); font-size:16px; color:var(--muted); display:flex; justify-content:space-between; }
+  .stg b{ display:block; font-size:var(--t-detail); line-height:1.35; margin-top:6px; }
+  .stg p{ font-size:18px; line-height:1.5; color:var(--ink-2); margin-top:6px; }
+  .role{ border-top:1px solid var(--accent); padding-top:var(--s2); }
+  .role .n{ font-size:16px; font-weight:700; color:var(--accent); }
+  .role ul{ margin-top:6px; display:flex; flex-direction:column; gap:6px; }
+  .role li{ font-size:18px; line-height:1.45; color:var(--ink); }
 
-  /* ================= THANK YOU ================= */
-  .thanks{ justify-content:space-between; }
-  .thanks-mid{ display:flex; flex-direction:column; gap:28px; }
-  .thanks-word{ font-size:172px; font-weight:800; letter-spacing:-0.04em; line-height:0.92; }
-  .thanks-sub{ font-size:var(--type-subtitle); color:#cfc8bb; max-width:1100px; line-height:1.4; font-weight:500; }
-  .thanks-foot{ display:flex; gap:60px; border-top:1px solid #322d26; padding-top:30px;
-    font-family:var(--mono); font-size:var(--type-small); color:#9a9387; }
-  .thanks-foot div span{ display:block; color:#6f685d; font-size:24px; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px; }
+  .stages{ margin:var(--s4) 0 0; }
+  .stages .cl, .stages .rw{ display:grid; grid-template-columns:repeat(8,1fr); }
+  .stages .cl span{ font-size:16px; color:var(--muted); padding:0 0 var(--s1); }
+  .stages .rw{ background:var(--black); margin:0 calc(var(--mx) * -1); padding:0 var(--mx); }
+  .stages .rw figure{ position:relative; height:156px; overflow:hidden; }
+  .stages .rw img{ width:100%; height:100%; object-fit:contain; display:block; }
+  .stages .rw figure:nth-child(n+7) img{ object-fit:cover; }
+  .stages .rw figcaption{ position:absolute; left:0; bottom:8px; font-family:var(--mono); font-size:14px; color:var(--on-black); background:var(--black); padding:2px 6px 2px 0; }
+  .detailrow{ margin-top:auto; align-items:start; }
+  .zoom{ grid-column:1 / 9; }
+  .zt{ display:grid; grid-template-columns:repeat(5,1fr); gap:var(--s2); }
+  .zt img{ width:100%; height:128px; object-fit:cover; display:block; background:var(--black); }
+  .zt figcaption{ display:flex; justify-content:space-between; font-size:16px; color:var(--muted); margin-top:6px; }
+  .zt figure:last-child figcaption{ color:var(--ink); font-weight:700; }
+  .mstack{ grid-column:9 / 13; display:flex; flex-direction:column; gap:var(--s3); }
+  .mstack > div{ border-top:1px solid var(--ink); padding-top:var(--s2); }
+  .mstack .v{ font-size:36px; font-weight:800; letter-spacing:-0.03em; line-height:1.1; }
+  .mstack .v .arr{ font-weight:400; color:var(--faint); margin:0 6px; }
+  .mstack .k{ font-size:16px; line-height:1.5; color:var(--muted); margin-top:6px; }
+
+  /* ================================ CONTACT =============================== */
+  section.closing{ background:var(--night); color:var(--on-black); }
+  .closing .body{ margin-top:auto; }
+  .closing .lab{ font-family:var(--mono); font-size:var(--t-label); color:var(--on-black-2); letter-spacing:0.08em; }
+  .closing .mail{ font-size:96px; font-weight:700; letter-spacing:-0.035em; line-height:1.05; margin-top:var(--s3); }
+  .closing .foot{ margin-top:var(--s6); padding-top:var(--s4); border-top:1px solid var(--on-black-line); }
+  .closing .foot div{ grid-column:span 4; font-size:var(--t-body); }
+  .closing .foot div span{ display:block; font-family:var(--mono); font-size:16px; text-transform:uppercase; letter-spacing:0.08em; color:var(--on-black-2); margin-bottom:var(--s1); }
 </style>
 </head>
-<body style="">
+<body>
 <deck-stage width="1920" height="1080" style="--deck-rail-w: 188px;">
 
-  <!-- 01 INTRO · dark portrait rail (cover + about) -->
-  <section data-label="About">
-    <div class="runhead"><span class="step on">About</span><span class="sep">·</span><span class="step">Strengths</span><span class="sep">·</span><span class="step">Portfolio</span></div>
-    <div class="dp">
-      <aside class="dp-rail">
-        <div>
-          <div class="eyebrow"><span class="dot"></span><span>About · Portfolio 2026</span></div>
-          <h2 class="dp-name">남희수<span class="en">NAM HEESU · GRAPHICS</span></h2>
-        </div>
-        <image-slot class="dp-photo" id="about-photo" shape="rounded" radius="12" placeholder="증명사진 3.5:4.5" style="height: 500px; margin: 40px 0px 0px;"></image-slot>
-        <dl class="dp-meta" style="margin: 30px 0px 0px;">
+  <!-- ========================= 01 · ABOUT ========================= -->
+  <section class="about" data-label="About">
+    <div class="folio"><span>About</span><nav><span class="on">About</span><span>Work</span></nav></div>
+    <div class="grid about-body">
+      <aside class="about-side">
+        <image-slot id="about-photo" shape="rect" placeholder="증명사진 3.5:4.5"></image-slot>
+        <dl class="contact">
           <dt>Birth</dt><dd>2001.04.11</dd>
           <dt>Based</dt><dd>경기도 성남시</dd>
           <dt>Tel</dt><dd>010-5829-3187</dd>
           <dt>Mail</dt><dd>namisu000@gmail.com</dd>
         </dl>
       </aside>
-      <main class="dp-main">
-        <p class="dp-tag" style="">겉으로 보이는 결과가 아니라,<br><span class="accent">한 프레임이 그려지는 과정</span>을 고민하는 그래픽스 개발자가 되겠습니다.</p>
-        <p class="dp-mind">저는 낯선 일도 새 기술도 일단 부딪혀 확인하는 사람입니다. 모르는 것 앞에서 멈추기보다 직접 만들어보고, 
-가장 빠른 피드백 자료로 삼습니다. 이러한 저의 강점을 인턴 기간 동안 녹여내고 싶습니다.</p>
-        <div class="dp-rule"></div>
-        <div>
-          <div class="dp-sec-label" style="">Profile</div>
-          <div class="dp-profile">
-            <div class="about-block"><h3>학력</h3>
-              <div class="dp-re">
-                <div class="e"><div class="et"><b style="">세종대학교</b><span class="d" style="font-size: 20px;">2023.03–2027.02</span></div><span class="s">소프트웨어학과 · 졸업예정</span></div>
-                <div class="e"><div class="et"><b>양영디지털고등학교</b><span class="d" style="font-size: 20px;">2017.03–2020.01</span></div><span class="s">소프트웨어과 · 졸업</span></div>
-              </div>
+      <div class="about-main">
+        <h1 class="name">남희수</h1>
+        <div class="name-en">NAM HEESU — GRAPHICS · PORTFOLIO 2026</div>
+        <p class="tagline">낯선 일도 새 기술도 일단 부딪혀 확인합니다. 모르는 것 앞에서 멈추기보다 직접 만들어보고,<br>그 결과를 가장 빠른 피드백 자료로 삼습니다.</p>
+        <div class="facts">
+          <div class="facts-col">
+            <div class="fact">
+              <div class="lbl">학력</div>
+              <div class="entry"><b>세종대학교</b><span>소프트웨어학과 · 졸업예정</span><span class="d">2023.03 – 2027.02</span></div>
+              <div class="entry"><b>양영디지털고등학교</b><span>소프트웨어과 · 졸업</span><span class="d">2017.03 – 2020.01</span></div>
             </div>
-            <div class="about-block" style="width: 520px;"><h3>경력</h3>
-              <div class="dp-re">
-                <div class="e"><div class="et"><b>(주)두두아이티</b><span class="d" style="font-size: 20px;">2020.08–2021.05</span></div><span class="s">보안 모의훈련 및 기술 제안서 작성</span></div>
-                <div class="e"><div class="et"><b>(주)리틀송 / 리틀송뮤직</b><span class="d" style="font-size: 20px;">2018.03–2020.08</span></div><span class="s">PHP 웹 개발 · 유지보수</span></div>
-              </div>
-            </div>
-            <div class="about-block" style="width: 520px;"><h3>수상내역</h3>
-              <div class="dp-re">
-                <div class="e"><div class="et"><b>창의설계경진대회 우수상</b><span class="d" style="font-size: 20px;">2026.06.12</span></div></div>
-                <div class="e"><div class="et"><b>SW코딩역량평가 (TOSC) 2등</b><span class="d" style="font-size: 20px;">2024.08.31</span></div></div>
-              </div>
-            </div>
-            <div class="about-block" style="width: 520px;"><h3>기술 스택</h3>
-              <div class="dp-stack">
-                <div class="row"><span class="k">언어</span><span class="v">C · C++ · Python</span></div>
-                <div class="row"><span class="k">그래픽스</span><span class="v">OpenGL · GLSL</span></div>
-                <div class="row"><span class="k">프레임워크</span><span class="v">GLM · OpenCV</span></div>
-                <div class="row"><span class="k">환경·도구</span><span class="v">Visual Studio · Git · Anaconda</span></div>
-              </div>
+            <div class="fact">
+              <div class="lbl">수상</div>
+              <div class="entry"><b>창의설계경진대회 우수상</b><span class="d">2026.06.12</span></div>
+              <div class="entry"><b>SW코딩역량평가 (TOSC) 2등</b><span class="d">2024.08.31</span></div>
             </div>
           </div>
-        </div>
-      </main>
-    </div>
-  </section>
-
-
-  <!-- 06 EXPERIENCE & INSIGHT DIVIDER -->
-  
-
-
-  <!-- 07 EI · 협업을 통한 성취 -->
-  <section data-label="다시 시작한 도전" style="font-weight: 700">
-    <div class="runhead"><span class="step">About</span><span class="sep">·</span><span class="step on">Strengths</span><span class="sep">·</span><span class="step">Portfolio</span></div>
-    <div class="lead-note">저의 강점을 소개합니다</div>
-    <div class="ei2">
-      <div class="ei2-left" style="height: 896px;">
-        <div class="eyebrow" style="margin-bottom:18px;"><span class="dot" style="background-color: rgba(91, 61, 232, 0);"></span><span><br></span><span class="num"><br></span></div>
-        <h3 class="ei2-title anim" style="font-size: 90px;"><span class="hl" style="font-size: 90px;">실행력</span>이 장점입니다</h3>
-        <div class="ei2-tags anim2" style="font-size: 32px; margin: 20px 0px 0px; font-family: &quot;Noto Sans KR&quot;;">#도전 #결단 #실행력</div>
-        <div class="ei2-blocks anim3">
-          <div class="ei2-block">
-            <div class="ei2-bh" style="gap: 14px; margin: 0px 0px 12px; height: 50px;"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22V4"></path><path d="M5 4h12l-2.5 4L17 12H5"></path></svg><h4>생각에 머물지 않고 현실로 만드는 실행 능력</h4></div>
-            <p style="font-size: 26px; font-weight: 400;">21살 회사를 다니던 시기 제대로 된 기반이 없다는 것을 인정하고 1년간 자금을 모아 <b style="color: rgb(22, 19, 15); font-weight: 700;">대학 진학에 올인</b>했습니다. 어중간한 상태로 시간을 보내는 대신, 스스로 학업에만 집중할 수 있는 조건을 만들어낸 것입니다.</p>
-            <p style="font-size: 26px; font-weight: 400; margin: 16px 0px 0px;">저는 언제나 선택의 기로에서 망설이기보다, <b style="color: rgb(22, 19, 15); font-weight: 700;">지금 당장 제가 할 수 있는 가장 확실한 행동을 결단하고 밀어붙이는 실행력</b>을 가지고 있습니다.</p>
-          </div>
-          <div class="ei2-block ext">
-            <div class="ei2-bh" style="height: 50px;"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M9 7h8v8"></path></svg><h4 style="font-size: 30px;"><span class="ext-kicker" style="font-size: 30px;">개인으로서의 사고 확장</span> · 실패를 자산으로 쓰는 사람</h4></div>
-            <p style="font-size: 26px; font-weight: 400; color: rgb(70, 65, 58);">실패를 두려워하지 않는 것이 제 모토입니다. 시행착오는 제 단점을 가장 빠르게 보여주는 자료이자, <b style="color: rgb(22, 19, 15); font-weight: 700;">곧바로 저를 피드백할 수 있는 재료</b>라고 생각합니다.</p>
-          </div>
-        </div>
-      </div>
-      <div class="ei2-media anim3" style="padding: 40px 0px 0px;">
-        <div class="ei2-card"><image-slot id="ei2a-img" style="height: 318px;" shape="rounded" radius="9" placeholder="합격 통지서"></image-slot></div>
-        <div class="ei2-card"><image-slot id="ei2b-img" style="height: 318px;" shape="rounded" radius="9" placeholder="수험 공부 내역"></image-slot></div>
-      </div>
-    </div>
-  </section><section data-label="협업을 통한 성취" style="font-weight: 400">
-    <div class="runhead"><span class="step">About</span><span class="sep">·</span><span class="step on">Strengths</span><span class="sep">·</span><span class="step">Portfolio</span></div>
-    <div class="lead-note">저의 강점을 소개합니다</div>
-    <div class="ei2">
-      <div class="ei2-left">
-        <div class="eyebrow" style="margin-bottom:18px;"><span class="dot" style="background-color: rgba(91, 61, 232, 0);"></span><span style=""><br></span><span class="num" style=""><br></span></div>
-        <h3 class="ei2-title anim" style="font-size: 90px;">협업을 통한 <span class="hl" style="font-size: 90px;">성취</span></h3>
-        <div class="ei2-tags anim2" style="font-size: 32px; margin: 20px 0px 0px; font-family: &quot;Noto Sans KR&quot;; font-weight: 700;">#주도적 #실행력 #협업</div>
-        <div class="ei2-blocks anim3">
-          <div class="ei2-block">
-            <div class="ei2-bh" style="gap: 14px; margin: 0px 0px 12px; height: 50px;"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"></circle><path d="M3 20a6 6 0 0 1 12 0"></path><path d="M16 5.5a3 3 0 0 1 0 5.5"></path><path d="M18 14a6 6 0 0 1 3 5"></path></svg><h4>주도적인 협업 능력</h4></div>
-            <p style="font-size: 26px;">애니메이션·모션이 팀원들에게 낯선 분야였고, 한 팀원은 무기력감에 2주가량 개발에서 멀어졌습니다. 저 역시 처음이라 어려웠지만, 남을 바꾸긴 힘들어도 제 태도는 지금 바꿀 수 있다고 판단했습니다. </p><div style="font-size: 26px;"><div style="font-size: 26px; line-height: 1.55">필요한 정보를 AI로 부딪혀 확인해 Notion으로 공유하고, AI 도구 사용법·프롬프트·자동화 툴까지 팀에 제공했습니다. 먼저 길을 트자 협업이 다시 굴러갔고, <b style="font-size: 26px; font-weight: 700;">창의경진대회 우수상</b>으로 이어졌습니다.</div></div><p></p>
-          </div>
-          <div class="ei2-block ext" style="font-weight: 700">
-            <div class="ei2-bh" style="height: 50px;"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M9 7h8v8"></path></svg><h4 style="font-size: 30px;"><span class="ext-kicker" style="font-size: 30px;">팀원으로서의 사고 확장</span> · 함께 굴러갈 길을 트는 팀원</h4></div>
-            <p style="font-size: 26px; font-weight: 400; color: rgb(70, 65, 58); margin: 0px">좋은 결과는 혼자 잘하는 것보다 팀이 함께 굴러갈 길을 트는 데서 나온다고 배웠습니다.&nbsp;</p><div style="font-weight: 700; font-size: 26px; line-height: 1.55;">늘 좋은 커뮤니케이션을 먼저 시도하는 팀원이 되고자 합니다.</div><p></p>
-          </div>
-        </div>
-      </div>
-      <div class="ei2-media anim3" style="padding: 40px 0px 0px;">
-        <div class="ei2-card"><image-slot id="ei1a-img" style="height:318px" shape="rounded" radius="9" placeholder="창의경진대회 우수상 상장"></image-slot><div class="ei2-cap">창의경진대회 우수상 시상</div></div>
-        <div class="ei2-card"><image-slot id="ei1b-img" style="height:318px" shape="rounded" radius="9" placeholder="Motio 플레이 화면"></image-slot><div class="ei2-cap" style="">Motio 성능 개선</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 08 EI · 다시 시작한 도전 -->
-  
-
-  <section data-label="AI 활용 능력">
-    <div class="runhead"><span class="step">About</span><span class="sep">·</span><span class="step on">Strengths</span><span class="sep">·</span><span class="step">Portfolio</span></div>
-    <div class="lead-note">저의 강점을 소개합니다</div>
-    <div class="ei2">
-      <div class="ei2-left">
-        <div class="eyebrow" style="margin-bottom:18px;"><span class="dot" style="background-color: rgba(91, 61, 232, 0);"></span><span style=""><br></span><span class="num" style=""><br></span></div>
-        <h3 class="ei2-title anim" style="font-size: 90px;">AI 활용 <span class="hl" style="font-size: 90px;">능력</span></h3>
-        <div class="ei2-tags anim2" style="font-size: 32px; margin: 20px 0px 0px; font-family: &quot;Noto Sans KR&quot;; font-weight: 700;">#AI활용 #교차검증 #실행력</div>
-        <div class="ei2-blocks anim3">
-          <div class="ei2-block">
-            <div class="ei2-bh" style="gap: 14px; margin: 0px 0px 12px; height: 50px;"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.3"></path><path d="M21 4v5h-5"></path></svg><h4>도구를 나눠 쓰고 교차 검증하는 능력</h4></div>
-            <p style="font-size: 26px; margin: 0px; width: 1080px;">AI를 한때는 의도적으로 멀리했지만, <b style="color: rgb(22, 19, 15); font-size: 26px;">새 워크플로우로 자리 잡았다고 판단한 뒤로는</b> 도구를 용도별로 나눠 쓰며 적극 활용하고 있습니다.&nbsp;<span style="letter-spacing: -0.16px;">디버깅·설계, 빠른 정보 탐색, 코드 기반 설명 — 직접 겪은 시행착오를 기준으로 작업마다 맞는 도구로 라우팅합니다.</span></p><div style="height: 0px"><br></div><p></p><div style="font-size: 26px;"><div style="font-size: 26px; line-height: 1.55; width: 1060px;">한 도구의 결과를 그대로 믿지 않고 <b style="font-size: 26px; font-weight: 700;">검색·다른 AI로 교차 검증</b>해 습득합니다. 예전에는 개인적인 경험에 의존해 모델을 판단했다면, 현재는 객관적인 자료를 근거로 평가하고 새로운 기능도 빠르게 학습하며 적응해 나가고 있습니다.</div></div><p></p>
-          </div>
-          <div class="ei2-block ext" style="font-weight: 700">
-            <div class="ei2-bh" style="height: 50px;"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M9 7h8v8"></path></svg><h4 style="font-size: 30px;"><span class="ext-kicker" style="font-size: 30px;">개발자로서의 사고 확장</span> · AI를 검증하며 쓰는 개발자</h4></div>
-            <p style="font-size: 26px; font-weight: 400; color: rgb(70, 65, 58); margin: 0px">도구는 빠르게 변하지만, 그 결과를 검증하고 판단하는 건 결국 사람의 몫이라고 생각합니다.&nbsp;</p><div style="font-weight: 700; font-size: 26px; line-height: 1.55; width: 1050px;">AI를 잘 쓰는 것만큼 잘 의심하는 것이 중요하다 믿으며, 이런 활용 방식을 현업에도 적용해보고 싶습니다.</div><p></p>
-          </div>
-        </div>
-      </div>
-      <div class="ei2-media anim3" style="align-self:stretch;">
-        <div class="toolpanel" style="height: 856px; padding: 40px 36px; margin: 40px 0px 0px;">
-          <div class="tp-head">
-            <h4>AI 활용 툴</h4>
-            <p>용도별로 나눠 쓰고, 결과를 교차 검증해 습득합니다</p>
-          </div>
-          <div class="tp-group">
-            <div class="tp-cat"><span class="m" style="background:#5B3DE8"></span>대화형 AI</div>
-            <div class="tp-chips">
-              <span class="tool"><span class="logo" style="background:#D97757"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"></path></svg></span>Claude</span>
-              <span class="tool"><span class="logo" style="background:#10A37F"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 4l7 4v8l-7 4-7-4V8z"></path><path d="M12 4v8l7 4M12 12l-7 4" stroke-width="1.6"></path></svg></span>ChatGPT</span>
-              <span class="tool"><span class="logo" style="background:#4285F4"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2c.4 5.3 4.5 9.4 9.8 9.8v.4C16.5 12.6 12.4 16.7 12 22c-.4-5.3-4.5-9.4-9.8-9.8v-.4C7.5 11.4 11.6 7.3 12 2z"></path></svg></span>Gemini</span>
+          <div class="facts-col">
+            <div class="fact">
+              <div class="lbl">경력</div>
+              <div class="entry"><b>CLO Virtual Fashion</b><span>ML팀 인턴 · Gaussian Splatting</span><span class="d">2026.07 – 2026.08</span></div>
+              <div class="entry"><b>(주)두두아이티</b><span>보안 모의훈련 및 기술 제안서 작성</span><span class="d">2020.08 – 2021.05</span></div>
+              <div class="entry"><b>(주)리틀송 / 리틀송뮤직</b><span>PHP 웹 개발 · 유지보수</span><span class="d">2018.03 – 2020.08</span></div>
             </div>
-          </div>
-          <div class="tp-group">
-            <div class="tp-cat"><span class="m" style="background:#1F8A5B"></span>코딩 에이전트</div>
-            <div class="tp-chips">
-              <span class="tool"><span class="logo" style="background:#D97757"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8l4 4-4 4M13 16h5"></path></svg></span>Claude Code</span>
-              <span class="tool"><span class="logo" style="background:#111111"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"></path></svg></span>Codex</span>
-            </div>
-          </div>
-          <div class="tp-group">
-            <div class="tp-cat"><span class="m" style="background:#B8862F"></span>검색·연구</div>
-            <div class="tp-chips">
-              <span class="tool"><span class="logo" style="background:#20808D"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="7"></circle><path d="M12 5v14M5 9h14M5 15h14" stroke-width="1.5"></path></svg></span>Perplexity</span>
-              <span class="tool"><span class="logo" style="background:#4285F4"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h10l2 2v14H6z"></path><path d="M9 4v16M12 9h4M12 13h4"></path></svg></span>NotebookLM</span>
+            <div class="fact">
+              <div class="lbl">기술 스택</div>
+              <dl class="stack">
+                <dt>언어</dt><dd>C · C++ · Python</dd>
+                <dt>그래픽스</dt><dd>OpenGL · GLSL · 3DGS</dd>
+                <dt>프레임워크</dt><dd>GLM · OpenCV · PyTorch</dd>
+                <dt>환경·도구</dt><dd>Visual Studio · Git · Anaconda · Blender</dd>
+              </dl>
             </div>
           </div>
         </div>
@@ -633,190 +332,392 @@
     </div>
   </section>
 
-  <!-- 09 EI · AI 활용 능력 -->
-  
-
-
-  <!-- 12 PORTFOLIO 01 · Object Model Viewer (A) -->
-  <section data-label="Object Model Viewer">
-    <div class="runhead"><span class="step">About</span><span class="sep">·</span><span class="step">Strengths</span><span class="sep">·</span><span class="step on">Portfolio</span></div>
-    <div class="a-head">
-      <div>
-        <div class="a-eyebrow" style="">컴퓨터그래픽스 과제 · 렌더링·메시 처리 · PORTFOLIO 01</div>
-        <h2 class="a-title">Object Model Viewer</h2>
-      </div>
-      <div class="a-tags">#OpenGL #GLSL #OBJ</div>
+  <!-- ===================== 02 · SELECTED WORK (index) ===================== -->
+  <section data-label="Selected Work">
+    <div class="folio"><span>Selected Work</span><nav><span>About</span><span class="on">Work</span></nav></div>
+    <div class="grid work-head">
+      <h2>Selected Work</h2>
+      <p><span style="display:inline-block;width:6px;height:6px;background:var(--accent);margin-right:8px;vertical-align:middle;"></span>CLO Virtual Fashion · Machine Learning Engineer 공고와 관련된 항목</p>
     </div>
-    <p class="a-desc" style=""><b>OpenGL로 OBJ 3D 모델을 읽어 렌더링하는 뷰어.</b> 대규모 메시의 법선 계산 병목을 자료구조로 개선한 컴퓨터그래픽스 과제입니다.</p>
-    <div class="a-body">
-      <div class="a-rail">
-        <div class="a-media"><video class="projvid" src="assets/object-model-viewer.mp4" autoplay="" loop="" muted="" playsinline="" preload="metadata"></video></div>
-        <dl class="spec">
-          <div class="row"><dt>기간</dt><dd style=""><span style="letter-spacing: -0.16px;">2024.09</span></dd></div>
-          <div class="row"><dt>기술</dt><dd>C++ · OpenGL · GLSL</dd></div>
-          <div class="row"><dt>역할</dt><dd style="">개인</dd></div>
-          <div class="row"><dt>상태</dt><dd class="award">완성</dd></div>
-        </dl>
+    <div class="idx">
+      <div class="grid row"><span class="no">01</span><div class="th tbd">CLO · INTERNSHIP</div><div class="nm"><h3>Gaussian Splatting: Avatar Reconstruction</h3><p>옷 입은 아바타의 PBR 렌더를 Gaussian splatting으로 베이킹</p></div><div class="tc">3DGS · 2DGS · Blender Cycles<span class="jd">3D 아바타 · PBR</span></div><div class="yr">2026 · 인턴</div></div>
+      <div class="grid row"><span class="no">02</span><div class="th"><img src="assets/research/fig1-multi.jpg" alt="" style="object-position:50% 62%;"></div><div class="nm"><h3>Mesh-to-Gaussian Splatting</h3><p>메시를 로컬 normal·albedo 필드를 가진 Gaussian으로 변환</p></div><div class="tc">SDF · Gaussian Splatting · DCT<span class="jd">Geometry Processing · 3D mesh</span></div><div class="yr">2026 · 연구</div></div>
+      <div class="grid row"><span class="no">03</span><div class="th"><img src="assets/posters/gaussian-thumb.jpg" alt=""></div><div class="nm"><h3>Gaussian Splat Viewer</h3><p>외부 3DGS 엔진 없이 OpenGL 셰이더 파이프라인으로 구현</p></div><div class="tc">C++ · OpenGL · Compute Shader<span class="jd">Computer Graphics · C++</span></div><div class="yr">2025 · 개인</div></div>
+      <div class="grid row"><span class="no">04</span><div class="th"><img src="assets/posters/motio.jpg" alt=""></div><div class="nm"><h3>3D 영상 기반 모션 추출</h3><p>단안 영상에서 SMPL-X 전신 모션 복원</p></div><div class="tc">Python · SMPL-X<span class="jd">3D 아바타 pose &amp; shape 추정</span></div><div class="yr">2026 · 팀</div></div>
+      <div class="grid row"><span class="no">05</span><div class="th fund"><img src="assets/posters/spherical-panorama-viewer.jpg" alt=""><img src="assets/posters/object-model-viewer.jpg" alt=""></div><div class="nm"><h3>Graphics Fundamentals</h3><p>Spherical Panorama Viewer · Object Model Viewer — 셰이딩·환경 매핑·법선 계산</p></div><div class="tc">C++ · OpenGL · GLSL<span class="jd">Computer Graphics · Geometry Processing</span></div><div class="yr">2024 · 과제</div></div>
+    </div>
+  </section>
+
+  <!-- ================= 03 · PROJECT 01 · Avatar Reconstruction (internship) ================= -->
+  <section data-label="Avatar Reconstruction">
+    <div class="folio"><span>Project 01</span><nav><span>About</span><span class="on">Work</span></nav></div>
+    <header class="ph">
+      <div class="eyebrow"><span><span class="k">01</span>CLO Virtual Fashion 인턴십 · ML팀</span><span class="tech">2026.07 – 2026.08 · 3DGS / 2DGS / Blender Cycles</span></div>
+      <div class="grid">
+        <h2 class="title">Gaussian Splatting:<br>Avatar Reconstruction</h2>
+        <p class="desc"><b>옷 입은 3D 아바타의 PBR 패스트레이싱 렌더를 Gaussian splatting으로 베이킹해 실시간으로 렌더링하는 작업.</b><br>확대해도 의류의 고주파 디테일이 유지되는 것을 목표로 했습니다.</p>
       </div>
-      <div class="a-right">
-        <div class="narr">
-          <h4><span class="pill pp">문제</span> 구현하며 마주친 문제</h4>
-          <div class="nlist">
-            <div class="nitem">다양한 크기의 OBJ 모델을 화면 중앙에 일정한 크기로 배치해야 했습니다.</div>
-            <div class="nitem">정점 법선 계산이 모든 면을 순회하는 방식이라, 정점·면이 많은 모델에선 실행이 멈출 만큼 느려졌습니다.</div>
-          </div>
-        </div>
-        <div class="narr">
-          <h4><span class="pill ps">개선</span> 해결하고자 한 노력</h4>
-          <div class="nlist">
-            <div class="nitem arrow">정점 min/max로 중심을 구해 원점으로 이동하고, 대각선 길이로 스케일을 정규화해 다양한 모델을 동일 화면 크기로 표시했습니다.</div>
-            <div class="nitem arrow">면 법선(cross product)·정점 법선을 계산하고, Phong 셰이딩(vertex/surface normal 토글, specular·shininess 조절)을 적용했습니다.</div>
-            <div class="nitem arrow">정점 법선 계산을 vertexToFaceMap(unordered_map)으로 바꿔, 정점에 연결된 면만 탐색하도록 개선해 전체 순회를 제거했습니다.</div>
-          </div>
-        </div>
-        <div class="a-lesson"><b>배운 점</b> — vertexToFaceMap은 효과는 확실했지만 단순 매핑에 의존한 방식이라 더 정교한 자료구조를 쓰지 못한 점이 아쉬웠습니다. 자료구조·알고리즘 설계가 렌더링 성능에 직접 영향을 준다는 걸 체감했습니다.</div>
+    </header>
+    <div class="grid slots">
+      <figure><img src="assets/clo/avatar.jpg" alt="Textured Gaussian으로 베이킹한 아바타" role="button" tabindex="0"><figcaption>Textured Gaussian 결과</figcaption></figure>
+      <figure><img src="assets/clo/closeup-compare.jpg" data-full="assets/clo/closeup-compare-full.jpg" alt="3DGS와 Textured Gaussian의 의류 확대 렌더" role="button" tabindex="0"><figcaption>확대: 3DGS | Textured Gaussian</figcaption></figure>
+      <figure><img src="assets/clo/hair.jpg" alt="strand로 생성한 곱슬머리 헤어의 Gaussian 결과" role="button" tabindex="0"><figcaption>헤어</figcaption></figure>
+      <figure><video src="assets/clo/simulation.mp4" poster="assets/clo/simulation-poster.jpg" style="object-position:right center;" data-full="assets/clo/simulation-full.mp4" aria-label="빨간 원피스 시뮬레이션 영상" role="button" tabindex="0" loop muted playsinline preload="metadata"></video><figcaption>시뮬레이션</figcaption></figure>
+    </div>
+    <div class="grid cols">
+      <div style="grid-column:1 / 5;">
+        <div class="lbl">문제</div>
+        <p class="note">패스트레이싱은 품질은 높지만 느려 실시간에 쓰기&nbsp;어렵고, 해상도가 낮은 3DGS는 의류의 고주파 디테일을 따라가지 못했습니다.</p>
+      </div>
+      <div style="grid-column:5 / 13;">
+        <div class="lbl">접근</div>
+        <ol class="items">
+          <li>고주파 디테일을 살리기 위해 textured Gaussian을 도입하고, 랜덤 split·MCMC 대신 표면 균등 샘플링으로 초기화해 품질과 <span style="white-space:nowrap;">수렴 시간을 개선</span></li>
+          <li>렌더러 AOV를 GT로 써서 normal·depth 감독과 alpha hull 제약을 loss로 설계</li>
+          <li>헤어는 strand 단위로 생성해 두피에 정합하고, 복셀 기반 초기화로 2DGS 학습</li>
+          <li>시뮬레이션 대응을 위해 표면 앵커링 스플랫과 표현용 스플랫을 분리</li>
+        </ol>
       </div>
     </div>
   </section>
 
-  <!-- 13 PORTFOLIO 02 · Spherical Panorama Viewer (A) -->
-  <section data-label="Spherical Panorama Viewer">
-    <div class="runhead"><span class="step">About</span><span class="sep">·</span><span class="step">Strengths</span><span class="sep">·</span><span class="step on">Portfolio</span></div>
-    <div class="a-head">
-      <div>
-        <div class="a-eyebrow" style=""><span style="letter-spacing: -0.16px;">컴퓨터그래픽스 과제</span>&nbsp;· 셰이딩·환경 매핑 · PORTFOLIO 02</div>
-        <h2 class="a-title">Spherical Panorama Viewer</h2>
+  <!-- ================= 04 · PROJECT 02 · Mesh-to-Gaussian (research) ================= -->
+  <section data-label="Mesh-to-Gaussian Splatting">
+    <div class="folio"><span>Project 02</span><nav><span>About</span><span class="on">Work</span></nav></div>
+    <header class="ph">
+      <div class="eyebrow"><span><span class="k">02</span>연구 프로젝트 · 지도교수 공동 연구</span><span class="tech">2026 · Mesh → Gaussian Splatting · SDF / DCT</span></div>
+      <div class="grid">
+        <h2 class="title">Mesh-to-Gaussian<br>Splatting</h2>
+        <p class="desc"><b>닫힌 삼각형 메시를 relighting 가능한 Gaussian splatting 표현으로 변환하는 방법.</b><br>각&nbsp;Gaussian 안에 DCT 기반 로컬 normal·albedo 필드를 두어, primitive 수를 늘리지&nbsp;않고 표면 디테일을 보존합니다.</p>
       </div>
-      <div class="a-tags">#OpenGL #GLSL #환경매핑</div>
+    </header>
+    <div class="quad">
+      <figure><img src="assets/research/fig1-mesh.jpg" alt=""><figcaption><span class="t">입력 메시</span><span class="v">100,000 triangles</span></figcaption></figure>
+      <figure><img src="assets/research/fig1-gaussians.jpg" alt=""><figcaption><span class="t">변환된 Gaussian</span><span class="v">N = 9,876</span></figcaption></figure>
+      <figure><img src="assets/research/fig1-ellipsoids.jpg" alt=""><figcaption><span class="t">2σ 타원체 시각화</span><span class="v">N = 9,876</span></figcaption></figure>
+      <figure><img src="assets/research/fig1-scene.jpg" alt=""><figcaption><span class="t">3DGS 장면에 삽입</span><span class="v">HDR IBL + shadow</span></figcaption></figure>
     </div>
-    <p class="a-desc" style=""><b>360° 파노라마 이미지를 구체에 매핑해 둘러보는 뷰어.</b> 환경 매핑·Fresnel·Diffuse Light Map을 셰이더로 구현한 컴퓨터그래픽스 과제입니다.</p>
-    <div class="a-body">
-      <div class="a-rail">
-        <div class="a-media"><video class="projvid" src="assets/spherical-panorama-viewer.mp4" autoplay="" loop="" muted="" playsinline="" preload="metadata"></video></div>
-        <dl class="spec">
-          <div class="row"><dt>기간</dt><dd style="">2024.10</dd></div>
-          <div class="row"><dt>기술</dt><dd>C++ · OpenGL · GLSL</dd></div>
-          <div class="row"><dt>역할</dt><dd style="">개인</dd></div>
-          <div class="row"><dt>상태</dt><dd class="award">완성</dd></div>
-        </dl>
+    <div class="grid r-bottom">
+      <div class="stg" style="grid-column:1 / 4;"><div class="n"><span>STAGE 1</span></div><b>볼륨 기반 초기화</b><p>메시 SDF의 근사 medial axis에 구를 배치하고 타원체로 최적화해 초기 Gaussian 구성</p></div>
+      <div class="stg" style="grid-column:4 / 7;"><div class="n"><span>STAGE 2</span></div><b>형상 · 기본 속성 피팅</b><p>실루엣·depth 감독으로 형상과 opacity를, 셰이딩 비교로 base normal·albedo를 피팅</p></div>
+      <div class="stg" style="grid-column:7 / 10;"><div class="n"><span>STAGE 3</span></div><b>로컬 DCT 필드 · 적응적 분할</b><p>공분산 프레임 위 DCT 잔차로 normal·albedo 변화를 표현하고, 부족한 곳만 분할</p></div>
+      <div class="role" style="grid-column:10 / 13;"><div class="n">담당</div><ul><li>부피 기반 초기화 아이디어와 부피 채움 방식</li><li>부피를 벗어나지 않는 솔리드 학습 방식</li><li>normal 학습 추가</li></ul></div>
+    </div>
+  </section>
+
+  <!-- ================= 05 · PROJECT 02 · Mesh-to-Gaussian — results ================= -->
+  <section data-label="Mesh-to-Gaussian · 결과">
+    <div class="folio"><span>Project 02</span><nav><span>About</span><span class="on">Work</span></nav></div>
+    <header class="ph">
+      <div class="eyebrow"><span><span class="k">02</span>Mesh-to-Gaussian Splatting · 단계별 결과</span><span class="tech">N = Gaussian 수</span></div>
+      <h2 class="title">단계별 변환 결과</h2>
+    </header>
+    <div class="stages">
+      <div class="cl"><span>메시 (GT)</span><span>볼륨 초기화</span><span>실루엣 피팅</span><span>Normal 피팅</span><span>최종</span><span>타원체</span><span>IBL 1</span><span>IBL 2</span></div>
+      <div class="rw">
+        <figure><img src="assets/research/fig4-dragon-mesh.jpg" alt=""><figcaption>100,000 tris</figcaption></figure>
+        <figure><img src="assets/research/fig4-dragon-init.jpg" alt=""><figcaption>N = 2,469</figcaption></figure>
+        <figure><img src="assets/research/fig4-dragon-sil.jpg" alt=""></figure>
+        <figure><img src="assets/research/fig4-dragon-normal.jpg" alt=""></figure>
+        <figure><img src="assets/research/fig4-dragon-final.jpg" alt=""><figcaption>N = 9,876</figcaption></figure>
+        <figure><img src="assets/research/fig4-dragon-ell.jpg" alt=""></figure>
+        <figure><img src="assets/research/fig4-dragon-ibl1.jpg" alt=""></figure>
+        <figure><img src="assets/research/fig4-dragon-ibl2.jpg" alt=""></figure>
       </div>
-      <div class="a-right">
-        <div class="narr">
-          <h4><span class="pill pp">문제</span> 구현하며 마주친 문제</h4>
-          <div class="nlist">
-            <div class="nitem">반사 벡터를 구면 좌표로 변환해 360° 텍스처를 정확히 매핑해야 했습니다.</div>
-            <div class="nitem">카메라 pitch가 90°를 넘으면 화면이 좌우 반전되는 문제가 있었습니다.</div>
-          </div>
-        </div>
-        <div class="narr">
-          <h4><span class="pill ps">개선</span> 해결하고자 한 노력</h4>
-          <div class="nlist">
-            <div class="nitem arrow">관찰 벡터를 법선으로 반사시켜 반사 벡터를 구면 좌표(atan/asin)로 변환하고, 수평은 fract로 반복·수직은 clamp로 제한해 환경 매핑을 구현했습니다.</div>
-            <div class="nitem arrow">구면 좌표계(radius·yaw·pitch) 카메라를 구성하고, pitch에 따라 up 벡터를 갱신해 90° 반전 문제를 해결했습니다.</div>
-            <div class="nitem arrow">관찰각 기반 Fresnel 근사로 환경 반사를 mix하고, 법선 방향 텍스처 좌표로 Diffuse Light Map을 샘플링했습니다.</div>
-          </div>
-        </div>
-        <div class="a-lesson"><b>배운 점</b> — Diffuse Light Map 초기 구현에서 텍스처 좌표를 반사 방향으로 계산해 원하는 결과가 안 나왔고, 법선 벡터로 바꿔 해결했습니다. 수식 하나의 차이가 결과를 바꾼다는 걸 직접 확인했습니다.</div>
+      <div class="rw">
+        <figure><img src="assets/research/fig4-armadillo-mesh.jpg" alt=""><figcaption>345,944 tris</figcaption></figure>
+        <figure><img src="assets/research/fig4-armadillo-init.jpg" alt=""><figcaption>N = 1,487</figcaption></figure>
+        <figure><img src="assets/research/fig4-armadillo-sil.jpg" alt=""></figure>
+        <figure><img src="assets/research/fig4-armadillo-normal.jpg" alt=""></figure>
+        <figure><img src="assets/research/fig4-armadillo-final.jpg" alt=""><figcaption>N = 5,948</figcaption></figure>
+        <figure><img src="assets/research/fig4-armadillo-ell.jpg" alt=""></figure>
+        <figure><img src="assets/research/fig4-armadillo-ibl1.jpg" alt=""></figure>
+        <figure><img src="assets/research/fig4-armadillo-ibl2.jpg" alt=""></figure>
+      </div>
+      <div class="rw">
+        <figure><img src="assets/research/fig4-buddha-mesh.jpg" alt=""><figcaption>99,926 tris</figcaption></figure>
+        <figure><img src="assets/research/fig4-buddha-init.jpg" alt=""><figcaption>N = 3,961</figcaption></figure>
+        <figure><img src="assets/research/fig4-buddha-sil.jpg" alt=""></figure>
+        <figure><img src="assets/research/fig4-buddha-normal.jpg" alt=""></figure>
+        <figure><img src="assets/research/fig4-buddha-final.jpg" alt=""><figcaption>N = 7,922</figcaption></figure>
+        <figure><img src="assets/research/fig4-buddha-ell.jpg" alt=""></figure>
+        <figure><img src="assets/research/fig4-buddha-ibl1.jpg" alt="" style="object-position:50% 10%;"></figure>
+        <figure><img src="assets/research/fig4-buddha-ibl2.jpg" alt="" style="object-position:50% 10%;"></figure>
+      </div>
+    </div>
+    <div class="grid detailrow">
+      <div class="zoom">
+        <div class="lbl">Armadillo 확대 — DCT normal 필드 크기별 <span class="mono">held-out PSNR · N = 5,948 (1×1만 1,487)</span></div>
+        <div class="zt"><figure><img src="assets/research/fig8-zoom-gt.jpg" alt=""><figcaption><span>메시 (GT)</span><span class="mono"></span></figcaption></figure><figure><img src="assets/research/fig8-zoom-1x1.jpg" alt=""><figcaption><span>1×1</span><span class="mono">27.77 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-2x2.jpg" alt=""><figcaption><span>2×2</span><span class="mono">35.51 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-4x4.jpg" alt=""><figcaption><span>4×4</span><span class="mono">36.74 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-8x8.jpg" alt=""><figcaption><span>8×8</span><span class="mono">37.31 dB</span></figcaption></figure></div>
+      </div>
+      <div class="mstack">
+        <div><div class="v">345,944<span class="arr">→</span>5,948</div><p class="k">Armadillo — 삼각형 수 → 최종 Gaussian 수</p></div>
+        <div><div class="v">+0.30 – 2.01 ms</div><p class="k">8×8 DCT 필드의 GPU draw time 증가 · RTX 4090</p></div>
       </div>
     </div>
   </section>
 
-  <!-- 14 PORTFOLIO 03 · Gaussian Splat Viewer (4:3 compare) -->
+  <!-- ================= 06 · PROJECT 03 · Gaussian Splat Viewer ================= -->
   <section data-label="Gaussian Splat Viewer">
-    <div class="runhead"><span class="step">About</span><span class="sep">·</span><span class="step">Strengths</span><span class="sep">·</span><span class="step on">Portfolio</span></div>
-    <div class="a-head">
-      <div>
-        <div class="a-eyebrow">개인 프로젝트 · 실시간 렌더링·GPU · PORTFOLIO 03</div>
-        <h2 class="a-title">Gaussian Splat Viewer</h2>
+    <div class="folio"><span>Project 03</span><nav><span>About</span><span class="on">Work</span></nav></div>
+    <header class="ph">
+      <div class="eyebrow"><span><span class="k">03</span>개인 프로젝트 · 실시간 렌더링·GPU</span><span class="tech">2025.05 – 2025.06 · C++ / OpenGL / GLSL / GLM / 3DGS · 완성</span></div>
+      <div class="grid">
+        <h2 class="title">Gaussian Splat Viewer</h2>
+        <p class="desc"><b>외부 3DGS 엔진 없이 OpenGL 셰이더 파이프라인으로 구현한 가우시안 스플랫 뷰어.</b><br>깊이&nbsp;정렬 병목을 GPU로 옮겨 회전 시 끊김을 해소했습니다.</p>
       </div>
-      <div class="a-tags">#OpenGL #GLSL #3DGS #ComputeShader</div>
+    </header>
+    <div class="band">
+      <div class="grid cmp">
+        <figure class="before">
+          <video src="assets/gaussian-cpu.mp4" poster="assets/posters/gaussian-cpu.jpg" loop muted playsinline preload="metadata"></video>
+          <figcaption class="ov"><span class="t">BEFORE · CPU 정렬</span><span class="v">회전 시 끊김</span></figcaption>
+        </figure>
+        <figure class="after">
+          <video src="assets/gaussian-gpu.mp4" poster="assets/posters/gaussian-gpu.jpg" loop muted playsinline preload="metadata"></video>
+          <figcaption class="ov"><span class="t">AFTER · GPU 정렬</span><span class="v">프레임 일정</span></figcaption>
+        </figure>
+      </div>
     </div>
-    <p class="a-desc" style="width: 1600px"><b>외부 3DGS 엔진 없이 OpenGL 셰이더 파이프라인으로 구현한 가우시안 스플랫 뷰어.</b> 깊이 정렬 병목을 GPU로 옮겨 회전 시 끊김을 해소했습니다.</p>
-    <div class="gv-hero" style="margin: 0px">
-      <figure class="gv-fig before">
-        <div class="gv-cap"><span class="lab">Before · CPU 정렬</span><span class="val">회전 시 끊김</span></div>
-        <video class="cmpvid" src="assets/gaussian-cpu.mp4" autoplay loop muted playsinline preload="metadata"></video>
-      </figure>
-      <figure class="gv-fig after">
-        <div class="gv-cap"><span class="lab">After · GPU 정렬</span><span class="val">프레임 일정</span></div>
-        <video class="cmpvid" src="assets/gaussian-gpu.mp4" autoplay loop muted playsinline preload="metadata"></video>
-      </figure>
-    </div>
-    <div class="gv-foot">
-      <dl class="gv-spec">
-        <dt>기간</dt><dd>2025.05 – 2025.06</dd>
-        <dt>기술</dt><dd>C++ · OpenGL · GLSL · GLM</dd>
-        <dt>역할</dt><dd>개인 프로젝트</dd>
-        <dt>상태</dt><dd style="color:var(--accent)">완성</dd>
-      </dl>
-      <div class="gv-narr">
-        <div class="line"><span class="pill pp">문제</span><p>깊이 정렬을 CPU에서 매 프레임 동기적으로 수행해, 시점을 회전할 때 화면이 뚝뚝 끊겼습니다.</p></div>
-        <div class="line"><span class="pill ps">개선</span><p>정렬 전 과정(prefix-sum·scatter)을 <b>compute shader 기반 GPU radix sort로 구현</b>해 GPU에 상주시켰습니다. 끊김이 사라지고 정렬 처리량이 크게 개선돼 프레임 저하가 해소됐습니다.</p></div>
-        <p class="gv-scope">작업 범위 — 정식 3DGS의 EWA 투영·타일 래스터라이저는 범위 밖으로, 지오메트리 셰이더 빌보드 근사와 하드웨어 블렌딩으로 대체했습니다.</p>
+    <div class="grid cols">
+      <div style="grid-column:1 / 4;">
+        <div class="lbl">문제</div>
+        <p class="note">깊이 정렬을 CPU에서 매 프레임 동기적으로 수행해, 시점을 회전할 때 화면이 뚝뚝 끊겼습니다.</p>
+      </div>
+      <div style="grid-column:4 / 9;">
+        <div class="lbl">개선 <span class="mono">Compute Shader</span></div>
+        <p class="note">정렬 전 과정(prefix-sum·scatter)을 <b>compute shader 기반 GPU radix sort로 구현</b>해 GPU에 상주시켰습니다. 끊김이 사라지고 정렬 처리량이 크게 개선돼 프레임&nbsp;저하가 해소됐습니다.</p>
+      </div>
+      <div style="grid-column:9 / 13;">
+        <div class="lbl">작업 범위</div>
+        <p class="note" style="color:var(--muted);">정식 3DGS의 EWA 투영·타일 래스터라이저는 범위&nbsp;밖으로, 지오메트리 셰이더 빌보드 근사와 하드웨어&nbsp;블렌딩으로 대체했습니다.</p>
       </div>
     </div>
   </section>
 
-  <!-- 15 PORTFOLIO 04 · Motio (A) -->
+  <!-- ================= 07 · PROJECT 04 · Motio — result ================= -->
   <section data-label="Motio">
-    <div class="runhead"><span class="step">About</span><span class="sep">·</span><span class="step">Strengths</span><span class="sep">·</span><span class="step on">Portfolio</span></div>
-    <div class="a-head">
-      <div>
-        <div class="a-eyebrow">팀 프로젝트 · 모션 복원·그래픽스 수학 · PORTFOLIO 04</div>
-        <h2 class="a-title" style="">3D 영상 기반 모션 추출</h2>
+    <div class="folio"><span>Project 04</span><nav><span>About</span><span class="on">Work</span></nav></div>
+    <header class="ph">
+      <div class="eyebrow"><span><span class="k">04</span>팀 프로젝트 · 모션 복원·그래픽스 수학</span><span class="tech">2026.04 – 2026.06 · Python / SMPL-X · 팀 · GVHMR·HaMeR fusion</span></div>
+      <div class="grid">
+        <h2 class="title">3D 영상 기반 모션 추출</h2>
+        <p class="desc"><b>단안 영상에서 SMPL-X 전신 모션을 복원하는 파이프라인.</b><br>손목 회전의 관측&nbsp;불가능성(null&nbsp;space)을 swing-twist 직교 분해로 풀었습니다.</p>
       </div>
-      <div class="a-tags" style="">#SMPL-X #모션복원</div>
+    </header>
+    <div class="strip vplayer">
+      <video src="assets/motio.mp4" poster="assets/posters/motio.jpg" loop muted playsinline preload="metadata"></video>
+      <div class="vctl">
+        <button class="vbtn vplay" type="button" aria-label="일시정지">
+          <svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="0.5"/><rect x="9.5" y="2.5" width="3" height="11" rx="0.5"/></svg>
+          <svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.5v11l9-5.5z"/></svg>
+        </button>
+        <input class="vseek" type="range" min="0" max="1000" step="1" value="0" aria-label="재생 위치">
+        <span class="vtime">0:00 / 0:00</span>
+        <span class="vrates" role="group" aria-label="재생 속도">
+          <button class="vbtn" type="button" data-rate="0.25" aria-pressed="false">0.25×</button>
+          <button class="vbtn" type="button" data-rate="0.5" aria-pressed="false">0.5×</button>
+          <button class="vbtn" type="button" data-rate="1" aria-pressed="true">1×</button>
+        </span>
+      </div>
     </div>
-    <p class="a-desc"><b>단안 영상에서 SMPL-X 전신 모션을 복원하는 파이프라인.</b> 손목 회전의 관측 불가능성(null space)을 swing-twist 직교 분해로 풀어낸 창의경진대회 우수상 프로젝트입니다.</p>
-    <div class="a-body">
-      <div class="a-rail">
-        <div class="a-media"><video class="projvid" style="object-position:right center;" src="assets/motio.mp4" autoplay="" loop="" muted="" playsinline="" preload="metadata"></video></div>
-        <dl class="spec">
-          <div class="row"><dt>기간</dt><dd>2026.04 – 2026.06</dd></div>
-          <div class="row"><dt>기술</dt><dd style="">Python · SMPL-X</dd></div>
-          <div class="row"><dt>역할</dt><dd>팀 · GVHMR·HaMeR fusion</dd></div>
-          <div class="row"><dt>성과</dt><dd class="award">창의경진대회 우수상</dd></div>
-        </dl>
+    <div class="strip-labels"><span>원본 영상</span><span>Fingers-only</span><span>Naive + Kalman</span><span class="ours">Ours — twist-corrected</span></div>
+  </section>
+
+  <!-- ================= 08 · PROJECT 04 · Motio — approach ================= -->
+  <section data-label="Motio · 구현 과정">
+    <div class="folio"><span>Project 04</span><nav><span>About</span><span class="on">Work</span></nav></div>
+    <header class="ph">
+      <div class="eyebrow"><span><span class="k">04</span>3D 영상 기반 모션 추출 · 구현 과정</span><span class="tech">GVHMR (body) + HaMeR (hand) → SMPL-X</span></div>
+      <h2 class="title">Swing-twist 분해로 손목 회전 복원</h2>
+    </header>
+    <div class="pipe">
+      <div class="st"><span class="n">IN</span><b>GVHMR · HaMeR</b><span>body는 GVHMR, hand는 HaMeR로 각각 추정</span></div>
+      <div class="ar">→</div>
+      <div class="st"><span class="n">STEP 1</span><b>Swing-twist 직교 분해</b><span>swing(관측 가능) = HaMeR<br>twist(관측&nbsp;불가) = forearm</span></div>
+      <div class="ar">→</div>
+      <div class="st"><span class="n">STEP 2</span><b>5단계 graft</b><span>body·hand 결과를 간섭 없이 결합</span></div>
+      <div class="ar">→</div>
+      <div class="st out"><span class="n">OUT</span><b>SMPL-X 시계열</b><span>temporal 안정성 보존 · jitter 7.8° → 3.6°</span></div>
+    </div>
+    <div class="grid detail3">
+      <div style="grid-column:1 / 5;">
+        <div class="lbl">문제</div>
+        <ol class="items">
+          <li>HaMeR는 가려진 손에 약하고, GVHMR은 손목 axial&nbsp;회전을 추론하지 못했습니다.</li>
+          <li>손목 axial&nbsp;회전은 단안 2D에서 관측&nbsp;불가능한 null&nbsp;space라 단순 결합으로는 풀리지 않았습니다.</li>
+        </ol>
       </div>
-      <div class="a-right">
-        <div class="narr">
-          <h4><span class="pill pp">문제</span> 구현하며 마주친 문제</h4>
-          <div class="nlist">
-            <div class="nitem">HaMeR는 가려진 손에 약하고, GVHMR은 손목 axial 회전을 추론하지 못했습니다.</div>
-            <div class="nitem">손목 axial 회전은 단안 2D에서 관측 불가능한 null space라 단순 결합으로는 풀리지 않았습니다.</div>
-          </div>
-        </div>
-        <div class="narr">
-          <h4><span class="pill ps">개선</span> 해결하고자 한 노력</h4>
-          <div class="nlist">
-            <div class="nitem arrow">손목 회전을 swing(관측 가능, HaMeR)·twist(관측 불가, forearm)로 직교 분해해 간섭 없이 처리했습니다.</div>
-            <div class="nitem arrow">GVHMR(body)·HaMeR(hand)을 5단계 graft로 결합해 SMPL-X 시계열을 생성했습니다.</div>
-            <div class="nitem arrow">temporal 안정성을 보존해 jitter를 7.8°에서 3.6°로 줄였습니다.</div>
-          </div>
-        </div>
-        <div class="a-lesson"><b>배운 점</b> — 모델을 검증 없이 채택한 실수에서 출발해, 이후 모델 도입 전 논문·실행 검증을 절차로 고정했습니다. 관측 불가능성을 수학적으로 분해하는 접근을 배웠습니다.</div>
+      <div style="grid-column:5 / 9;">
+        <div class="lbl">개선</div>
+        <ol class="items">
+          <li>손목 회전을 swing(관측&nbsp;가능,&nbsp;HaMeR)·<wbr><span style="white-space:nowrap;">twist(관측 불가, forearm)로</span> 직교 분해해 간섭&nbsp;없이 처리했습니다.</li>
+          <li>GVHMR(body)·HaMeR(hand)을 5단계 graft로 결합해 SMPL-X 시계열을 생성했습니다.</li>
+          <li>temporal 안정성을 보존해 jitter를 7.8°에서 <span style="white-space:nowrap;"><b class="accent">3.6°</b>로</span> 줄였습니다.</li>
+        </ol>
+      </div>
+      <div style="grid-column:9 / 13;">
+        <div class="lbl">회고</div>
+        <p class="note">초기에 모델을 검증 없이 채택했다가 문제가 생겼고, 이후 모델 도입 전에 논문 확인과 실행 검증을 먼저 하는 순서로 바꿨습니다.</p>
       </div>
     </div>
   </section>
 
-  <!-- 15 THANK YOU -->
-  <section class="dark thanks" data-label="Thank you" data-deck-last-visible="">
-    <div class="cover-top anim"><span>PORTFOLIO — 2026</span><span style="">NAM HEESU</span></div>
-    <div class="thanks-mid">
-      <div class="cover-kicker anim2" style="padding: 50px 0px 0px;">감사합니다</div>
-      <h2 class="thanks-word anim2">Thank you</h2>
-      <p class="thanks-sub anim3" style=""><font color="#8b857b" face="Space Mono, Pretendard, system-ui, sans-serif"><span style="font-size: 24px; background-color: rgb(244, 241, 235);"></span></font></p>
+  <!-- ================= 09 · PROJECT 05 · Graphics Fundamentals (coursework) ================= -->
+  <section data-label="Graphics Fundamentals">
+    <div class="folio"><span>Project 05</span><nav><span>About</span><span class="on">Work</span></nav></div>
+    <header class="ph">
+      <div class="eyebrow"><span><span class="k">05</span>컴퓨터그래픽스 과제 · 2024</span><span class="tech">개인 · C++ / OpenGL / GLSL</span></div>
+      <div class="grid">
+        <h2 class="title">Graphics Fundamentals</h2>
+        <p class="desc"><b>렌더링 기초를 C++/OpenGL로 직접 구현한 과제 두 개.</b><br>셰이딩, 환경 매핑, 메시 법선 계산을 셰이더와 자료구조 수준에서 다뤘습니다.</p>
+      </div>
+    </header>
+    <div class="fundwrap">
+      <div class="grid fund2">
+        <figure class="fp">
+          <video src="assets/spherical-panorama-viewer.mp4" poster="assets/posters/spherical-panorama-viewer.jpg" loop muted playsinline preload="metadata"></video>
+        </figure>
+        <figure class="fo">
+          <video src="assets/object-model-viewer.mp4" poster="assets/posters/object-model-viewer.jpg" loop muted playsinline preload="metadata"></video>
+        </figure>
+      </div>
     </div>
-    <div class="thanks-foot anim3">
-      <div><span>Name</span>남희수 · NAM HEE SU</div>
-      <div><span>Mail</span>namisu000@gmail.com</div>
-      <div><span>Tel</span>010-5829-3187</div>
+    <div class="grid cols fund-txt">
+      <div class="fp">
+        <div class="lbl">Spherical Panorama Viewer <span class="mono">2024.10</span></div>
+        <p class="note">반사 벡터를 구면 좌표(atan/asin)로 변환한 환경 매핑, 관찰각 기반 Fresnel 근사, 법선 방향 Diffuse Light&nbsp;Map 샘플링. pitch에 따라 up 벡터를 갱신해 90°&nbsp;반전&nbsp;문제를 해결했습니다.</p>
+      </div>
+      <div class="fo">
+        <div class="lbl">Object Model Viewer <span class="mono">2024.09</span></div>
+        <p class="note">OBJ 모델 중심·스케일 정규화, 면·정점 법선 계산과 Phong 셰이딩. 정점 법선 계산을 vertexToFaceMap으로 바꿔 전체 면 순회를 없앴습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 10 · CONTACT ================= -->
+  <section class="closing" data-label="Contact" data-deck-last-visible="">
+    <div class="folio inv"><span>Contact</span><span class="mono">NAM HEESU · CLO VIRTUAL FASHION — MACHINE LEARNING ENGINEER</span></div>
+    <div class="body">
+      <div class="lab">CONTACT</div>
+      <p class="mail">namisu000@gmail.com</p>
+      <div class="grid foot">
+        <div><span>Name</span>남희수 · NAM HEE SU</div>
+        <div><span>Tel</span>010-5829-3187</div>
+        <div><span>Based</span>경기도 성남시</div>
+      </div>
     </div>
   </section>
 
 </deck-stage>
+<div class="lightbox" hidden><img alt=""><video muted loop playsinline></video><p></p></div>
 <script src="image-slot.js"></script>
 <script src="deck-stage.js"></script>
+<script>
+  /* Play a slide's videos only while that slide is on screen; rewind and pause the rest. */
+  (() => {
+    const sync = (active) => {
+      document.querySelectorAll('deck-stage > section video').forEach((v) => {
+        if (active && active.contains(v)) {
+          try { v.currentTime = 0; } catch (e) {}
+          const p = v.play(); if (p && p.catch) p.catch(() => {});
+        } else {
+          v.pause();
+        }
+      });
+    };
+    document.addEventListener('slidechange', (e) => sync(e.detail && e.detail.slide));
+    const initial = () => sync(document.querySelector('deck-stage > section[data-deck-active]'));
+    if (document.readyState === 'complete') initial(); else window.addEventListener('load', initial);
+  })();
 
+  /* Click (or Enter on) a media-row image or video to view it enlarged; click, Esc or a slide change closes it. */
+  (() => {
+    const box = document.querySelector('.lightbox');
+    const bigImg = box.querySelector('img');
+    const bigVid = box.querySelector('video');
+    const cap = box.querySelector('p');
+    const close = () => {
+      if (box.hidden) return;
+      box.classList.remove('open');
+      box.hidden = true;
+      bigImg.removeAttribute('src');
+      bigVid.pause();
+      bigVid.removeAttribute('src');
+      bigVid.load();
+    };
+    const open = (el) => {
+      const fig = el.closest('figure');
+      const fc = fig && fig.querySelector('figcaption');
+      const src = el.dataset.full || el.currentSrc || el.src;
+      const isVideo = el.tagName === 'VIDEO';
+      bigImg.hidden = isVideo;
+      bigVid.hidden = !isVideo;
+      if (isVideo) {
+        bigVid.src = src;
+        const p = bigVid.play(); if (p && p.catch) p.catch(() => {});
+      } else {
+        bigImg.src = src;
+        bigImg.alt = el.alt;
+      }
+      cap.textContent = fc ? fc.textContent : '';
+      box.hidden = false;
+      requestAnimationFrame(() => box.classList.add('open'));
+    };
+    const target = (e) => e.target.closest && e.target.closest('.slots figure img, .slots figure video');
+    document.addEventListener('click', (e) => { const img = target(e); if (img) open(img); });
+    box.addEventListener('click', close);
+    // Capture phase: while open, keys must not reach the deck's slide navigation.
+    document.addEventListener('keydown', (e) => {
+      if (!box.hidden) {
+        e.stopPropagation();
+        if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') { e.preventDefault(); close(); }
+        return;
+      }
+      const img = target(e);
+      if (img && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); e.stopPropagation(); open(img); }
+    }, true);
+    document.addEventListener('slidechange', close);
+  })();
 
+  /* Comparison player: play/pause, seek and playback speed. Buttons drop focus after a
+     click so Space / arrow keys keep driving the deck instead of re-pressing them. */
+  document.querySelectorAll('.vplayer').forEach((player) => {
+    const v = player.querySelector('video');
+    const playBtn = player.querySelector('.vplay');
+    const seek = player.querySelector('.vseek');
+    const time = player.querySelector('.vtime');
+    const rates = player.querySelectorAll('[data-rate]');
+    let seeking = false;
+    const fmt = (s) => {
+      s = Math.max(0, Math.floor(s || 0));
+      return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+    };
+    const sync = () => {
+      player.classList.toggle('paused', v.paused);
+      playBtn.setAttribute('aria-label', v.paused ? '재생' : '일시정지');
+      if (!seeking && v.duration) seek.value = Math.round(v.currentTime / v.duration * 1000);
+      time.textContent = fmt(v.currentTime) + ' / ' + fmt(v.duration);
+    };
+    ['play', 'pause', 'timeupdate', 'loadedmetadata', 'seeked'].forEach((ev) => v.addEventListener(ev, sync));
+    playBtn.addEventListener('click', () => {
+      if (v.paused) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } else v.pause();
+      playBtn.blur();
+    });
+    seek.addEventListener('input', () => {
+      seeking = true;
+      if (!v.duration) return;
+      const t = seek.value / 1000 * v.duration;
+      v.currentTime = t;
+      time.textContent = fmt(t) + ' / ' + fmt(v.duration);
+    });
+    seek.addEventListener('change', () => { seeking = false; seek.blur(); });
+    rates.forEach((b) => b.addEventListener('click', () => {
+      v.playbackRate = parseFloat(b.dataset.rate);
+      rates.forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+      b.blur();
+    }));
+    sync();
+  });
+</script>
 </body></html>
