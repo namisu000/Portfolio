@@ -2,6 +2,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>남희수 포트폴리오</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="남희수 포트폴리오">
+<meta property="og:description" content="NAM HEESU — GRAPHICS · PORTFOLIO 2026">
+<meta property="og:url" content="https://namisu000.github.io/Portfolio/">
+<meta property="og:image" content="https://namisu000.github.io/Portfolio/assets/og-black.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <template id="__bundler_thumbnail" data-bg-color="#F3F2EE">
   <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
     <rect width="1200" height="800" fill="#F3F2EE"></rect>
@@ -131,10 +139,10 @@
   .idx .nm{ grid-column:4 / 9; }
   .idx .nm h3{ font-size:var(--t-h3); font-weight:800; letter-spacing:-0.02em; line-height:1.25; }
   .idx .nm p{ font-size:var(--t-label); color:var(--ink-2); margin-top:4px; line-height:1.45; }
-  .idx .tc{ grid-column:9 / 12; font-family:var(--mono); font-size:16px; color:var(--muted); line-height:1.5; }
+  .idx .tc{ grid-column:9 / 11; font-family:var(--mono); font-size:16px; color:var(--muted); line-height:1.5; }
   .idx .tc .jd{ display:block; font-family:var(--sans); font-size:16px; color:var(--ink); margin-top:4px; }
   .idx .tc .jd::before{ content:""; display:inline-block; width:6px; height:6px; background:var(--accent); margin-right:8px; vertical-align:middle; }
-  .idx .yr{ grid-column:12 / 13; text-align:right; font-size:18px; color:var(--ink-2); line-height:1.45; }
+  .idx .yr{ grid-column:11 / 13; text-align:right; font-family:var(--mono); font-size:17px; letter-spacing:0; color:var(--ink-2); line-height:1.45; }
 
   /* ===================== PROJECT · compare band (Gaussian) ================ */
   .band{ margin:var(--s4) calc(var(--mx) * -1) 0; padding:0 var(--mx); background:var(--black); }
@@ -146,6 +154,9 @@
   .ov .v{ font-size:var(--t-detail); font-weight:600; color:var(--on-black); }
   .cmp figure.after .ov .t{ color:var(--accent); }
   .cmp figure + figure{ border-left:1px solid var(--on-black-line); }
+  .gsv .note, .gsv .items li{ font-size:var(--t-label); line-height:1.55; }
+  .gsv .note b, .gsv .items b{ color:var(--ink); }
+  .gsv .res{ margin-top:var(--s2); font-size:var(--t-label); font-weight:700; color:var(--accent); }
   .cols{ margin-top:var(--s4); align-items:start; }
 
   /* ===================== PROJECT · Motio hero band ======================== */
@@ -272,6 +283,15 @@
   .mstack .v{ font-size:36px; font-weight:800; letter-spacing:-0.03em; line-height:1.1; }
   .mstack .v .arr{ font-weight:400; color:var(--faint); margin:0 6px; }
   .mstack .k{ font-size:16px; line-height:1.5; color:var(--muted); margin-top:6px; }
+  .mstack .lb{ display:block; font-size:16px; color:var(--muted); margin-bottom:2px; }
+  .mstack .v small{ margin-left:4px; font-size:20px; font-weight:700; letter-spacing:0; }
+  /* Project 02 headline result: what the conversion buys, against a named baseline. */
+  .impact{ margin-top:var(--s4); border-top:1px solid var(--ink); padding-top:var(--s2); display:grid; grid-template-columns:minmax(0,3fr) repeat(4,minmax(0,2fr)); column-gap:var(--gut); align-items:start; }
+  .impact .ih{ font-size:var(--t-label); font-weight:700; line-height:1.3; }
+  .impact .ih span{ display:block; margin-top:4px; font-size:15px; font-weight:400; line-height:1.45; color:var(--muted); }
+  .impact b{ display:block; margin-top:2px; font-size:36px; font-weight:800; letter-spacing:-0.02em; line-height:1.1; }
+  .impact b small{ margin-left:4px; font-size:20px; font-weight:700; letter-spacing:0; }
+  .impact .k{ display:block; font-size:16px; color:var(--muted); }
 
   /* ================================ CONTACT =============================== */
   section.closing{ background:var(--night); color:var(--on-black); }
@@ -340,14 +360,13 @@
     <div class="folio"><span>Selected Work</span><nav><span>About</span><span class="on">Work</span></nav></div>
     <div class="grid work-head">
       <h2>Selected Work</h2>
-      <p><span style="display:inline-block;width:6px;height:6px;background:var(--accent);margin-right:8px;vertical-align:middle;"></span>CLO Virtual Fashion · Machine Learning Engineer 공고와 관련된 항목</p>
     </div>
     <div class="idx">
-      <div class="grid row"><span class="no">01</span><div class="th"><img src="assets/clo/avatar.jpg" alt="" style="object-position:50% 8%;"></div><div class="nm"><h3>Gaussian Splatting: Avatar Reconstruction</h3><p>옷 입은 아바타의 PBR 렌더를 Gaussian splatting으로 베이킹</p></div><div class="tc">3DGS · 2DGS · Blender Cycles<span class="jd">3D 아바타 · PBR</span></div><div class="yr">2026 · 인턴</div></div>
-      <div class="grid row"><span class="no">02</span><div class="th"><img src="assets/research/fig1-multi.jpg" alt="" style="object-position:50% 62%;"></div><div class="nm"><h3>Mesh-to-Gaussian Splatting</h3><p>메시를 로컬 normal·albedo 필드를 가진 Gaussian으로 변환</p></div><div class="tc">SDF · Gaussian Splatting · DCT<span class="jd">Geometry Processing · 3D mesh</span></div><div class="yr">2026 · 연구</div></div>
-      <div class="grid row"><span class="no">03</span><div class="th"><img src="assets/posters/gaussian-thumb.jpg" alt=""></div><div class="nm"><h3>Gaussian Splat Viewer</h3><p>외부 3DGS 엔진 없이 OpenGL 셰이더 파이프라인으로 구현</p></div><div class="tc">C++ · OpenGL · Compute Shader<span class="jd">Computer Graphics · C++</span></div><div class="yr">2025 · 개인</div></div>
-      <div class="grid row"><span class="no">04</span><div class="th"><img src="assets/posters/motio.jpg" alt=""></div><div class="nm"><h3>3D 영상 기반 모션 추출</h3><p>단안 영상에서 SMPL-X 전신 모션 복원</p></div><div class="tc">Python · SMPL-X<span class="jd">3D 아바타 pose &amp; shape 추정</span></div><div class="yr">2026 · 팀</div></div>
-      <div class="grid row"><span class="no">05</span><div class="th fund"><img src="assets/posters/spherical-panorama-viewer.jpg" alt=""><img src="assets/posters/object-model-viewer.jpg" alt=""></div><div class="nm"><h3>Graphics Fundamentals</h3><p>Spherical Panorama Viewer · Object Model Viewer — 셰이딩·환경 매핑·법선 계산</p></div><div class="tc">C++ · OpenGL · GLSL<span class="jd">Computer Graphics · Geometry Processing</span></div><div class="yr">2024 · 과제</div></div>
+      <div class="grid row"><span class="no">01</span><div class="th"><img src="assets/clo/avatar.jpg" alt="" style="object-position:50% 8%;"></div><div class="nm"><h3>Gaussian Splatting: Avatar Reconstruction</h3><p>옷 입은 아바타의 PBR 렌더를 Gaussian splatting으로 베이킹</p></div><div class="tc">3DGS · 2DGS · Blender Cycles<span class="jd">3D 아바타 · PBR</span></div><div class="yr">2026.07 – 2026.08</div></div>
+      <div class="grid row"><span class="no">02</span><div class="th"><img src="assets/research/fig1-multi.jpg" alt="" style="object-position:50% 62%;"></div><div class="nm"><h3>Mesh-to-Gaussian Splatting</h3><p>메시를 로컬 normal·albedo 필드를 가진 Gaussian으로 변환</p></div><div class="tc">SDF · Gaussian Splatting · DCT<span class="jd">Geometry Processing · 3D mesh</span></div><div class="yr">2025.10 – 2026.10</div></div>
+      <div class="grid row"><span class="no">03</span><div class="th"><img src="assets/posters/gaussian-thumb.jpg" alt=""></div><div class="nm"><h3>Gaussian Splat Viewer</h3><p>외부 3DGS 엔진 없이 OpenGL 셰이더 파이프라인으로 구현</p></div><div class="tc">C++ · OpenGL · Compute Shader<span class="jd">Computer Graphics · C++</span></div><div class="yr">2025.05 – 2025.06</div></div>
+      <div class="grid row"><span class="no">04</span><div class="th"><img src="assets/posters/motio.jpg" alt=""></div><div class="nm"><h3>3D 영상 기반 모션 추출</h3><p>단안 영상에서 SMPL-X 전신 모션 복원</p></div><div class="tc">Python · SMPL-X<span class="jd">3D 아바타 pose &amp; shape 추정</span></div><div class="yr">2026.04 – 2026.06</div></div>
+      <div class="grid row"><span class="no">05</span><div class="th fund"><img src="assets/posters/spherical-panorama-viewer.jpg" alt=""><img src="assets/posters/object-model-viewer.jpg" alt=""></div><div class="nm"><h3>Graphics Fundamentals</h3><p>Spherical Panorama Viewer · Object Model Viewer — 셰이딩·환경 매핑·법선 계산</p></div><div class="tc">C++ · OpenGL · GLSL<span class="jd">Computer Graphics · Geometry Processing</span></div><div class="yr">2024.09 – 2024.10</div></div>
     </div>
   </section>
 
@@ -388,7 +407,7 @@
   <section data-label="Mesh-to-Gaussian Splatting">
     <div class="folio"><span>Project 02</span><nav><span>About</span><span class="on">Work</span></nav></div>
     <header class="ph">
-      <div class="eyebrow"><span><span class="k">02</span>연구 프로젝트 · 지도교수 공동 연구</span><span class="tech">2026 · Mesh → Gaussian Splatting · SDF / DCT</span></div>
+      <div class="eyebrow"><span><span class="k">02</span>연구 프로젝트 · 지도교수 공동 연구</span><span class="tech">2025.10 – 2026.10 · Mesh → Gaussian Splatting · SDF / DCT</span></div>
       <div class="grid">
         <h2 class="title">Mesh-to-Gaussian<br>Splatting</h2>
         <p class="desc"><b>닫힌 삼각형 메시를 relighting 가능한 Gaussian splatting 표현으로 변환하는 방법.</b><br>각&nbsp;Gaussian 안에 DCT 기반 로컬 normal·albedo 필드를 두어, primitive 수를 늘리지&nbsp;않고 표면 디테일을 보존합니다.</p>
@@ -405,6 +424,13 @@
       <div class="stg" style="grid-column:4 / 7;"><div class="n"><span>STAGE 2</span></div><b>형상 · 기본 속성 피팅</b><p>실루엣·depth 감독으로 형상과 opacity를, 셰이딩 비교로 base normal·albedo를 피팅</p></div>
       <div class="stg" style="grid-column:7 / 10;"><div class="n"><span>STAGE 3</span></div><b>로컬 DCT 필드 · 적응적 분할</b><p>공분산 프레임 위 DCT 잔차로 normal·albedo 변화를 표현하고, 부족한 곳만 분할</p></div>
       <div class="role" style="grid-column:10 / 13;"><div class="n">담당</div><ul><li>부피 기반 초기화 아이디어와 부피 채움 방식</li><li>부피를 벗어나지 않는 솔리드 학습 방식</li><li>normal 학습 추가</li></ul></div>
+    </div>
+    <div class="impact">
+      <div class="ih">Mesh2Splat 대비<span>같은 메시를 Gaussian으로 촘촘히 덮는 기존 방식 · 4개 메시 평균 (배수는 기하평균)</span></div>
+      <div><span class="k">Gaussian 수</span><b>111<small>배 적음</small></b></div>
+      <div><span class="k">메모리</span><b>93%<small>절감</small></b></div>
+      <div><span class="k">그리기 속도</span><b>2.8<small>배 빠름</small></b></div>
+      <div><span class="k">화질 (PSNR)</span><b>3.3<small>dB 높음</small></b></div>
     </div>
   </section>
 
@@ -454,7 +480,8 @@
         <div class="zt"><figure><img src="assets/research/fig8-zoom-gt.jpg" alt=""><figcaption><span>메시 (GT)</span><span class="mono"></span></figcaption></figure><figure><img src="assets/research/fig8-zoom-1x1.jpg" alt=""><figcaption><span>1×1</span><span class="mono">27.77 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-2x2.jpg" alt=""><figcaption><span>2×2</span><span class="mono">35.51 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-4x4.jpg" alt=""><figcaption><span>4×4</span><span class="mono">36.74 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-8x8.jpg" alt=""><figcaption><span>8×8</span><span class="mono">37.31 dB</span></figcaption></figure></div>
       </div>
       <div class="mstack">
-        <div><div class="v">345,944<span class="arr">→</span>5,948</div><p class="k">Armadillo — 삼각형 수 → 최종 Gaussian 수</p></div>
+        <div><span class="lb">Armadillo 변환</span><div class="v">345,944<span class="arr">→</span>5,948</div><p class="k">삼각형 수 → 최종 Gaussian 수</p></div>
+        <div><span class="lb">3DGS-MCMC 대비 Gaussian 수</span><div class="v">2.8<small>배 적음</small></div><p class="k">같은 화질(PSNR) 기준 · 4개 메시 기하평균</p></div>
       </div>
     </div>
   </section>
@@ -466,7 +493,7 @@
       <div class="eyebrow"><span><span class="k">03</span>개인 프로젝트 · 실시간 렌더링·GPU</span><span class="tech">2025.05 – 2025.06 · C++ / OpenGL / GLSL / GLM / 3DGS · 완성</span></div>
       <div class="grid">
         <h2 class="title">Gaussian Splat Viewer</h2>
-        <p class="desc"><b>외부 3DGS 엔진 없이 OpenGL 셰이더 파이프라인으로 구현한 가우시안 스플랫 뷰어.</b><br>깊이&nbsp;정렬 병목을 GPU로 옮겨 회전 시 끊김을 해소했습니다.</p>
+        <p class="desc"><b>외부 3DGS 엔진 없이 OpenGL 셰이더 파이프라인으로 구현한 가우시안 스플랫 뷰어.</b><br>CPU 깊이 정렬을 GPU radix sort로 직접 구현해 옮기고, 튀던 프레임(최대 137&nbsp;ms)을 21&nbsp;ms 이하로 줄였습니다.</p>
       </div>
     </header>
     <div class="band">
@@ -481,18 +508,23 @@
         </figure>
       </div>
     </div>
-    <div class="grid cols">
+    <div class="grid cols gsv">
       <div style="grid-column:1 / 4;">
         <div class="lbl">문제</div>
-        <p class="note">깊이 정렬을 CPU에서 매 프레임 동기적으로 수행해, 시점을 회전할 때 화면이 뚝뚝 끊겼습니다.</p>
+        <p class="note">81.6만 개 Gaussian 장면을 돌리면 화면이 주기적으로 멈췄습니다. 평균은 18&nbsp;ms인데 <b>튀는 프레임이 107–137&nbsp;ms</b>였습니다.</p>
       </div>
-      <div style="grid-column:4 / 9;">
-        <div class="lbl">개선 <span class="mono">Compute Shader</span></div>
-        <p class="note">정렬 전 과정(prefix-sum·scatter)을 <b>compute shader 기반 GPU radix sort로 구현</b>해 GPU에 상주시켰습니다. 끊김이 사라지고 정렬 처리량이 크게 개선돼 프레임&nbsp;저하가 해소됐습니다.</p>
+      <div style="grid-column:4 / 8;">
+        <div class="lbl">원인</div>
+        <p class="note">프레임당 CPU 시간과 인덱스 업로드량을 계측해 보니, 튀는 프레임이 정렬하는 프레임과 일치했습니다. 81.6만 개 <b>CPU 정렬 + 3.3&nbsp;MB 인덱스 버퍼 재업로드</b>가 렌더 스레드의 한 프레임에 몰려 있었습니다.</p>
       </div>
-      <div style="grid-column:9 / 13;">
-        <div class="lbl">작업 범위</div>
-        <p class="note" style="color:var(--muted);">정식 3DGS의 EWA 투영·타일 래스터라이저는 범위&nbsp;밖으로, 지오메트리 셰이더 빌보드 근사와 하드웨어&nbsp;블렌딩으로 대체했습니다.</p>
+      <div style="grid-column:8 / 13;">
+        <div class="lbl">한 일 <span class="mono">Compute Shader</span></div>
+        <ol class="items">
+          <li>깊이 계산과 radix sort(histogram·scan·scatter)를 <b>compute shader로 직접 구현</b></li>
+          <li>정렬된 버퍼를 그대로 draw 인덱스로 써서 <b>CPU↔GPU 전송 제거</b></li>
+          <li>CPU 정렬 결과와 대조하고 단계별 GPU 시간을 재서 검증</li>
+        </ol>
+        <p class="res">매 프레임 정렬하면서도 최대 프레임 시간 137 → 21&nbsp;ms, 60&nbsp;fps 유지</p>
       </div>
     </div>
   </section>
@@ -570,7 +602,7 @@
   <section data-label="Graphics Fundamentals">
     <div class="folio"><span>Project 05</span><nav><span>About</span><span class="on">Work</span></nav></div>
     <header class="ph">
-      <div class="eyebrow"><span><span class="k">05</span>컴퓨터그래픽스 과제 · 2024</span><span class="tech">개인 · C++ / OpenGL / GLSL</span></div>
+      <div class="eyebrow"><span><span class="k">05</span>컴퓨터그래픽스 과제</span><span class="tech">2024.09 – 2024.10 · 개인 · C++ / OpenGL / GLSL</span></div>
       <div class="grid">
         <h2 class="title">Graphics Fundamentals</h2>
         <p class="desc"><b>렌더링 기초를 C++/OpenGL로 직접 구현한 과제 두 개.</b><br>셰이딩, 환경 매핑, 메시 법선 계산을 셰이더와 자료구조 수준에서 다뤘습니다.</p>
