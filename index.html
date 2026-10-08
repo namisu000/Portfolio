@@ -82,7 +82,7 @@
   .accent{ color:var(--accent); }
 
   /* line breaking: avoid short last lines in running text */
-  .desc, .note, .items li, .lesson, .stg p, .role li, .metrics .k, .mstack .k, .idx .nm p, .pipe .st span{ text-wrap:pretty; }
+  .desc, .note, .items li, .lesson, .stg p, .role li, .metrics .k, .mstack .k, .idx .nm p, .stf figcaption, .mo .lead{ text-wrap:pretty; }
 
   /* project header: eyebrow row + title | description */
   .ph{ display:flex; flex-direction:column; gap:var(--s2); }
@@ -169,19 +169,26 @@
   .vseek{ width:480px; accent-color:var(--accent); cursor:pointer; }
   .vtime{ min-width:116px; text-align:center; color:rgba(255,255,255,0.78); font-variant-numeric:tabular-nums; }
   .vrates{ display:flex; gap:4px; }
+  /* Motio, one slide: the comparison video (whole, 9:4) on the left, problem and pipeline on the right. */
+  .mo{ margin-top:var(--s4); align-items:start; }
+  .mo-l{ grid-column:1 / 9; }
+  .mo-r{ grid-column:9 / 13; display:flex; flex-direction:column; gap:var(--s4); }
+  .mo .strip{ margin:0; }
+  .mo .strip video{ height:auto; aspect-ratio:9 / 4; }
+  .mo .strip-labels{ width:auto; margin:0 0 var(--s3); }
+  .mo .strip-labels span{ padding:var(--s1) 8px 0; font-size:16px; }
+  .mo .vctl{ bottom:12px; gap:8px; }
+  .mo .vseek{ width:360px; }
+  .mo .items li{ font-size:var(--t-label); line-height:1.5; }
+  .mo .lead{ font-size:var(--t-label); line-height:1.55; color:var(--ink-2); }
+  .stf{ display:grid; grid-template-columns:1fr 1fr; column-gap:var(--s3); }
+  .stf figure{ margin:0; }
+  .stf svg{ display:block; width:100%; height:auto; }
+  .stf figcaption{ margin-top:var(--s1); font-size:17px; line-height:1.5; color:var(--muted); }
+  .stf figcaption b{ display:block; font-size:var(--t-label); color:var(--ink); margin-bottom:2px; }
+  .mo .eqline{ margin-top:var(--s3); font-size:17px; line-height:1.5; color:var(--muted); }
+  .mo .eqline .q{ display:block; font-size:var(--t-label); font-weight:700; color:var(--ink); margin-bottom:2px; }
 
-  /* ===================== PROJECT · Motio detail (pipeline) ================ */
-  .pipe{ margin-top:var(--s6); display:grid; grid-template-columns:1fr 32px 1fr 32px 1fr 32px 1fr; align-items:stretch; }
-  .pipe .st{ border-top:2px solid var(--ink); padding-top:var(--s2); display:flex; flex-direction:column; gap:6px; }
-  .pipe .st .n{ font-family:var(--mono); font-size:16px; color:var(--muted); }
-  .pipe .st b{ font-size:var(--t-h3); line-height:1.3; letter-spacing:-0.02em; }
-  .pipe .st span{ font-size:var(--t-label); line-height:1.5; color:var(--muted); }
-  .pipe .st.out{ border-top-color:var(--accent); }
-  .pipe .st.out .n{ color:var(--accent); }
-  .pipe .ar{ display:flex; align-items:flex-start; justify-content:center; padding-top:var(--s2);
-    font-family:var(--mono); color:var(--faint); font-size:var(--t-label); }
-  .detail3{ margin-top:var(--s7); align-items:start; }
-  .detail3 .items li, .detail3 .note{ font-size:var(--t-body); }
 
   /* ===================== PROJECT · split viewport (course work) =========== */
   section.split{ padding:0; display:grid; grid-template-columns:var(--panel) 1fr; }
@@ -448,7 +455,6 @@
       </div>
       <div class="mstack">
         <div><div class="v">345,944<span class="arr">→</span>5,948</div><p class="k">Armadillo — 삼각형 수 → 최종 Gaussian 수</p></div>
-        <div><div class="v">+0.30 – 2.01 ms</div><p class="k">8×8 DCT 필드의 GPU draw time 증가 · RTX 4090</p></div>
       </div>
     </div>
   </section>
@@ -491,70 +497,71 @@
     </div>
   </section>
 
-  <!-- ================= 07 · PROJECT 04 · Motio — result ================= -->
+  <!-- ================= 07 · PROJECT 04 · Motio ================= -->
   <section data-label="Motio">
     <div class="folio"><span>Project 04</span><nav><span>About</span><span class="on">Work</span></nav></div>
     <header class="ph">
-      <div class="eyebrow"><span><span class="k">04</span>팀 프로젝트 · 모션 복원·그래픽스 수학</span><span class="tech">2026.04 – 2026.06 · Python / SMPL-X · 팀 · GVHMR·HaMeR fusion</span></div>
+      <div class="eyebrow"><span><span class="k">04</span>팀 프로젝트 · 알고리즘·리서치 리드</span><span class="tech">2026.04 – 2026.06 · Python / SMPL-X · GVHMR · HaMeR · ViTPose</span></div>
       <div class="grid">
         <h2 class="title">3D 영상 기반 모션 추출</h2>
-        <p class="desc"><b>단안 영상에서 SMPL-X 전신 모션을 복원하는 파이프라인.</b><br>손목 회전의 관측&nbsp;불가능성(null&nbsp;space)을 swing-twist 직교 분해로 풀었습니다.</p>
+        <p class="desc"><b>단안 영상에서 손가락까지 포함한 SMPL-X 전신 모션을 복원하는 파이프라인.</b><br>손목 축 회전의 관측&nbsp;불가성(null&nbsp;space)을 swing-twist 직교 분해로 풀었습니다.</p>
       </div>
     </header>
-    <div class="strip vplayer">
-      <video src="assets/motio.mp4" poster="assets/posters/motio.jpg" loop muted playsinline preload="metadata"></video>
-      <div class="vctl">
-        <button class="vbtn vplay" type="button" aria-label="일시정지">
-          <svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="0.5"/><rect x="9.5" y="2.5" width="3" height="11" rx="0.5"/></svg>
-          <svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.5v11l9-5.5z"/></svg>
-        </button>
-        <input class="vseek" type="range" min="0" max="1000" step="1" value="0" aria-label="재생 위치">
-        <span class="vtime">0:00 / 0:00</span>
-        <span class="vrates" role="group" aria-label="재생 속도">
-          <button class="vbtn" type="button" data-rate="0.25" aria-pressed="false">0.25×</button>
-          <button class="vbtn" type="button" data-rate="0.5" aria-pressed="false">0.5×</button>
-          <button class="vbtn" type="button" data-rate="1" aria-pressed="true">1×</button>
-        </span>
+    <div class="grid mo">
+      <div class="mo-l">
+        <div class="strip vplayer">
+        <video src="assets/motio.mp4" poster="assets/posters/motio.jpg" loop muted playsinline preload="metadata"></video>
+        <div class="vctl">
+          <button class="vbtn vplay" type="button" aria-label="일시정지">
+            <svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="0.5"/><rect x="9.5" y="2.5" width="3" height="11" rx="0.5"/></svg>
+            <svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.5v11l9-5.5z"/></svg>
+          </button>
+          <input class="vseek" type="range" min="0" max="1000" step="1" value="0" aria-label="재생 위치">
+          <span class="vtime">0:00 / 0:00</span>
+          <span class="vrates" role="group" aria-label="재생 속도">
+            <button class="vbtn" type="button" data-rate="0.25" aria-pressed="false">0.25×</button>
+            <button class="vbtn" type="button" data-rate="0.5" aria-pressed="false">0.5×</button>
+            <button class="vbtn" type="button" data-rate="1" aria-pressed="true">1×</button>
+          </span>
+        </div>
+        </div>
+        <div class="strip-labels"><span>원본 영상</span><span>Fingers-only</span><span>Naive + Kalman</span><span class="ours">Ours — twist-corrected</span></div>
       </div>
-    </div>
-    <div class="strip-labels"><span>원본 영상</span><span>Fingers-only</span><span>Naive + Kalman</span><span class="ours">Ours — twist-corrected</span></div>
-  </section>
-
-  <!-- ================= 08 · PROJECT 04 · Motio — approach ================= -->
-  <section data-label="Motio · 구현 과정">
-    <div class="folio"><span>Project 04</span><nav><span>About</span><span class="on">Work</span></nav></div>
-    <header class="ph">
-      <div class="eyebrow"><span><span class="k">04</span>3D 영상 기반 모션 추출 · 구현 과정</span><span class="tech">GVHMR (body) + HaMeR (hand) → SMPL-X</span></div>
-      <h2 class="title">Swing-twist 분해로 손목 회전 복원</h2>
-    </header>
-    <div class="pipe">
-      <div class="st"><span class="n">IN</span><b>GVHMR · HaMeR</b><span>body는 GVHMR, hand는 HaMeR로 각각 추정</span></div>
-      <div class="ar">→</div>
-      <div class="st"><span class="n">STEP 1</span><b>Swing-twist 직교 분해</b><span>swing(관측 가능) = HaMeR<br>twist(관측&nbsp;불가) = forearm</span></div>
-      <div class="ar">→</div>
-      <div class="st"><span class="n">STEP 2</span><b>5단계 graft</b><span>body·hand 결과를 간섭 없이 결합</span></div>
-      <div class="ar">→</div>
-      <div class="st out"><span class="n">OUT</span><b>SMPL-X 시계열</b><span>temporal 안정성 보존 · jitter 7.8° → 3.6°</span></div>
-    </div>
-    <div class="grid detail3">
-      <div style="grid-column:1 / 5;">
-        <div class="lbl">문제</div>
-        <ol class="items">
-          <li>HaMeR는 가려진 손에 약하고, GVHMR은 손목 axial&nbsp;회전을 추론하지 못했습니다.</li>
-          <li>손목 axial&nbsp;회전은 단안 2D에서 관측&nbsp;불가능한 null&nbsp;space라 단순 결합으로는 풀리지 않았습니다.</li>
-        </ol>
-      </div>
-      <div style="grid-column:5 / 9;">
-        <div class="lbl">개선</div>
-        <ol class="items">
-          <li>손목 회전을 swing(관측&nbsp;가능,&nbsp;HaMeR)·<wbr><span style="white-space:nowrap;">twist(관측 불가, forearm)로</span> 직교 분해해 간섭&nbsp;없이 처리했습니다.</li>
-          <li>GVHMR(body)·HaMeR(hand)을 5단계 graft로 결합해 SMPL-X 시계열을 생성했습니다.</li>
-          <li>temporal 안정성을 보존해 jitter를 7.8°에서 <span style="white-space:nowrap;"><b class="accent">3.6°</b>로</span> 줄였습니다.</li>
-        </ol>
-      </div>
-      <div style="grid-column:9 / 13;">
-        <div class="lbl">회고</div>
-        <p class="note">초기에 모델을 검증 없이 채택했다가 문제가 생겼고, 이후 모델 도입 전에 논문 확인과 실행 검증을 먼저 하는 순서로 바꿨습니다.</p>
+      <div class="mo-r">
+        <div>
+          <div class="lbl">문제</div>
+          <p class="lead">전완 축을 도는 손목 회전은 단안 2D에서 거의 변하지 않는 null&nbsp;space라, 몸(GVHMR)도 손(HaMeR)도 이 값을 직접 보지 못합니다.</p>
+        </div>
+        <div>
+          <div class="lbl">Swing-twist 직교 분해 <span class="mono">기준축 = 전완</span></div>
+          <div class="stf">
+            <figure>
+              <svg viewBox="0 0 240 150" aria-hidden="true">
+                <defs>
+                  <marker id="mo-ah-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink)"/></marker>
+                  <marker id="mo-ah-faint" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--faint)"/></marker>
+                  <marker id="mo-ah-acc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--accent)"/></marker>
+                </defs>
+                <circle cx="24" cy="110" r="4" style="fill:var(--ink)"/>
+                <line x1="24" y1="110" x2="204" y2="110" style="stroke:var(--faint)" stroke-width="2.5" marker-end="url(#mo-ah-faint)"/>
+                <line x1="24" y1="110" x2="186" y2="38" style="stroke:var(--accent)" stroke-width="2.5" marker-end="url(#mo-ah-acc)"/>
+                <path d="M 144 104 A 120 120 0 0 0 134 64" fill="none" style="stroke:var(--accent)" stroke-width="1.8" marker-end="url(#mo-ah-acc)"/>
+                <text x="212" y="115" style="fill:var(--muted)" font-size="15" font-style="italic">a</text>
+              </svg>
+              <figcaption><b>swing</b>축 자체가 기울어지는 성분<br>2D에서 보임 → HaMeR 값</figcaption>
+            </figure>
+            <figure>
+              <svg viewBox="0 0 240 150" aria-hidden="true">
+                <circle cx="24" cy="110" r="4" style="fill:var(--ink)"/>
+                <line x1="24" y1="110" x2="204" y2="110" style="stroke:var(--ink)" stroke-width="2.5" marker-end="url(#mo-ah-ink)"/>
+                <path d="M 147.9 76.5 A 12 34 0 1 1 138.7 98.4" fill="none" style="stroke:var(--accent)" stroke-width="2.5" marker-end="url(#mo-ah-acc)"/>
+                <text x="212" y="115" style="fill:var(--muted)" font-size="15" font-style="italic">a</text>
+              </svg>
+              <figcaption><b>twist</b>축을 중심으로 도는 성분<br>2D null&nbsp;space → 따로 처리</figcaption>
+            </figure>
+          </div>
+          <p class="eqline"><span class="q">q = q<sub>swing</sub> q<sub>twist</sub></span>직교 분해라 한 성분을 바꿔도 다른 성분이 깨지지 않습니다.</p>
+        </div>
       </div>
     </div>
   </section>
