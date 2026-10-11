@@ -37,7 +37,7 @@
     --accent:#E04A2C;
 
     --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px; --s7:96px;
-    --mx:96px; --mt:120px; --mb:72px; --gut:32px;
+    --mx:96px; --mt:96px; --mb:72px; --gut:32px;
     --panel:864px;
 
     --t-display:120px; --t-title:64px; --t-h2:44px; --t-h3:28px;
@@ -64,7 +64,7 @@
   .mono{font-family:var(--mono); letter-spacing:0;}
 
   /* ---------- folio (one consistent running header) ---------- */
-  .folio{ position:absolute; top:48px; left:var(--mx); right:var(--mx); z-index:5;
+  .folio{ position:absolute; top:40px; left:var(--mx); right:var(--mx); z-index:5;
     display:flex; justify-content:space-between; align-items:baseline;
     font-size:var(--t-label); color:var(--muted); }
   .folio nav{ display:flex; gap:var(--s4); }
@@ -80,7 +80,7 @@
   .title{ font-size:var(--t-title); font-weight:800; line-height:1.08; letter-spacing:-0.03em; }
   .desc{ font-size:var(--t-body); line-height:1.5; color:var(--ink-2); }
   .lbl{ font-size:var(--t-label); font-weight:700; color:var(--ink); padding-top:var(--s2);
-    border-top:1px solid var(--ink); margin-bottom:var(--s2); display:flex; justify-content:space-between; }
+    margin-bottom:var(--s2); display:flex; justify-content:space-between; }
   .lbl .mono{ font-weight:500; color:var(--muted); }
   .items{ display:flex; flex-direction:column; gap:var(--s1); counter-reset:i; }
   .items li{ position:relative; padding-left:36px; font-size:var(--t-detail); line-height:1.55; color:var(--ink-2); }
@@ -105,7 +105,7 @@
   video{ display:block; background:var(--black); }
 
   /* =============================== 01 ABOUT =============================== */
-  .about{ padding-top:var(--mt); }
+  .about{ padding-top:186px; } /* photo and name start on the project pages' title line (e.g. slide 6) */
   .about-body{ flex:1; align-items:start; }
   .about-side{ grid-column:1 / 4; display:flex; flex-direction:column; gap:var(--s4); }
   .about-side image-slot{ width:100%; height:524px; }
@@ -254,12 +254,12 @@
   .quad figure:first-child figcaption{ left:calc(var(--mx) - 12px); }
   .quad figcaption .t{ font-size:var(--t-label); font-weight:600; color:var(--on-black); }
   .quad figcaption .v{ font-family:var(--mono); font-size:16px; color:var(--on-black-2); }
-  .r-bottom{ margin-top:var(--s4); align-items:start; }
-  .stg{ border-top:1px solid var(--ink); padding-top:var(--s2); }
+  .r-bottom{ margin-top:var(--s3); align-items:start; }
+  .stg{ padding-top:0; }
   .stg .n{ font-family:var(--mono); font-size:16px; color:var(--muted); display:flex; justify-content:space-between; }
   .stg b{ display:block; font-size:var(--t-detail); line-height:1.35; margin-top:6px; }
   .stg p{ font-size:18px; line-height:1.5; color:var(--ink-2); margin-top:6px; }
-  .role{ border-top:1px solid var(--accent); padding-top:var(--s2); }
+  .role{ padding-top:0; }
   .role .n{ font-size:16px; font-weight:700; color:var(--accent); }
   .role ul{ margin-top:6px; display:flex; flex-direction:column; gap:6px; }
   .role li{ font-size:18px; line-height:1.45; color:var(--ink); }
@@ -279,14 +279,14 @@
   .zt figcaption{ display:flex; justify-content:space-between; font-size:16px; color:var(--muted); margin-top:6px; }
   .zt figure:last-child figcaption{ color:var(--ink); font-weight:700; }
   .mstack{ grid-column:9 / 13; display:flex; flex-direction:column; gap:var(--s3); }
-  .mstack > div{ border-top:1px solid var(--ink); padding-top:var(--s2); }
+  .mstack > div{ padding-top:var(--s2); }
   .mstack .v{ font-size:36px; font-weight:800; letter-spacing:-0.03em; line-height:1.1; }
   .mstack .v .arr{ font-weight:400; color:var(--faint); margin:0 6px; }
   .mstack .k{ font-size:16px; line-height:1.5; color:var(--muted); margin-top:6px; }
   .mstack .lb{ display:block; font-size:16px; color:var(--muted); margin-bottom:2px; }
   .mstack .v small{ margin-left:4px; font-size:20px; font-weight:700; letter-spacing:0; }
   /* Project 02 headline result: what the conversion buys, against a named baseline. */
-  .impact{ margin-top:var(--s4); border-top:1px solid var(--ink); padding-top:var(--s2); display:grid; grid-template-columns:minmax(0,3fr) repeat(4,minmax(0,2fr)); column-gap:var(--gut); align-items:start; }
+  .impact{ margin-top:var(--s4); padding-top:0; display:grid; grid-template-columns:minmax(0,3fr) repeat(4,minmax(0,2fr)); column-gap:var(--gut); align-items:start; }
   .impact .ih{ font-size:var(--t-label); font-weight:700; line-height:1.3; }
   .impact .ih span{ display:block; margin-top:4px; font-size:15px; font-weight:400; line-height:1.45; color:var(--muted); }
   .impact b{ display:block; margin-top:2px; font-size:36px; font-weight:800; letter-spacing:-0.02em; line-height:1.1; }
@@ -429,7 +429,7 @@
       <div class="ih">Mesh2Splat 대비<span>같은 메시를 Gaussian으로 촘촘히 덮는 기존 방식 · 4개 메시 평균 (배수는 기하평균)</span></div>
       <div><span class="k">Gaussian 수</span><b>111<small>배 적음</small></b></div>
       <div><span class="k">메모리</span><b>93%<small>절감</small></b></div>
-      <div><span class="k">그리기 속도</span><b>2.8<small>배 빠름</small></b></div>
+      <div><span class="k">그리기 속도 (DCT 굽기)</span><b>7.7<small>배 빠름</small></b></div>
       <div><span class="k">화질 (PSNR)</span><b>3.3<small>dB 높음</small></b></div>
     </div>
   </section>
