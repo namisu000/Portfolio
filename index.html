@@ -151,7 +151,7 @@
   .cmp video{ width:100%; aspect-ratio:16 / 9; object-fit:cover; }
   .ov{ position:absolute; left:var(--s3); top:var(--s3); display:flex; flex-direction:column; gap:4px; }
   .ov .t{ font-family:var(--mono); font-size:18px; font-weight:700; letter-spacing:0.06em; color:var(--on-black-2); }
-  .ov .v{ font-size:var(--t-detail); font-weight:600; color:var(--on-black); }
+  .ov .v{ font-size:var(--t-label); font-weight:600; color:var(--on-black); }
   .cmp figure.after .ov .t{ color:var(--accent); }
   .cmp figure + figure{ border-left:1px solid var(--on-black-line); }
   /* 슬라이드 6·7 공통: 영상 띠 아래 문제 / 원인 / 한 일 세 칸 */
@@ -180,7 +180,7 @@
   .mo-band .vplayer{ height:100%; aspect-ratio:9 / 4; max-width:100%; }
   .mo-band video{ width:100%; height:100%; }
   .mo-band .labels{ position:absolute; left:0; right:0; top:0; display:grid; grid-template-columns:repeat(4,1fr); pointer-events:none; }
-  .mo-band .labels span{ justify-self:start; padding:6px 12px; background:rgba(0,0,0,0.88); font-size:16px; color:var(--on-black); }
+  .mo-band .labels span{ justify-self:start; padding:6px 12px; background:rgba(0,0,0,0.88); font-size:18px; color:var(--on-black); }
   .mo-band .labels span.ours{ color:var(--accent); font-weight:700; }
 
 
@@ -375,7 +375,7 @@
     <header class="ph">
       <div class="eyebrow"><span><span class="k">01</span>Computer Graphics Lab · 학부연구생</span><span class="tech">2025.10 – 2026.10 · C++ / OpenGL / 3DGS</span></div>
       <div class="grid">
-        <h2 class="title" style="grid-column:1 / 7; font-size:58px;">Mesh-to-Gaussian Splatting</h2>
+        <h2 class="title" style="grid-column:1 / 7;">Mesh-to-Gaussian Splatting</h2>
         <p class="desc" style="grid-column:7 / 13;"><b>메시를 적은 수의 Gaussian으로 바꿔 3DGS 장면에 넣고 relighting할 수 있게 하는 연구.</b><br>Gaussian 하나 안에서 normal과 색이 변하게 해, 삼각형 35만 개를 Gaussian 6천 개로 줄여도 굴곡을 지켰습니다.</p>
       </div>
     </header>
@@ -386,19 +386,23 @@
       <figure><img src="assets/research/fig1-ellipsoids.jpg" alt=""><figcaption><span class="t">Gaussian 모양 (2σ 타원체)</span><span class="v">N = 9,876</span></figcaption></figure>
       <figure><img src="assets/research/fig1-scene.jpg" alt=""><figcaption><span class="t">3DGS 장면에 삽입</span><span class="v">HDR IBL + 그림자</span></figcaption></figure>
     </div>
-    <!-- 본문: 접근 / 한계 / 해결 세 칸 (.lbl + .note) -->
+    <!-- 본문: 접근 / 한계 (.lbl + .note) / 해결 (.items 번호 목록) -->
     <div class="grid cols">
       <div style="grid-column:1 / 6;">
         <div class="lbl">접근</div>
-        <p class="note">Gaussian 수를 줄이려면 하나가 넓은 면적을 맡아야 합니다. 그래서 표면을 촘촘히 덮는 대신 메시 안쪽을 큰 Gaussian부터 채워 형상을 잡고, 부피를 벗어나지 않게 윤곽과 깊이를 맞췄습니다. 음영은 색에 섞지 않고 normal로 따로 학습해 조명을 바꿀 수 있게 했습니다.</p>
+        <p class="note">Gaussian 수를 줄이려면 하나가 넓은 면적을 맡아야 합니다. 그래서 표면을 촘촘히 덮는 대신 <b>메시 안쪽을 큰 Gaussian부터 채워</b> 형상을 잡고, 부피를 벗어나지 않게 윤곽과 깊이를 맞췄습니다. 음영은 색에 섞지 않고 <b>normal로 따로 학습</b>해 조명을 바꿀 수 있게 했습니다.</p>
       </div>
       <div style="grid-column:6 / 9;">
         <div class="lbl">한계</div>
-        <p class="note">Gaussian 하나가 넓은 면을 덮으면 그 안의 normal이 하나뿐이라, 작은 굴곡이 평평하게 뭉개졌습니다.</p>
+        <p class="note">Gaussian 하나가 넓은 면을 덮으면 그 안의 <b>normal이 하나뿐</b>이라, <b>작은 굴곡이 평평하게 뭉개졌습니다</b>.</p>
       </div>
       <div style="grid-column:9 / 13;">
         <div class="lbl">해결</div>
-        <p class="note">Gaussian 안에서 위치에 따라 normal과 색이 변하도록 DCT 기반 필드를 두고, 그래도 부족한 곳만 나눴습니다. Armadillo에서 normal 변화가 없을 때 27.8&nbsp;dB이던 화질이 37.3&nbsp;dB까지 올랐습니다.</p>
+        <ol class="items">
+          <li>Gaussian 안에서 위치에 따라 normal과 색이 변하는 <b>DCT 기반 필드</b> 도입</li>
+          <li>그래도 부족한 곳만 <b>Gaussian 분할</b></li>
+          <li>Armadillo 화질 <b>27.8 → 37.3&nbsp;dB</b> (normal 변화가 없을 때 대비)</li>
+        </ol>
       </div>
     </div>
   </section>
@@ -412,8 +416,8 @@
     <header class="ph">
       <div class="eyebrow"><span><span class="k">01</span>Computer Graphics Lab · 단계별 결과</span></div>
       <div class="grid">
-        <h2 class="title" style="grid-column:1 / 8;">Mesh-to-Gaussian Splatting</h2>
-        <p class="desc" style="grid-column:8 / 13;"><b>부피로 형상을 먼저 잡고, 윤곽과 normal을 맞출수록 굴곡이 살아납니다.</b><br>최종 결과는 조명을 바꿔도 셰이딩이 유지됩니다.</p>
+        <h2 class="title" style="grid-column:1 / 7;">Mesh-to-Gaussian Splatting</h2>
+        <p class="desc" style="grid-column:7 / 13;"><b>부피로 형상을 먼저 잡고, 윤곽과 normal을 맞출수록 굴곡이 살아납니다.</b><br>최종 결과는 조명을 바꿔도 셰이딩이 유지됩니다.</p>
       </div>
     </header>
     <!-- 단계별 이미지 그리드: 열 제목(.cl) + 메시 3개 행(.rw, 각 8장). 캡션은 figcaption -->
@@ -493,10 +497,10 @@
       <div style="grid-column:5 / 13;">
         <div class="lbl">접근</div>
         <ol class="items">
-          <li>고주파 디테일을 살리기 위해 textured Gaussian을 도입하고, 랜덤 split이나 MCMC 대신 표면 균등 샘플링으로 초기화해 품질과 <span style="white-space:nowrap;">수렴 시간을 개선</span></li>
-          <li>렌더러 AOV를 GT로 써서 normal과 depth 감독, alpha hull 제약을 loss로 설계</li>
-          <li>헤어는 strand 단위로 생성해 두피에 정합하고, 복셀 기반 초기화로 2DGS 학습</li>
-          <li>시뮬레이션 대응을 위해 표면 앵커링 스플랫과 표현용 스플랫을 분리</li>
+          <li>고주파 디테일을 살리기 위해 <b>textured Gaussian</b>을 도입하고, 랜덤 split이나 MCMC 대신 <b>표면 균등 샘플링으로 초기화</b>해 품질과 <span style="white-space:nowrap;">수렴 시간을 개선</span></li>
+          <li>렌더러 AOV를 GT로 써서 <b>normal과 depth 감독, alpha hull 제약</b>을 loss로 설계</li>
+          <li>헤어는 <b>strand 단위로 생성</b>해 두피에 정합하고, 복셀 기반 초기화로 2DGS 학습</li>
+          <li>시뮬레이션 대응을 위해 <b>표면 앵커링 스플랫과 표현용 스플랫을 분리</b></li>
         </ol>
       </div>
     </div>
