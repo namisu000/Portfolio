@@ -243,7 +243,7 @@
   .stages .cl, .stages .rw{ display:grid; grid-template-columns:repeat(8,1fr); }
   .stages .cl span{ font-size:16px; color:var(--muted); padding:0 0 var(--s1); }
   .stages .rw{ background:var(--black); margin:0 calc(var(--mx) * -1); padding:0 var(--mx); }
-  .stages .rw figure{ position:relative; height:140px; overflow:hidden; }
+  .stages .rw figure{ position:relative; height:160px; overflow:hidden; }
   .stages .rw img{ width:100%; height:100%; object-fit:contain; display:block; }
   .stages .rw figure:nth-child(n+7) img{ object-fit:cover; }
   .stages .rw figcaption{ position:absolute; left:0; bottom:8px; font-family:var(--mono); font-size:16px; color:var(--on-black); background:var(--black); padding:2px 6px 2px 0; }
@@ -251,7 +251,7 @@
   .detailrow{ margin-top:auto; align-items:start; }
   .zoom{ grid-column:1 / 9; }
   .zt{ display:grid; grid-template-columns:repeat(5,1fr); gap:var(--s2); }
-  .zt img{ width:100%; height:116px; object-fit:cover; display:block; background:var(--black); }
+  .zt img{ width:100%; height:136px; object-fit:cover; display:block; background:var(--black); }
   .zt figcaption{ display:flex; justify-content:space-between; font-size:16px; color:var(--muted); margin-top:6px; }
   .zt figure:last-child figcaption{ color:var(--ink); font-weight:700; }
   .mstack{ grid-column:9 / 13; display:flex; flex-direction:column; gap:var(--s3); }
@@ -451,15 +451,13 @@
       </div>
       <div class="key mono">tris = 메시 삼각형 수 · N = Gaussian 수</div>
     </div>
-    <!-- 하단 왼쪽: Armadillo 확대 비교 5장 (.zt) / 하단 오른쪽: 비교 박스 2개 (.cmpbox: 3DGS-MCMC 대비, Mesh2Splat 대비) -->
+    <!-- 하단 왼쪽: Armadillo 확대 비교 5장 (.zt) / 하단 오른쪽: Mesh2Splat 대비 비교 박스 (.cmpbox) -->
     <div class="grid detailrow">
       <div class="zoom">
         <div class="lbl">Armadillo 확대 — Gaussian 안의 normal 변화가 세밀할수록 굴곡이 살아납니다 <span class="mono">PSNR · N = 5,948 (1×1은 N = 1,487)</span></div>
         <div class="zt"><figure><img src="assets/research/fig8-zoom-gt.jpg" alt=""><figcaption><span>메시 (GT)</span><span class="mono"></span></figcaption></figure><figure><img src="assets/research/fig8-zoom-1x1.jpg" alt=""><figcaption><span>1×1 (변화 없음)</span><span class="mono">27.77 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-2x2.jpg" alt=""><figcaption><span>2×2</span><span class="mono">35.51 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-4x4.jpg" alt=""><figcaption><span>4×4</span><span class="mono">36.74 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-8x8.jpg" alt=""><figcaption><span>8×8</span><span class="mono">37.31 dB</span></figcaption></figure></div>
       </div>
       <div class="mstack">
-        <div class="cmpbox"><div class="ih">이미지로 학습하는 방식 대비<span>3DGS-MCMC · 4개 메시 기하평균</span></div>
-          <div class="nums"><div><span class="k">같은 화질에 필요한 Gaussian 수</span><b>2.8<small>배 적음</small></b></div></div></div>
         <div class="cmpbox"><div class="ih">메시를 직접 변환하는 방식 대비<span>Mesh2Splat · 4개 메시 평균 (배수는 기하평균)</span></div>
           <div class="nums four"><div><span class="k">Gaussian 수</span><b>111<small>배 적음</small></b></div><div><span class="k">메모리</span><b>93%<small>절감</small></b></div><div><span class="k">그리기 속도</span><b>7.7<small>배 빠름</small></b></div><div><span class="k">화질 (PSNR)</span><b>3.3<small>dB 높음</small></b></div></div></div>
       </div>

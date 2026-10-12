@@ -22,7 +22,7 @@
  *  (f) print — `@media print` lays every slide out as its own page at the
  *      design size, so the browser's Print → Save as PDF produces a clean
  *      one-page-per-slide PDF with no extra setup.
- *  (g) thumbnail rail — resizable left-hand column of per-slide thumbnails
+ *  (g) thumbnail rail — resizable right-hand column of per-slide thumbnails
  *      (static clones). Click to navigate; ↑/↓ with a thumbnail focused to
  *      step between slides; drag to reorder; right-click for
  *      Skip / Move up / Move down / Duplicate / Delete (Delete opens a
@@ -289,18 +289,18 @@
     }
 
     /* ── Thumbnail rail ──────────────────────────────────────────────────
-       Fixed column on the left; each thumbnail is a static deep-clone of
+       Fixed column on the right; each thumbnail is a static deep-clone of
        the light-DOM slide scaled into a 16:9 (or design-aspect) frame. The
        stage re-fits around it (see _fit); hidden during present / noscale
        / print so capture geometry and fullscreen output are unchanged. */
     .rail {
       position: fixed;
-      left: 0;
+      right: 0;
       top: 0;
       bottom: 0;
       width: var(--deck-rail-w, 188px);
       background: #141414;
-      border-right: 1px solid rgba(255,255,255,0.08);
+      border-left: 1px solid rgba(255,255,255,0.08);
       overflow-y: auto;
       overflow-x: hidden;
       padding: 12px 10px;
@@ -335,9 +335,9 @@
        popping. Transitions are gated on :host([data-rail-anim]) — set only
        for the 200ms around the toggle — so window-resize and rail-width
        drag (which also call _fit) don't lag behind the cursor. */
-    .rail[data-user-hidden] { transform: translateX(-100%); }
+    .rail[data-user-hidden] { transform: translateX(100%); }
     :host([data-rail-anim]) .rail { transition: transform 200ms cubic-bezier(.3,.7,.4,1); }
-    :host([data-rail-anim]) .stage { transition: left 200ms cubic-bezier(.3,.7,.4,1); }
+    :host([data-rail-anim]) .stage { transition: right 200ms cubic-bezier(.3,.7,.4,1); }
     :host([data-rail-anim]) .canvas { transition: transform 200ms cubic-bezier(.3,.7,.4,1); }
     /* transition shorthand replaces rather than merges — repeat the base
        .overlay opacity/transform/filter transitions so visibility changes
@@ -449,7 +449,7 @@
 
     .rail-resize {
       position: fixed;
-      left: calc(var(--deck-rail-w, 188px) - 3px);
+      right: calc(var(--deck-rail-w, 188px) - 3px);
       top: 0;
       bottom: 0;
       width: 6px;
@@ -996,7 +996,7 @@
         e.preventDefault();
         resize.setPointerCapture(e.pointerId);
         resize.setAttribute('data-dragging', '');
-        const move = (ev) => this._setRailWidth(ev.clientX);
+        const move = (ev) => this._setRailWidth(window.innerWidth - ev.clientX);
         const up = () => {
           resize.removeEventListener('pointermove', move);
           resize.removeEventListener('pointerup', up);
@@ -1269,16 +1269,16 @@
       // resetTransformSelector can't reach .canvas.style.transform directly.
       if (this.hasAttribute('noscale')) {
         this._canvas.style.transform = 'none';
-        if (stage) stage.style.left = '0';
+        if (stage) stage.style.right = '0';
         if (this._overlay) this._overlay.style.marginLeft = '0';
         return;
       }
       const rw = this._railWidth();
-      if (stage) stage.style.left = rw + 'px';
+      if (stage) stage.style.right = rw + 'px';
       // Overlay is centred on the viewport via left:50% + translate(-50%);
-      // marginLeft shifts the centre by rw/2 so it lands in the middle of
-      // the [rw, innerWidth] stage region.
-      if (this._overlay) this._overlay.style.marginLeft = (rw / 2) + 'px';
+      // marginLeft shifts the centre by -rw/2 so it lands in the middle of
+      // the [0, innerWidth - rw] stage region (rail is on the right).
+      if (this._overlay) this._overlay.style.marginLeft = (-rw / 2) + 'px';
       const vw = window.innerWidth - rw;
       const vh = window.innerHeight;
       const s = Math.min(vw / this.designWidth, vh / this.designHeight) * this._zoom;
@@ -1401,7 +1401,7 @@
       if (!this._rail) return;
       // data-presenting is the hard hide (display:none) for flag-off,
       // presentation mode, and the host's Preview segment — instant, no
-      // transition. data-user-hidden is the soft hide (translateX(-100%))
+      // transition. data-user-hidden is the soft hide (translateX(100%))
       // for the viewer's rail toggle, so show/hide slides under
       // :host([data-rail-anim]).
       const hard = !this._railEnabled || this._presenting || this._previewMode;
@@ -1432,7 +1432,7 @@
       }
       e.preventDefault();
       const rw = this._railWidth();
-      const mid = rw + (window.innerWidth - rw) / 2;
+      const mid = (window.innerWidth - rw) / 2;
       this._advance(e.clientX < mid ? -1 : 1, 'tap');
     }
 
