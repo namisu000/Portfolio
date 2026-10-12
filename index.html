@@ -83,10 +83,10 @@
     margin-bottom:var(--s2); display:flex; justify-content:space-between; }
   .lbl .mono{ font-weight:500; color:var(--muted); }
   .items{ display:flex; flex-direction:column; gap:var(--s1); counter-reset:i; }
-  .items li{ position:relative; padding-left:36px; font-size:var(--t-detail); line-height:1.55; color:var(--ink-2); }
+  .items li{ position:relative; padding-left:36px; font-size:var(--t-label); line-height:1.55; color:var(--ink-2); }
   .items li::before{ counter-increment:i; content:counter(i,decimal-leading-zero); font-family:var(--mono);
     font-size:18px; color:var(--faint); position:absolute; left:0; top:0.2em; }
-  .note{ font-size:var(--t-detail); line-height:1.55; color:var(--ink-2); }
+  .note{ font-size:var(--t-label); line-height:1.55; color:var(--ink-2); }
   .accent{ color:var(--accent); }
 
   /* line breaking: avoid short last lines in running text */
@@ -142,7 +142,7 @@
   .idx .tc{ grid-column:9 / 11; font-family:var(--mono); font-size:16px; color:var(--muted); line-height:1.5; }
   .idx .tc .jd{ display:block; font-family:var(--sans); font-size:16px; color:var(--ink); margin-top:4px; }
   .idx .tc .jd::before{ content:""; display:inline-block; width:6px; height:6px; background:var(--accent); margin-right:8px; vertical-align:middle; }
-  .idx .yr{ grid-column:11 / 13; text-align:right; font-family:var(--mono); font-size:17px; letter-spacing:0; color:var(--ink-2); line-height:1.45; }
+  .idx .yr{ grid-column:11 / 13; text-align:right; font-family:var(--mono); font-size:18px; letter-spacing:0; color:var(--ink-2); line-height:1.45; }
 
   /* ===================== 슬라이드 8 · Gaussian Splat Viewer (BEFORE/AFTER 영상 띠) ================ */
   .band{ margin:var(--s4) calc(var(--mx) * -1) 0; padding:0 var(--mx); background:var(--black); }
@@ -155,7 +155,6 @@
   .cmp figure.after .ov .t{ color:var(--accent); }
   .cmp figure + figure{ border-left:1px solid var(--on-black-line); }
   /* 슬라이드 7·8 공통: 영상 띠 아래 문제 / 원인 / 한 일 세 칸 */
-  .pcols .note, .pcols .items li{ font-size:var(--t-label); line-height:1.55; }
   .pcols .note b, .pcols .items b{ color:var(--ink); }
   .pcols .res{ margin-top:var(--s2); font-size:var(--t-label); font-weight:700; color:var(--accent); }
   .cols{ margin-top:var(--s4); align-items:start; }
@@ -227,7 +226,7 @@
   .lightbox img, .lightbox video{ max-width:min(92vw,1800px); max-height:84vh; object-fit:contain; box-shadow:0 12px 48px rgba(0,0,0,0.5); }
   .lightbox img[hidden], .lightbox video[hidden]{ display:none; }
   .lightbox p{ color:#eee; font-size:15px; }
-  .slots figcaption{ font-size:18px; color:var(--muted); margin-top:var(--s1); }
+  .slots figcaption{ font-size:16px; color:var(--muted); margin-top:var(--s1); }
 
   /* ===================== 슬라이드 3·4 · Mesh-to-Gaussian (그림 4장 .quad + STAGE 카드 .stg) ============== */
   .quad{ margin:var(--s4) calc(var(--mx) * -1) 0; display:grid; grid-template-columns:repeat(4,1fr); background:var(--black); }
@@ -242,9 +241,9 @@
   .stg{ padding-top:0; }
   .stg .n{ font-family:var(--mono); font-size:16px; color:var(--muted); display:flex; justify-content:space-between; }
   .stg b{ display:block; font-size:var(--t-detail); line-height:1.35; margin-top:6px; }
-  .stg p{ font-size:18px; line-height:1.5; color:var(--ink-2); margin-top:6px; }
+  .stg p{ font-size:var(--t-label); line-height:1.5; color:var(--ink-2); margin-top:6px; }
 
-  /* ----- 슬라이드 5 · 단계별 결과 (이미지 그리드 .stages, 확대 비교 .zt, 숫자 .mstack) ----- */
+  /* ----- 슬라이드 5 · 단계별 결과 (이미지 그리드 .stages, 확대 비교 .zt, 비교 박스 .cmpbox) ----- */
   .stages{ margin:var(--s4) 0 0; }
   .stages .cl, .stages .rw{ display:grid; grid-template-columns:repeat(8,1fr); }
   .stages .cl span{ font-size:16px; color:var(--muted); padding:0 0 var(--s1); }
@@ -252,7 +251,7 @@
   .stages .rw figure{ position:relative; height:140px; overflow:hidden; }
   .stages .rw img{ width:100%; height:100%; object-fit:contain; display:block; }
   .stages .rw figure:nth-child(n+7) img{ object-fit:cover; }
-  .stages .rw figcaption{ position:absolute; left:0; bottom:8px; font-family:var(--mono); font-size:14px; color:var(--on-black); background:var(--black); padding:2px 6px 2px 0; }
+  .stages .rw figcaption{ position:absolute; left:0; bottom:8px; font-family:var(--mono); font-size:16px; color:var(--on-black); background:var(--black); padding:2px 6px 2px 0; }
   .stages .key{ font-size:16px; color:var(--muted); padding-top:var(--s1); }
   .detailrow{ margin-top:auto; align-items:start; }
   .zoom{ grid-column:1 / 9; }
@@ -261,19 +260,13 @@
   .zt figcaption{ display:flex; justify-content:space-between; font-size:16px; color:var(--muted); margin-top:6px; }
   .zt figure:last-child figcaption{ color:var(--ink); font-weight:700; }
   .mstack{ grid-column:9 / 13; display:flex; flex-direction:column; gap:var(--s3); }
-  .mstack > div{ padding-top:var(--s2); }
-  .mstack .v{ font-size:36px; font-weight:800; letter-spacing:-0.03em; line-height:1.1; }
-  .mstack .v .arr{ font-weight:400; color:var(--faint); margin:0 6px; }
-  .mstack .k{ font-size:16px; line-height:1.5; color:var(--muted); margin-top:6px; }
-  .mstack .lb{ display:block; font-size:16px; color:var(--muted); margin-bottom:2px; }
-  .mstack .v small{ margin-left:4px; font-size:20px; font-weight:700; letter-spacing:0; }
-  /* 슬라이드 5 맨 아래 · Mesh2Splat 대비 지표 4개 */
-  .impact{ margin-top:var(--s4); padding-top:0; display:grid; grid-template-columns:minmax(0,3fr) repeat(4,minmax(0,2fr)); column-gap:var(--gut); align-items:start; }
-  .impact .ih{ font-size:var(--t-label); font-weight:700; line-height:1.3; }
-  .impact .ih span{ display:block; margin-top:4px; font-size:15px; font-weight:400; line-height:1.45; color:var(--muted); }
-  .impact b{ display:block; margin-top:2px; font-size:36px; font-weight:800; letter-spacing:-0.02em; line-height:1.1; }
-  .impact b small{ margin-left:4px; font-size:20px; font-weight:700; letter-spacing:0; }
-  .impact .k{ display:block; font-size:16px; color:var(--muted); }
+  .cmpbox .ih{ font-size:var(--t-label); font-weight:700; line-height:1.3; }
+  .cmpbox .ih span{ display:block; margin-top:2px; font-size:16px; font-weight:400; line-height:1.45; color:var(--muted); }
+  .cmpbox .nums{ display:grid; grid-template-columns:1fr; column-gap:var(--s3); row-gap:var(--s1); margin-top:var(--s1); }
+  .cmpbox .nums.four{ grid-template-columns:1fr 1fr; }
+  .cmpbox .k{ display:block; font-size:16px; color:var(--muted); }
+  .cmpbox b{ display:block; margin-top:2px; font-size:36px; font-weight:800; letter-spacing:-0.02em; line-height:1.1; }
+  .cmpbox b small{ margin-left:4px; font-size:20px; font-weight:700; letter-spacing:0; }
 
   /* ================================ 슬라이드 10 · Contact =============================== */
   section.closing{ background:var(--night); color:var(--on-black); }
@@ -375,7 +368,7 @@
       <div class="grid row"><span class="no">02</span><div class="th"><img src="assets/clo/avatar.jpg" alt="" style="object-position:50% 8%;"></div><div class="nm"><h3>Gaussian Splatting: Avatar Reconstruction</h3><p>CLO Virtual Fashion ML팀 인턴 · 옷 입은 아바타의 고품질 렌더를 실시간으로 볼 수 있게 Gaussian으로 변환</p></div><div class="tc">3DGS · 2DGS · Blender Cycles<span class="jd">3D 아바타 · PBR</span></div><div class="yr">2026.07 – 2026.08</div></div>
       <div class="grid row"><span class="no">03</span><div class="th"><img src="assets/posters/motio.jpg" alt=""></div><div class="nm"><h3>3D 영상 기반 모션 추출</h3><p>카메라 한 대로 찍은 영상에서 손가락까지 포함한 전신 모션 복원</p></div><div class="tc">Python · SMPL-X<span class="jd">3D 아바타 pose &amp; shape 추정</span></div><div class="yr">2026.04 – 2026.06</div></div>
       <div class="grid row"><span class="no">04</span><div class="th"><img src="assets/posters/gaussian-thumb.jpg" alt=""></div><div class="nm"><h3>Gaussian Splat Viewer</h3><p>81.6만 개 Gaussian을 회전해도 끊김 없이 그리도록 깊이 정렬을 GPU로 옮긴 뷰어</p></div><div class="tc">C++ · OpenGL · Compute Shader<span class="jd">Computer Graphics · C++</span></div><div class="yr">2025.05 – 2025.06</div></div>
-      <div class="grid row"><span class="no">05</span><div class="th fund"><img src="assets/posters/spherical-panorama-viewer.jpg" alt=""><img src="assets/posters/object-model-viewer.jpg" alt=""></div><div class="nm"><h3>Computer Graphics</h3><p>Spherical Panorama Viewer · Object Model Viewer — 셰이딩·환경 매핑·법선 계산</p></div><div class="tc">C++ · OpenGL · GLSL<span class="jd">Computer Graphics · Geometry Processing</span></div><div class="yr">2024.09 – 2024.10</div></div>
+      <div class="grid row"><span class="no">05</span><div class="th fund"><img src="assets/posters/spherical-panorama-viewer.jpg" alt=""><img src="assets/posters/object-model-viewer.jpg" alt=""></div><div class="nm"><h3>Computer Graphics</h3><p>Spherical Panorama Viewer · Object Model Viewer — 셰이딩, 환경 매핑, 법선 계산</p></div><div class="tc">C++ · OpenGL · GLSL<span class="jd">Computer Graphics · Geometry Processing</span></div><div class="yr">2024.09 – 2024.10</div></div>
     </div>
   </section>
 
@@ -493,24 +486,18 @@
       </div>
       <div class="key mono">tris = 메시 삼각형 수 · N = Gaussian 수</div>
     </div>
-    <!-- 하단 왼쪽: Armadillo 확대 비교 5장 (.zt) / 하단 오른쪽: 숫자 2개 (.mstack) -->
+    <!-- 하단 왼쪽: Armadillo 확대 비교 5장 (.zt) / 하단 오른쪽: 비교 박스 2개 (.cmpbox: 3DGS-MCMC 대비, Mesh2Splat 대비) -->
     <div class="grid detailrow">
       <div class="zoom">
-        <div class="lbl">Armadillo 확대 — Gaussian 안의 normal 변화가 세밀할수록 굴곡이 살아납니다 <span class="mono">PSNR · N = 5,948 (1×1만 1,487)</span></div>
+        <div class="lbl">Armadillo 확대 — Gaussian 안의 normal 변화가 세밀할수록 굴곡이 살아납니다 <span class="mono">PSNR · N = 5,948 (1×1은 N = 1,487)</span></div>
         <div class="zt"><figure><img src="assets/research/fig8-zoom-gt.jpg" alt=""><figcaption><span>메시 (GT)</span><span class="mono"></span></figcaption></figure><figure><img src="assets/research/fig8-zoom-1x1.jpg" alt=""><figcaption><span>1×1 (변화 없음)</span><span class="mono">27.77 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-2x2.jpg" alt=""><figcaption><span>2×2</span><span class="mono">35.51 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-4x4.jpg" alt=""><figcaption><span>4×4</span><span class="mono">36.74 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-8x8.jpg" alt=""><figcaption><span>8×8</span><span class="mono">37.31 dB</span></figcaption></figure></div>
       </div>
       <div class="mstack">
-        <div><span class="lb">Armadillo 변환</span><p class="k" style="margin:0 0 6px;">삼각형 수 → 최종 Gaussian 수</p><div class="v">345,944<span class="arr">→</span>5,948</div></div>
-        <div><span class="lb">같은 화질에 필요한 Gaussian 수</span><div class="v">2.8<small>배 적음</small></div><p class="k">메시 렌더 이미지로 학습한 3DGS-MCMC 대비 · 4개 메시 기하평균</p></div>
+        <div class="cmpbox"><div class="ih">이미지로 학습하는 방식 대비<span>3DGS-MCMC · 4개 메시 기하평균</span></div>
+          <div class="nums"><div><span class="k">같은 화질에 필요한 Gaussian 수</span><b>2.8<small>배 적음</small></b></div></div></div>
+        <div class="cmpbox"><div class="ih">메시를 직접 변환하는 방식 대비<span>Mesh2Splat · 4개 메시 평균 (배수는 기하평균)</span></div>
+          <div class="nums four"><div><span class="k">Gaussian 수</span><b>111<small>배 적음</small></b></div><div><span class="k">메모리</span><b>93%<small>절감</small></b></div><div><span class="k">그리기 속도</span><b>7.7<small>배 빠름</small></b></div><div><span class="k">화질 (PSNR)</span><b>3.3<small>dB 높음</small></b></div></div></div>
       </div>
-    </div>
-    <!-- 맨 아래: Mesh2Splat 대비 지표 4개 (.impact). 숫자는 <b>, 라벨은 .k -->
-    <div class="impact">
-      <div class="ih">Mesh2Splat 대비<span>같은 메시를 Gaussian으로 촘촘히 덮는 기존 방식 · 4개 메시 평균 (배수는 기하평균)</span></div>
-      <div><span class="k">Gaussian 수</span><b>111<small>배 적음</small></b></div>
-      <div><span class="k">메모리</span><b>93%<small>절감</small></b></div>
-      <div><span class="k">그리기 속도</span><b>7.7<small>배 빠름</small></b></div>
-      <div><span class="k">화질 (PSNR)</span><b>3.3<small>dB 높음</small></b></div>
     </div>
   </section>
 
@@ -538,13 +525,13 @@
     <div class="grid cols">
       <div style="grid-column:1 / 5;">
         <div class="lbl">문제</div>
-        <p class="note">패스트레이싱은 품질은 높지만 느려 실시간에 쓰기&nbsp;어렵고, 해상도가 낮은 3DGS는 의류의 고주파 디테일을 따라가지 못했습니다.</p>
+        <p class="note">패스트레이싱은 품질은 높지만 느려 실시간에 쓰기&nbsp;어렵습니다. 해상도가 낮은 3DGS는 의류의 고주파 디테일을 따라가지 못했습니다.</p>
       </div>
       <div style="grid-column:5 / 13;">
         <div class="lbl">접근</div>
         <ol class="items">
-          <li>고주파 디테일을 살리기 위해 textured Gaussian을 도입하고, 랜덤 split·MCMC 대신 표면 균등 샘플링으로 초기화해 품질과 <span style="white-space:nowrap;">수렴 시간을 개선</span></li>
-          <li>렌더러 AOV를 GT로 써서 normal·depth 감독과 alpha hull 제약을 loss로 설계</li>
+          <li>고주파 디테일을 살리기 위해 textured Gaussian을 도입하고, 랜덤 split이나 MCMC 대신 표면 균등 샘플링으로 초기화해 품질과 <span style="white-space:nowrap;">수렴 시간을 개선</span></li>
+          <li>렌더러 AOV를 GT로 써서 normal과 depth 감독, alpha hull 제약을 loss로 설계</li>
           <li>헤어는 strand 단위로 생성해 두피에 정합하고, 복셀 기반 초기화로 2DGS 학습</li>
           <li>시뮬레이션 대응을 위해 표면 앵커링 스플랫과 표현용 스플랫을 분리</li>
         </ol>
@@ -559,7 +546,7 @@
     <div class="folio"><span>Project 03</span><nav><span>About</span><span class="on">Work</span></nav></div>
     <!-- 머리글: 메타 줄(.eyebrow) · 제목(.title) · 설명(.desc) -->
     <header class="ph">
-      <div class="eyebrow"><span><span class="k">03</span>팀 프로젝트 · 알고리즘·리서치 리드</span><span class="tech">2026.04 – 2026.06 · Python / SMPL-X · GVHMR · HaMeR · ViTPose</span></div>
+      <div class="eyebrow"><span><span class="k">03</span>팀 프로젝트 · 알고리즘 담당</span><span class="tech">2026.04 – 2026.06 · Python / SMPL-X · GVHMR · HaMeR · ViTPose</span></div>
       <div class="grid">
         <h2 class="title">3D 영상 기반 모션 추출</h2>
         <p class="desc"><b>카메라 한 대 영상으로 손가락까지 움직이는 캐릭터 모션을 만드는 기술.</b><br>몸 모델과 손 모델을 손목에서 하나로 잇는 결합 방식을 설계했습니다.</p>
@@ -593,15 +580,14 @@
       </div>
       <div style="grid-column:4 / 7;">
         <div class="lbl">원인</div>
-        <p class="note">두 모델은 회전을 <b>서로 다른 기준</b>으로 내놓고, 팔뚝 축을 도는 손목 회전은 <b>영상에서 거의 안 보이며</b>, 손 모델은 손이 <b>가려지거나 겹치면 틀립니다</b>.</p>
+        <p class="note">두 모델은 회전을 <b>서로 다른 기준</b>으로 내놓습니다. 또 팔뚝 축을 도는 손목 회전은 <b>영상에서 거의 보이지 않고</b>, 손 모델은 손이 <b>가려지면 틀립니다</b>.</p>
       </div>
       <div style="grid-column:7 / 13;">
         <div class="lbl">한 일</div>
         <ol class="items">
-          <li>손 회전을 <b>몸 모델의 팔 방향 기준으로 변환</b>해 끼움 (추정 없이 계산)</li>
-          <li>보이는 <b>swing만 손 모델 값</b>을 쓰고, 안 보이는 twist는 따로 처리</li>
-          <li>손 모델이 틀리는 프레임은 <b>신뢰도·속도·겹침으로 걸러</b> 앞뒤로 보간</li>
-          <li>손목 위치에 맞춰 <b>팔을 IK로 보정</b>하고, 손목 각도는 관절 범위로 제한</li>
+          <li>손 회전을 <b>몸 모델의 팔 기준으로 변환</b>해 결합</li>
+          <li>보이는 <b>swing은 손 모델</b>, 안 보이는 <b>twist는 몸 모델</b> 값 사용</li>
+          <li>손 모델이 틀린 프레임은 <b>걸러내고 앞뒤 프레임으로 보간</b></li>
         </ol>
       </div>
     </div>
@@ -687,7 +673,7 @@
       </div>
       <div class="fo">
         <div class="lbl">Object Model Viewer <span class="mono">2024.09</span></div>
-        <p class="note">OBJ 모델 중심·스케일 정규화, 면·정점 법선 계산과 Phong 셰이딩.</p>
+        <p class="note">OBJ 모델의 중심과 스케일 정규화, 면 법선과 정점 법선 계산, Phong 셰이딩.</p>
       </div>
     </div>
   </section>
