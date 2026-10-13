@@ -597,19 +597,19 @@
       </div>
     </div>
     <!-- 본문: 문제 / 원인 / 한 일 (.items). 빨간 결과 줄은 .res -->
-    <div class="grid cols pcols" style="grid-template-columns:33fr 27fr 40fr;">
+    <div class="grid cols pcols" style="grid-template-columns:33fr 26.5fr 40.5fr; column-gap:40px;">
       <div>
         <div class="lbl">문제</div>
         <p class="note">81.6만 개 Gaussian 장면을 회전하면 화면이 주기적으로 끊겼습니다.<br>평균은 18&nbsp;ms인데 <b>튀는 프레임이 <span style="white-space:nowrap;">107–137&nbsp;ms</span></b>였습니다.</p>
       </div>
       <div>
         <div class="lbl">원인</div>
-        <p class="note">프레임별 CPU 시간과 업로드량을 재 보니, 튀는 프레임이 정렬하는 프레임과 정확히 겹쳤습니다.<br>81.6만 개를 <b>CPU에서 정렬하고, 결과(3.3&nbsp;MB)를 다시 GPU로 올리는 일</b>이 한 프레임에 몰려 있었습니다.</p>
+        <p class="note">프레임별 CPU 시간과 업로드량을 재 보니, <br> 튀는 프레임이 정렬하는 프레임과 정확히 겹쳤습니다.<br>81.6만 개를 <b>CPU에서 정렬하고, <span style="white-space:nowrap;">결과(3.3&nbsp;MB)를</span> <br> 다시 GPU로 올리는 일</b>이 한 프레임에 몰려 있었습니다.</p>
       </div>
       <div>
         <div class="lbl">한 일</div>
         <ol class="items">
-          <li>정렬이 렌더링을 막지 않도록, 깊이 계산과 radix sort를 <b>compute shader로 직접 구현</b></li>
+          <li>정렬이 렌더링을 막지 않도록,<br>깊이 계산과 radix sort를 <b>compute shader로 구현</b></li>
           <li>3.3&nbsp;MB를 다시 올리지 않도록, 정렬된 버퍼를 <b>그대로 그리기 순서로 사용</b></li>
           <li>결과가 맞는지 CPU 정렬과 순서를 대조하고, 단계별 GPU 시간을 재서 검증</li>
         </ol>
