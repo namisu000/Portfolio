@@ -139,9 +139,7 @@
   .idx .nm{ grid-column:4 / 9; }
   .idx .nm h3{ font-size:var(--t-h3); font-weight:800; letter-spacing:-0.02em; line-height:1.25; }
   .idx .nm p{ font-size:var(--t-label); color:var(--ink-2); margin-top:4px; line-height:1.45; }
-  .idx .tc{ grid-column:9 / 11; font-family:var(--mono); font-size:16px; color:var(--muted); line-height:1.5; }
-  .idx .tc .jd{ display:block; font-family:var(--sans); font-size:16px; color:var(--ink); margin-top:4px; }
-  .idx .tc .jd::before{ content:""; display:inline-block; width:6px; height:6px; background:var(--accent); margin-right:8px; vertical-align:middle; }
+  .idx .tc{ grid-column:9 / 11; font-family:var(--mono); font-size:16px; color:var(--muted); line-height:1.5; white-space:nowrap; }
   .idx .yr{ grid-column:11 / 13; text-align:right; font-family:var(--mono); font-size:18px; letter-spacing:0; color:var(--ink-2); line-height:1.45; }
 
   /* ===================== 슬라이드 7 · Gaussian Splat Viewer (BEFORE/AFTER 영상 띠) ================ */
@@ -156,7 +154,7 @@
   .cmp figure + figure{ border-left:1px solid var(--on-black-line); }
   /* 슬라이드 6·7 공통: 영상 띠 아래 문제 / 원인 / 한 일 세 칸 */
   .pcols .note b, .pcols .items b{ color:var(--ink); }
-  .pcols .res{ margin-top:var(--s2); font-size:var(--t-label); font-weight:700; color:var(--accent); }
+  .cols .res{ margin-top:var(--s2); font-size:var(--t-label); font-weight:700; color:var(--accent); }
   .cols{ margin-top:var(--s4); align-items:start; }
 
   /* 슬라이드 6 · Motio 영상 플레이어 컨트롤 (재생/일시정지, 탐색, 속도) */
@@ -200,7 +198,7 @@
   .sidetext .blk{ margin-top:28px; }
   .lesson{ font-size:var(--t-detail); line-height:1.55; color:var(--ink-2); }
 
-  /* ===================== 슬라이드 8 · Computer Graphics (영상 2개 + 설명) ================ */
+  /* ===================== 슬라이드 8 · Computer Graphics Fundamentals (영상 2개 + 설명) ================ */
   .fund2{ align-items:center; }
   .fund2 .fp{ grid-column:1 / 8; }
   .fund2 .fo{ grid-column:8 / 13; }
@@ -249,12 +247,12 @@
   .stages .rw figcaption{ position:absolute; left:0; bottom:8px; font-family:var(--mono); font-size:16px; color:var(--on-black); background:var(--black); padding:2px 6px 2px 0; }
   .stages .key{ font-size:16px; color:var(--muted); padding-top:var(--s1); }
   .detailrow{ margin-top:auto; align-items:start; }
-  .zoom{ grid-column:1 / 9; }
+  .zoom{ grid-column:1 / 8; }
   .zt{ display:grid; grid-template-columns:repeat(5,1fr); gap:var(--s2); }
   .zt img{ width:100%; height:136px; object-fit:cover; display:block; background:var(--black); }
   .zt figcaption{ display:flex; justify-content:space-between; font-size:16px; color:var(--muted); margin-top:6px; }
   .zt figure:last-child figcaption{ color:var(--ink); font-weight:700; }
-  .mstack{ grid-column:9 / 13; display:flex; flex-direction:column; gap:var(--s3); }
+  .mstack{ grid-column:8 / 13; display:grid; grid-template-columns:2fr 3fr; gap:var(--s3); align-items:start; }
   .cmpbox .ih{ font-size:var(--t-label); font-weight:700; line-height:1.3; }
   .cmpbox .ih span{ display:block; margin-top:2px; font-size:16px; font-weight:400; line-height:1.45; color:var(--muted); }
   .cmpbox .nums{ display:grid; grid-template-columns:1fr; column-gap:var(--s3); row-gap:var(--s1); margin-top:var(--s1); }
@@ -282,9 +280,9 @@
   │  슬라이드 3   Project 01 · Mesh-to-Gaussian — 접근 / 한계 / 해결
   │  슬라이드 4   Project 01 · Mesh-to-Gaussian — 단계별 결과
   │  슬라이드 5   Project 02 · Avatar Reconstruction (CLO 인턴)
-  │  슬라이드 6   Project 03 · 3D 영상 기반 모션 추출 (Motio)
+  │  슬라이드 6   Project 03 · 단안 영상 기반 3D 모션 추출 (Motio)
   │  슬라이드 7   Project 04 · Gaussian Splat Viewer
-  │  슬라이드 8   Project 05 · Computer Graphics (과제)
+  │  슬라이드 8   Project 05 · Computer Graphics Fundamentals (과제)
   │  슬라이드 9   Contact
   ├─ 편집 규칙 ──────────────────────────────────────────────────────────────────
   │  · 한 슬라이드 = 한 <section>. 순서를 바꾸려면 <section> 블록을 통째로 옮긴다.
@@ -330,7 +328,7 @@
           <div class="facts-col">
             <div class="fact">
               <div class="lbl">경력</div>
-              <div class="entry"><b>세종대 Computer Graphics Lab</b><span>학부연구생 (지도교수 박상일)</span><span class="d">2024.09 – 2026.10</span></div>
+              <div class="entry"><b>세종대학교 Computer Graphics Lab</b><span>학부연구생 (지도교수 박상일)</span><span class="d">2024.09 – 2026.10</span></div>
               <div class="entry"><b>CLO Virtual Fashion</b><span>ML팀 인턴</span><span class="d">2026.07 – 2026.08</span></div>
               <div class="entry"><b>(주)두두아이티</b><span>보안 모의훈련 및 기술 제안서 작성</span><span class="d">2020.08 – 2021.05</span></div>
               <div class="entry"><b>(주)리틀송 / 리틀송뮤직</b><span>PHP 웹 개발 · 유지보수</span><span class="d">2018.03 – 2020.08</span></div>
@@ -358,11 +356,11 @@
     </div>
     <!-- 목록 행. 순서를 바꾸면 .no 번호와 프로젝트 슬라이드 순서도 같이 맞출 것 -->
     <div class="idx">
-      <div class="grid row"><span class="no">01</span><div class="th"><img src="assets/research/fig1-multi.jpg" alt="" style="object-position:50% 62%;"></div><div class="nm"><h3>Mesh-to-Gaussian Splatting</h3><p>메시를 적은 수의 Gaussian으로 바꿔도 표면 디테일이 남도록 하는 변환</p></div><div class="tc">SDF · Gaussian Splatting · DCT<span class="jd">Geometry Processing · 3D mesh</span></div><div class="yr">2025.10 – 2026.10</div></div>
-      <div class="grid row"><span class="no">02</span><div class="th"><img src="assets/clo/avatar.jpg" alt="" style="object-position:50% 8%;"></div><div class="nm"><h3>Gaussian Splatting: Avatar Reconstruction</h3><p>옷 입은 아바타의 고품질 렌더를 실시간으로 볼 수 있게 Gaussian Splatting으로 렌더링</p></div><div class="tc">3DGS · 2DGS · Blender Cycles<span class="jd">3D 아바타 · PBR</span></div><div class="yr">2026.07 – 2026.08</div></div>
-      <div class="grid row"><span class="no">03</span><div class="th"><img src="assets/posters/motio.jpg" alt=""></div><div class="nm"><h3>3D 영상 기반 모션 추출</h3><p>카메라 한 대로 찍은 영상에서 손가락까지 포함한 전신 모션 복원</p></div><div class="tc">Python · SMPL-X<span class="jd">3D 아바타 pose &amp; shape 추정</span></div><div class="yr">2026.04 – 2026.06</div></div>
-      <div class="grid row"><span class="no">04</span><div class="th"><img src="assets/posters/gaussian-thumb.jpg" alt=""></div><div class="nm"><h3>Gaussian Splat Viewer</h3><p>81.6만 개 Gaussian을 회전해도 끊김 없이 그리도록 깊이 정렬을 GPU로 옮긴 뷰어</p></div><div class="tc">C++ · OpenGL · Compute Shader<span class="jd">Computer Graphics · C++</span></div><div class="yr">2025.05 – 2025.06</div></div>
-      <div class="grid row"><span class="no">05</span><div class="th fund"><img src="assets/posters/spherical-panorama-viewer.jpg" alt=""><img src="assets/posters/object-model-viewer.jpg" alt=""></div><div class="nm"><h3>Computer Graphics</h3><p>Spherical Panorama Viewer · Object Model Viewer — 셰이딩, 환경 매핑, 법선 계산</p></div><div class="tc">C++ · OpenGL · GLSL<span class="jd">Computer Graphics · Geometry Processing</span></div><div class="yr">2024.09 – 2024.10</div></div>
+      <div class="grid row"><span class="no">01</span><div class="th"><img src="assets/research/fig1-multi.jpg" alt="" style="object-position:50% 62%;"></div><div class="nm"><h3>Mesh-to-Gaussian Splatting</h3><p>메시를 적은 수의 Gaussian으로 바꿔도 표면 디테일이 남도록 하는 변환</p></div><div class="tc">SDF · Gaussian Splatting</div><div class="yr">2025.10 – 2026.10</div></div>
+      <div class="grid row"><span class="no">02</span><div class="th"><img src="assets/clo/avatar.jpg" alt="" style="object-position:50% 8%;"></div><div class="nm"><h3>Gaussian Splatting: Avatar Reconstruction</h3><p>옷 입은 아바타의 고품질 렌더를 실시간으로 볼 수 있게 Gaussian Splatting으로 변환</p></div><div class="tc">3DGS · 2DGS · Blender Cycles</div><div class="yr">2026.07 – 2026.08</div></div>
+      <div class="grid row"><span class="no">03</span><div class="th"><img src="assets/posters/motio.jpg" alt=""></div><div class="nm"><h3>단안 영상 기반 3D 모션 추출</h3><p>카메라 한 대로 찍은 영상에서 손가락까지 포함한 전신 모션 복원</p></div><div class="tc">Python · SMPL-X</div><div class="yr">2026.04 – 2026.06</div></div>
+      <div class="grid row"><span class="no">04</span><div class="th"><img src="assets/posters/gaussian-thumb.jpg" alt=""></div><div class="nm"><h3>Gaussian Splat Viewer</h3><p>81.6만 개 Gaussian을 회전해도 끊김 없이 그리도록 깊이 정렬을 GPU로 옮긴 뷰어</p></div><div class="tc">C++ · OpenGL · Compute Shader</div><div class="yr">2025.05 – 2025.06</div></div>
+      <div class="grid row"><span class="no">05</span><div class="th fund"><img src="assets/posters/spherical-panorama-viewer.jpg" alt=""><img src="assets/posters/object-model-viewer.jpg" alt=""></div><div class="nm"><h3>Computer Graphics Fundamentals</h3><p>Spherical Panorama Viewer · Object Model Viewer — 셰이딩, 환경 매핑, 법선 계산</p></div><div class="tc">C++ · OpenGL · GLSL</div><div class="yr">2024.09 – 2024.10</div></div>
     </div>
   </section>
 
@@ -373,10 +371,10 @@
     <div class="folio"><span>Project 01</span><nav><span>About</span><span class="on">Work</span></nav></div>
     <!-- 머리글: 메타 줄(.eyebrow) · 제목(.title) · 설명(.desc) -->
     <header class="ph">
-      <div class="eyebrow"><span><span class="k">01</span>Computer Graphics Lab · 학부연구생</span><span class="tech">2025.10 – 2026.10 · C++ / OpenGL / 3DGS</span></div>
+      <div class="eyebrow"><span><span class="k">01</span>Computer Graphics Lab · 학부연구생</span><span class="tech">2025.10 – 2026.10 · SDF / Gaussian Splatting</span></div>
       <div class="grid">
         <h2 class="title" style="grid-column:1 / 7;">Mesh-to-Gaussian Splatting</h2>
-        <p class="desc" style="grid-column:7 / 13;"><b>메시를 적은 수의 Gaussian으로 바꿔 3DGS 장면에 넣고 relighting할 수 있게 하는 연구.</b><br>Gaussian 하나 안에서 normal과 색이 변하게 해, 삼각형 35만 개를 Gaussian 6천 개로 줄여도 굴곡을 지켰습니다.</p>
+        <p class="desc" style="grid-column:7 / 13;"><b>메시를 적은 수의 Gaussian으로 바꿔 3DGS 장면에 넣고 relighting할 수 있게 하는 연구.</b><br>삼각형 10만–35만 개 메시를 Gaussian 1만 개 이하로 바꿔도 굴곡이 남습니다.</p>
       </div>
     </header>
     <!-- 그림 4장: 입력 메시 → 변환 결과 → Gaussian 모양 → 3DGS 장면 삽입 (캡션은 figcaption) -->
@@ -386,24 +384,27 @@
       <figure><img src="assets/research/fig1-ellipsoids.jpg" alt=""><figcaption><span class="t">Gaussian 모양 (2σ 타원체)</span><span class="v">N = 9,876</span></figcaption></figure>
       <figure><img src="assets/research/fig1-scene.jpg" alt=""><figcaption><span class="t">3DGS 장면에 삽입</span><span class="v">HDR IBL + 그림자</span></figcaption></figure>
     </div>
-    <!-- 본문: 접근 / 한계 (.lbl + .note) / 해결 (.items 번호 목록) -->
-    <!-- 열 폭은 글에 맞춰 직접 지정: 접근은 4줄(줄바꿈 고정), 해결은 항목마다 한 줄 -->
-    <div class="grid cols" style="grid-template-columns:36fr 22fr 42fr;">
+    <!-- 본문: 접근 / 한계 / 해결. 결과는 해결 목록 아래 .res 한 줄 -->
+    <div class="grid cols" style="grid-template-columns:33fr 31fr 36fr;">
       <div>
         <div class="lbl">접근</div>
-        <p class="note" style="text-wrap:nowrap;">Gaussian 수를 줄이려면 하나가 넓은 면적을 맡아야 합니다.<br>그래서 표면을 촘촘히 덮는 대신 <b>메시 안쪽을 큰 Gaussian부터 채워</b><br>형상을 잡고, 부피를 벗어나지 않게 윤곽과 깊이를 맞췄습니다.<br>음영은 색에 섞지 않고 <b>normal로 따로 학습</b>해 조명을 바꿀 수 있게 했습니다.</p>
+        <ol class="items">
+          <li>개수를 줄이도록, 메시 안쪽을 큰 Gaussian부터 채워 형상 구성</li>
+          <li>부피를 벗어나지 않도록, 실루엣과 깊이 정합</li>
+          <li>Relighting이 가능하도록, 음영을 색과 분리해 normal 학습</li>
+        </ol>
       </div>
       <div>
         <div class="lbl">한계</div>
-        <p class="note">Gaussian 하나가 넓은 면을 덮으면 그 안의 <b>normal이 하나뿐</b>이라, <b>작은 굴곡이 평평하게 뭉개졌습니다</b>.</p>
+        <p class="note">Gaussian 하나가 넓은 면을 맡으면 normal이 하나뿐이라<br><b>고주파 표면 디테일이 손실됩니다</b>. Armadillo 기준 27.8&nbsp;dB.</p>
       </div>
       <div>
         <div class="lbl">해결</div>
         <ol class="items">
-          <li>Gaussian 안에서 위치에 따라 normal과 색이 변하는 <b>DCT 기반 필드</b> 도입</li>
-          <li>렌더 오차가 큰 <b>표면 Gaussian만 골라 분할</b>, 안쪽 Gaussian은 유지</li>
-          <li>Armadillo 화질 <b>27.8 → 37.3&nbsp;dB</b> (normal 변화가 없을 때 대비)</li>
+          <li>고주파 디테일을 보존하도록, 위치별 normal·색 필드 도입 (DCT 기반)</li>
+          <li>렌더 오차를 줄이도록, 표면 Gaussian만 선별 분할·내부 유지</li>
         </ol>
+        <p class="res">같은 Gaussian 수에서 Armadillo PSNR 27.8 → 37.3&nbsp;dB</p>
       </div>
     </div>
   </section>
@@ -456,13 +457,15 @@
       </div>
       <div class="key mono">tris = 메시 삼각형 수 · N = Gaussian 수</div>
     </div>
-    <!-- 하단 왼쪽: Armadillo 확대 비교 5장 (.zt) / 하단 오른쪽: Mesh2Splat 대비 비교 박스 (.cmpbox) -->
+    <!-- 하단 왼쪽: Armadillo 확대 비교 / 오른쪽: 3DGS와 Mesh2Splat 비교를 나란히 배치 -->
     <div class="grid detailrow">
       <div class="zoom">
-        <div class="lbl">Armadillo 확대 — Gaussian 안의 normal 변화가 세밀할수록 굴곡이 살아납니다 <span class="mono">PSNR · N = 5,948 (1×1은 N = 1,487)</span></div>
+        <div class="lbl">Armadillo 확대 — normal 변화가 세밀할수록 굴곡이 살아납니다 <span class="mono">PSNR · N = 5,948</span></div>
         <div class="zt"><figure><img src="assets/research/fig8-zoom-gt.jpg" alt=""><figcaption><span>메시 (GT)</span><span class="mono"></span></figcaption></figure><figure><img src="assets/research/fig8-zoom-1x1.jpg" alt=""><figcaption><span>1×1 (변화 없음)</span><span class="mono">27.77 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-2x2.jpg" alt=""><figcaption><span>2×2</span><span class="mono">35.51 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-4x4.jpg" alt=""><figcaption><span>4×4</span><span class="mono">36.74 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-8x8.jpg" alt=""><figcaption><span>8×8</span><span class="mono">37.31 dB</span></figcaption></figure></div>
       </div>
       <div class="mstack">
+        <div class="cmpbox"><div class="ih">이미지로 학습하는 방식 대비<span>3DGS · 4개 메시 기하평균</span></div>
+          <div class="nums"><div><span class="k">같은 화질에 필요한 Gaussian 수</span><b>2.8<small>배 적음</small></b></div><div class="k" style="margin-top:4px;"><b style="display:inline; font-size:16px; letter-spacing:0; margin:0;">Relighting 가능</b> · 3DGS는 조명이 색에 구워져 불가</div></div></div>
         <div class="cmpbox"><div class="ih">메시를 직접 변환하는 방식 대비<span>Mesh2Splat · 4개 메시 평균 (배수는 기하평균)</span></div>
           <div class="nums four"><div><span class="k">Gaussian 수</span><b>111<small>배 적음</small></b></div><div><span class="k">메모리</span><b>93%<small>절감</small></b></div><div><span class="k">그리기 속도</span><b>7.7<small>배 빠름</small></b></div><div><span class="k">화질 (PSNR)</span><b>3.3<small>dB 높음</small></b></div></div></div>
       </div>
@@ -479,7 +482,7 @@
       <div class="eyebrow"><span><span class="k">02</span>CLO Virtual Fashion · ML팀 인턴</span><span class="tech">2026.07 – 2026.08 · 3DGS / 2DGS / Blender Cycles</span></div>
       <div class="grid">
         <h2 class="title">Gaussian Splatting:<br>Avatar Reconstruction</h2>
-        <p class="desc"><b>옷 입은 아바타의 패스트레이싱 렌더를 Gaussian splatting으로 변환하는 작업.</b><br>실시간으로 보면서도, 확대 시 의류의 고주파 디테일이 유지되는 것이 목표였습니다.</p>
+        <p class="desc"><b>옷 입은 아바타의 패스 트레이싱 렌더를 Gaussian Splatting으로 변환했습니다.</b><br>의류를 확대해도 직조 패턴과 주름 디테일이 남습니다.</p>
       </div>
     </header>
     <!-- 그림 4칸 (.slots): 클릭하면 확대(lightbox). data-full = 확대용 원본 -->
@@ -489,26 +492,32 @@
       <figure><img src="assets/clo/hair.jpg" alt="strand로 생성한 곱슬머리 헤어의 Gaussian 결과" role="button" tabindex="0"><figcaption>헤어</figcaption></figure>
       <figure><video src="assets/clo/simulation.mp4" poster="assets/clo/simulation-poster.jpg" style="object-position:right center;" data-full="assets/clo/simulation-full.mp4" aria-label="빨간 원피스 시뮬레이션 영상" role="button" tabindex="0" loop muted playsinline preload="metadata"></video><figcaption>시뮬레이션</figcaption></figure>
     </div>
-    <!-- 본문: 문제 (.note) / 접근 (.items 번호 목록) -->
-    <div class="grid cols">
-      <div style="grid-column:1 / 5;">
+    <!-- 본문: 문제 / 접근 / 확장. 결과는 접근 목록 아래 .res 한 줄 -->
+    <div class="grid cols" style="grid-template-columns:32fr 36fr 32fr; column-gap:20px;">
+      <div>
         <div class="lbl">문제</div>
-        <p class="note">패스트레이싱은 품질은 높지만 느려 실시간에 쓰기&nbsp;어렵습니다. 해상도가 낮은 3DGS는 의류의 고주파 디테일을 따라가지 못했습니다.</p>
+        <p class="note">기본 3DGS에서는 확대 시 의류의 <b>직조 패턴과 주름이 뭉개졌습니다</b>.<br>패스 트레이싱 렌더는 실시간 표시가 어려웠습니다.</p>
       </div>
-      <div style="grid-column:5 / 13;">
+      <div>
         <div class="lbl">접근</div>
         <ol class="items">
-          <li>고주파 디테일을 살리기 위해 <b>textured Gaussian</b>을 도입하고, 랜덤 split이나 MCMC 대신 <b>표면 균등 샘플링으로 초기화</b>해 품질과 <span style="white-space:nowrap;">수렴 시간을 개선</span></li>
-          <li>렌더러 AOV를 GT로 써서 <b>normal과 depth 감독, alpha hull 제약</b>을 loss로 설계</li>
-          <li>헤어는 <b>strand 단위로 생성</b>해 두피에 정합하고, 복셀 기반 초기화로 2DGS 학습</li>
-          <li>시뮬레이션 대응을 위해 <b>표면 앵커링 스플랫과 표현용 스플랫을 분리</b></li>
+          <li>의류 디테일을 보존하도록, <b>textured Gaussian</b> 도입·표면 균등 초기화</li>
+          <li>표면을 맞추도록, AOV normal·depth 감독과 alpha hull loss 설계</li>
+        </ol>
+        <p class="res">3DGS 대비 의류 확대 렌더에서 직조 패턴과 주름 디테일 보존</p>
+      </div>
+      <div>
+        <div class="lbl">확장</div>
+        <ol class="items">
+          <li>사실적인 헤어 렌더링을 위해 <b>Diffusion 모델 기반 strand 생성</b>,<br>복셀 기반 2DGS 초기화 아이디어 제시</li>
+          <li>시뮬레이션을 위해 삼각형 변형에 대응하도록 <b style="white-space:nowrap;">표면 앵커링, 표현용 스플랫 분리</b></li>
         </ol>
       </div>
     </div>
   </section>
 
   <!-- ===================================================================================
-       슬라이드 6 · Project 03 · 3D 영상 기반 모션 추출 (Motio)
+       슬라이드 6 · Project 03 · 단안 영상 기반 3D 모션 추출 (Motio)
        =================================================================================== -->
   <section class="mo-slide" data-label="Motio">
     <div class="folio"><span>Project 03</span><nav><span>About</span><span class="on">Work</span></nav></div>
@@ -516,7 +525,7 @@
     <header class="ph">
       <div class="eyebrow"><span><span class="k">03</span>팀 프로젝트 · 알고리즘 담당</span><span class="tech">2026.04 – 2026.06 · Python / SMPL-X · GVHMR · HaMeR · ViTPose</span></div>
       <div class="grid">
-        <h2 class="title">3D 영상 기반 모션 추출</h2>
+        <h2 class="title">단안 영상 기반 3D 모션 추출</h2>
         <p class="desc"><b>카메라 한 대 영상으로 손가락까지 움직이는 캐릭터 모션을 만드는 기술.</b><br>몸 모델과 손 모델을 손목에서 하나로 잇는 결합 방식을 설계했습니다.</p>
       </div>
     </header>
@@ -541,16 +550,16 @@
       </div>
     </div>
     <!-- 본문: 문제 / 원인 / 한 일 (.items). 빨간 결과 줄은 .res -->
-    <div class="grid cols pcols">
-      <div style="grid-column:1 / 4;">
+    <div class="grid cols pcols" style="grid-template-columns:31fr 32fr 37fr;">
+      <div>
         <div class="lbl">문제</div>
-        <p class="note">몸 모델(GVHMR)과 손 모델(HaMeR)은 각각 잘 동작하지만, 두 결과를 손목에서 <b>그대로 이어 붙일 수는 없었습니다</b>.</p>
+        <p class="note">몸 모델(GVHMR)과 손 모델(HaMeR)은 각각 잘 동작하지만, <br> 두 결과를 손목에서 <b>그대로 이어 붙일 수는 없었습니다</b>.</p>
       </div>
-      <div style="grid-column:4 / 7;">
+      <div>
         <div class="lbl">원인</div>
-        <p class="note">두 모델은 회전을 <b>서로 다른 기준</b>으로 내놓습니다. 또 팔뚝 축을 도는 손목 회전은 <b>영상에서 거의 보이지 않고</b>, 손 모델은 손이 <b>가려지면 틀립니다</b>.</p>
+        <p class="note">두 모델은 회전을 <b>서로 다른 기준</b>으로 내놓습니다.<br>또 팔뚝 축을 도는 손목 회전은 <b>영상에서 거의 보이지 않고</b>,<br>손 모델은 손이 <b>가려지면 틀립니다</b>.</p>
       </div>
-      <div style="grid-column:7 / 13;">
+      <div>
         <div class="lbl">한 일</div>
         <ol class="items">
           <li>손 회전을 <b>몸 모델의 팔 기준으로 변환</b>해 결합</li>
@@ -571,7 +580,7 @@
       <div class="eyebrow"><span><span class="k">04</span>개인 프로젝트 · 실시간 렌더링·GPU</span><span class="tech">2025.05 – 2025.06 · C++ / OpenGL / GLSL / 3DGS</span></div>
       <div class="grid">
         <h2 class="title">Gaussian Splat Viewer</h2>
-        <p class="desc"><b>Gaussian splatting 장면을 외부 엔진 없이 OpenGL로 직접 그리는 뷰어.</b><br>81.6만 개 깊이 정렬을 GPU로 옮겨, 회전 시 끊김을 137 → 21&nbsp;ms로 줄였습니다.</p>
+        <p class="desc"><b>가우시안 스플래팅 장면을 외부 엔진 없이 OpenGL로 직접 그리는 뷰어.</b><br>81.6만 개 깊이 정렬을 GPU로 옮겨, 회전 시 끊김을 137 → 21&nbsp;ms로 줄였습니다.</p>
       </div>
     </header>
     <!-- BEFORE / AFTER 영상 2개 (.cmp). 영상 위 라벨은 figcaption.ov -->
@@ -588,37 +597,37 @@
       </div>
     </div>
     <!-- 본문: 문제 / 원인 / 한 일 (.items). 빨간 결과 줄은 .res -->
-    <div class="grid cols pcols">
-      <div style="grid-column:1 / 4;">
+    <div class="grid cols pcols" style="grid-template-columns:33fr 27fr 40fr;">
+      <div>
         <div class="lbl">문제</div>
-        <p class="note">81.6만 개 Gaussian 장면을 회전하면 화면이 주기적으로 멈칫했습니다. 평균은 18&nbsp;ms인데 <b>튀는 프레임이 107–137&nbsp;ms</b>였습니다.</p>
+        <p class="note">81.6만 개 Gaussian 장면을 회전하면 화면이 주기적으로 끊겼습니다.<br>평균은 18&nbsp;ms인데 <b>튀는 프레임이 <span style="white-space:nowrap;">107–137&nbsp;ms</span></b>였습니다.</p>
       </div>
-      <div style="grid-column:4 / 8;">
+      <div>
         <div class="lbl">원인</div>
-        <p class="note">프레임별 CPU 시간과 업로드량을 재 보니, 튀는 프레임이 정렬하는 프레임과 정확히 겹쳤습니다. 81.6만 개를 <b>CPU에서 정렬하고, 결과(3.3&nbsp;MB)를 다시 GPU로 올리는 일</b>이 한 프레임에 몰려 있었습니다.</p>
+        <p class="note">프레임별 CPU 시간과 업로드량을 재 보니, 튀는 프레임이 정렬하는 프레임과 정확히 겹쳤습니다.<br>81.6만 개를 <b>CPU에서 정렬하고, 결과(3.3&nbsp;MB)를 다시 GPU로 올리는 일</b>이 한 프레임에 몰려 있었습니다.</p>
       </div>
-      <div style="grid-column:8 / 13;">
+      <div>
         <div class="lbl">한 일</div>
         <ol class="items">
           <li>정렬이 렌더링을 막지 않도록, 깊이 계산과 radix sort를 <b>compute shader로 직접 구현</b></li>
           <li>3.3&nbsp;MB를 다시 올리지 않도록, 정렬된 버퍼를 <b>그대로 그리기 순서로 사용</b></li>
           <li>결과가 맞는지 CPU 정렬과 순서를 대조하고, 단계별 GPU 시간을 재서 검증</li>
         </ol>
-        <p class="res">매 프레임 정렬하면서도 최대 프레임 시간 137 → 21&nbsp;ms, 60&nbsp;fps 유지</p>
+        <p class="res">매 프레임 정렬하면서도 최대 프레임 시간 137 → 21&nbsp;ms, <span style="white-space:nowrap;">평균 16.7&nbsp;ms (60&nbsp;fps)</span></p>
       </div>
     </div>
   </section>
 
   <!-- ===================================================================================
-       슬라이드 8 · Project 05 · Computer Graphics (컴퓨터그래픽스 과제 두 개)
+       슬라이드 8 · Project 05 · Computer Graphics Fundamentals (컴퓨터그래픽스 과제 두 개)
        =================================================================================== -->
-  <section data-label="Computer Graphics">
+  <section data-label="Computer Graphics Fundamentals">
     <div class="folio"><span>Project 05</span><nav><span>About</span><span class="on">Work</span></nav></div>
     <!-- 머리글: 메타 줄(.eyebrow) · 제목(.title) · 설명(.desc) -->
     <header class="ph">
       <div class="eyebrow"><span><span class="k">05</span>컴퓨터그래픽스 과제</span><span class="tech">2024.09 – 2024.10 · 개인 · C++ / OpenGL / GLSL</span></div>
       <div class="grid">
-        <h2 class="title">Computer Graphics</h2>
+        <h2 class="title">Computer Graphics<br>Fundamentals</h2>
         <p class="desc"><b>렌더링 기초를 C++/OpenGL로 직접 구현한 과제 두 개.</b><br>셰이딩, 환경 매핑, 메시 법선 계산을 다뤘습니다.</p>
       </div>
     </header>
