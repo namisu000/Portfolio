@@ -79,6 +79,8 @@
   .eyebrow .tech{ font-family:var(--mono); letter-spacing:0; }
   .title{ font-size:var(--t-title); font-weight:800; line-height:1.08; letter-spacing:-0.03em; }
   .desc{ font-size:var(--t-body); line-height:1.5; color:var(--ink-2); }
+  /* 핵심 문장 안의 형광펜 강조: 글자 아래쪽 절반에 강조색을 옅게 깐다 */
+  .desc mark{ background:linear-gradient(transparent 55%, #F2D3BC 55%); color:inherit; }
   .lbl{ font-size:var(--t-label); font-weight:700; color:var(--ink); padding-top:var(--s2);
     margin-bottom:var(--s2); display:flex; justify-content:space-between; }
   .lbl .mono{ font-weight:500; color:var(--muted); }
@@ -96,7 +98,9 @@
   .ph{ display:flex; flex-direction:column; gap:var(--s2); }
   .ph .grid{ align-items:end; }
   .ph .title{ grid-column:1 / 7; }
-  .ph .desc{ grid-column:7 / 13; }
+  .ph .desc{ grid-column:7 / 13; text-align:right; margin-top:var(--s3); } /* 제목이 한 줄인 슬라이드에서 위 날짜·기술 줄과 붙지 않게 */
+  /* 머리글 바로 아래 그림·영상까지 간격 (기본 32px → 28px) */
+  .ph + .band, .ph + .quad, .ph + .slots, .ph + .stages, .ph + .fundwrap{ margin-top:28px; }
 
   /* image slots */
   image-slot{ display:block; height:auto; background:#E6E3DC; }
@@ -122,7 +126,7 @@
   .fact .entry b{ grid-column:1; grid-row:1; font-size:26px; font-weight:700; line-height:1.35; letter-spacing:-0.02em; }
   .fact .entry .d{ grid-column:2; grid-row:1; font-family:var(--mono); font-size:18px; color:var(--muted); white-space:nowrap; }
   .fact .entry span:not(.d){ grid-column:1 / -1; grid-row:2; font-size:20px; color:var(--muted); line-height:1.4; }
-  .stack{ display:grid; grid-template-columns:104px 1fr; gap:12px var(--s3); align-items:baseline; }
+  .stack{ display:grid; grid-template-columns:auto 1fr; gap:12px var(--s3); align-items:baseline; }
   .stack dt{ font-size:20px; color:var(--muted); }
   .stack dd{ font-size:24px; font-weight:700; line-height:1.35; }
 
@@ -155,7 +159,7 @@
   /* 슬라이드 6·7 공통: 영상 띠 아래 문제 / 원인 / 한 일 세 칸 */
   .pcols .note b, .pcols .items b{ color:var(--ink); }
   .cols .res{ margin-top:var(--s2); font-size:var(--t-label); font-weight:700; color:var(--accent); }
-  .cols{ margin-top:var(--s4); align-items:start; }
+  .cols{ margin-top:19px; align-items:start; } /* + 소제목 위 여백 16px = 그림·영상과 본문 사이 35px */
 
   /* 슬라이드 6 · Motio 영상 플레이어 컨트롤 (재생/일시정지, 탐색, 속도) */
   .vplayer{ position:relative; }
@@ -173,7 +177,7 @@
      cropped) in a full-bleed black band that takes all the height the text leaves; the
      panel labels sit on the video, one per quarter, covering the small labels burned into it. */
   section.mo-slide{ padding-bottom:var(--s5); }
-  section.mo-slide .cols{ margin-top:var(--s3); }
+  section.mo-slide .cols{ margin-top:12px; } /* + 소제목 위 여백 16px = 영상과 28px */
   section.mo-slide .band{ flex:1 1 auto; min-height:0; display:flex; justify-content:center; }
   .mo-band .vplayer{ height:100%; aspect-ratio:9 / 4; max-width:100%; }
   .mo-band video{ width:100%; height:100%; }
@@ -209,6 +213,9 @@
   .fund2 video{ background:var(--black); }
   .fund-txt .fp{ grid-column:1 / 8; }
   .fund-txt .fo{ grid-column:8 / 13; }
+  .fund-txt{ margin-top:35px; } /* 이 슬라이드는 소제목 위 여백이 0이라 35px 그대로 */
+  .fund-txt .lbl{ font-size:var(--t-h3); align-items:baseline; padding-top:0; }
+  .fund-txt .lbl .mono{ font-size:var(--t-label); }
   .idx .th.fund{ display:grid; grid-template-columns:1fr 1fr; gap:2px; }
 
   /* ===================== 슬라이드 5 · Avatar Reconstruction (그림 4칸) ================= */
@@ -224,7 +231,12 @@
   .lightbox img, .lightbox video{ max-width:min(92vw,1800px); max-height:84vh; object-fit:contain; box-shadow:0 12px 48px rgba(0,0,0,0.5); }
   .lightbox img[hidden], .lightbox video[hidden]{ display:none; }
   .lightbox p{ color:#eee; font-size:15px; }
-  .slots figcaption{ font-size:16px; color:var(--muted); margin-top:var(--s1); }
+  .slots figcaption{ font-size:16px; color:var(--on-black); background:var(--black); padding:6px 10px; }
+  /* 그림 위 라벨(확대 비교의 기존 3DGS / 개선 방식)과 확대 가능 표시 아이콘 */
+  .slots figure{ position:relative; }
+  .slots .tag{ position:absolute; top:0; padding:3px 8px; background:rgba(0,0,0,0.88); color:var(--on-black); font-size:16px; pointer-events:none; }
+  .slots figure::after{ content:""; position:absolute; top:8px; right:8px; width:30px; height:30px; border-radius:50%; pointer-events:none;
+    background:rgba(0,0,0,0.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='7' cy='7' r='4.5'/%3E%3Cpath d='M5 7h4M7 5v4M10.5 10.5L14 14'/%3E%3C/svg%3E") center / 16px no-repeat; }
 
   /* ===================== 슬라이드 3 · Mesh-to-Gaussian (그림 4장 .quad) ============== */
   .quad{ margin:var(--s4) calc(var(--mx) * -1) 0; display:grid; grid-template-columns:repeat(4,1fr); background:var(--black); }
@@ -267,7 +279,7 @@
   .closing .lab{ font-family:var(--mono); font-size:var(--t-label); color:var(--on-black-2); letter-spacing:0.08em; }
   .closing .mail{ font-size:96px; font-weight:700; letter-spacing:-0.035em; line-height:1.05; margin-top:var(--s3); }
   .closing .foot{ margin-top:var(--s6); padding-top:var(--s4); border-top:1px solid var(--on-black-line); }
-  .closing .foot div{ grid-column:span 4; font-size:var(--t-body); }
+  .closing .foot div{ grid-column:span 3; font-size:var(--t-body); }
   .closing .foot div span{ display:block; font-family:var(--mono); font-size:16px; text-transform:uppercase; letter-spacing:0.08em; color:var(--on-black-2); margin-bottom:var(--s1); }
 </style>
 </head>
@@ -303,7 +315,6 @@
       <aside class="about-side">
         <image-slot id="about-photo" shape="rect" placeholder="증명사진 3.5:4.5"></image-slot>
         <dl class="contact">
-          <dt>Birth</dt><dd>2001.04.11</dd>
           <dt>Based</dt><dd>경기도 성남시</dd>
           <dt>Tel</dt><dd>010-5829-3187</dd>
           <dt>Mail</dt><dd>namisu000@gmail.com</dd>
@@ -311,7 +322,7 @@
       </aside>
       <div class="about-main">
         <h1 class="name">남희수</h1>
-        <div class="name-en">NAM HEESU — COMPUTER GRAPHICS · PORTFOLIO 2026</div>
+        <div class="name-en">NAM HEESU — PORTFOLIO 2026</div>
         <div class="facts">
           <div class="facts-col">
             <div class="fact">
@@ -336,8 +347,9 @@
             <div class="fact">
               <div class="lbl">기술 스택</div>
               <dl class="stack">
-                <dt>언어</dt><dd>C · C++ · Python</dd>
-                <dt>그래픽스</dt><dd>OpenGL · GLSL · 3DGS</dd>
+                <dt>언어</dt><dd>C · C++ · Python · GLSL</dd>
+                <dt>프레임워크·라이브러리</dt><dd>PyTorch · OpenGL</dd>
+                <dt>주요 기술</dt><dd>3D Gaussian Splatting</dd>
               </dl>
             </div>
           </div>
@@ -356,8 +368,8 @@
     </div>
     <!-- 목록 행. 순서를 바꾸면 .no 번호와 프로젝트 슬라이드 순서도 같이 맞출 것 -->
     <div class="idx">
-      <div class="grid row"><span class="no">01</span><div class="th"><img src="assets/research/fig1-multi.jpg" alt="" style="object-position:50% 62%;"></div><div class="nm"><h3>Mesh-to-Gaussian Splatting</h3><p>메시를 적은 수의 Gaussian으로 바꿔도 표면 디테일이 남도록 하는 변환</p></div><div class="tc">SDF · Gaussian Splatting</div><div class="yr">2025.10 – 2026.10</div></div>
-      <div class="grid row"><span class="no">02</span><div class="th"><img src="assets/clo/avatar.jpg" alt="" style="object-position:50% 8%;"></div><div class="nm"><h3>Gaussian Splatting: Avatar Reconstruction</h3><p>옷 입은 아바타의 고품질 렌더를 실시간으로 볼 수 있게 Gaussian Splatting으로 변환</p></div><div class="tc">3DGS · 2DGS · Blender Cycles</div><div class="yr">2026.07 – 2026.08</div></div>
+      <div class="grid row"><span class="no">01</span><div class="th"><img src="assets/research/fig1-multi.jpg" alt="" style="object-position:50% 62%;"></div><div class="nm"><h3>Mesh-to-Gaussian Splatting</h3><p>메시를 표면의 디테일을 유지하며 적은 수의 Gaussian으로 변환</p></div><div class="tc">SDF · Gaussian Splatting</div><div class="yr">2025.10 – 2026.10</div></div>
+      <div class="grid row"><span class="no">02</span><div class="th"><img src="assets/clo/avatar.jpg" alt="" style="object-position:50% 8%;"></div><div class="nm"><h3>Gaussian Splatting: Avatar Reconstruction</h3><p>옷 입은 아바타의 레이 트레이싱 렌더 결과로 가우시안 스플래팅을 학습해 실시간 렌더링</p></div><div class="tc">3DGS · 2DGS</div><div class="yr">2026.07 – 2026.08</div></div>
       <div class="grid row"><span class="no">03</span><div class="th"><img src="assets/posters/motio.jpg" alt=""></div><div class="nm"><h3>단안 영상 기반 3D 모션 추출</h3><p>카메라 한 대로 찍은 영상에서 손가락까지 포함한 전신 모션 복원</p></div><div class="tc">Python · SMPL-X</div><div class="yr">2026.04 – 2026.06</div></div>
       <div class="grid row"><span class="no">04</span><div class="th"><img src="assets/posters/gaussian-thumb.jpg" alt=""></div><div class="nm"><h3>Gaussian Splat Viewer</h3><p>81.6만 개 Gaussian을 회전해도 끊김 없이 그리도록 깊이 정렬을 GPU로 옮긴 뷰어</p></div><div class="tc">C++ · OpenGL · Compute Shader</div><div class="yr">2025.05 – 2025.06</div></div>
       <div class="grid row"><span class="no">05</span><div class="th fund"><img src="assets/posters/spherical-panorama-viewer.jpg" alt=""><img src="assets/posters/object-model-viewer.jpg" alt=""></div><div class="nm"><h3>Computer Graphics Fundamentals</h3><p>Spherical Panorama Viewer · Object Model Viewer — 셰이딩, 환경 매핑, 법선 계산</p></div><div class="tc">C++ · OpenGL · GLSL</div><div class="yr">2024.09 – 2024.10</div></div>
@@ -374,7 +386,7 @@
       <div class="eyebrow"><span><span class="k">01</span>Computer Graphics Lab · 학부연구생</span><span class="tech">2025.10 – 2026.10 · SDF / Gaussian Splatting</span></div>
       <div class="grid">
         <h2 class="title" style="grid-column:1 / 7;">Mesh-to-Gaussian Splatting</h2>
-        <p class="desc" style="grid-column:7 / 13;"><b>메시를 적은 수의 Gaussian으로 바꿔 3DGS 장면에 넣고 relighting할 수 있게 하는 연구.</b><br>삼각형 10만–35만 개 메시를 Gaussian 1만 개 이하로 바꿔도 굴곡이 남습니다.</p>
+        <p class="desc" style="grid-column:7 / 13;"><b>메시를 <mark>적은 수의 Gaussian</mark>으로 바꿔 <mark>3DGS 장면에 넣고 relighting</mark>할 수 있게 하는 연구</b><br><span style="font-size:var(--t-detail);">삼각형 10만–35만 개 메시를 표면의 디테일 및 텍스처를 유지하며 Gaussian 1만 개 이하로 변환</span></p>
       </div>
     </header>
     <!-- 그림 4장: 입력 메시 → 변환 결과 → Gaussian 모양 → 3DGS 장면 삽입 (캡션은 figcaption) -->
@@ -396,13 +408,13 @@
       </div>
       <div>
         <div class="lbl">한계</div>
-        <p class="note">Gaussian 하나가 넓은 면을 맡으면 normal이 하나뿐이라<br><b>고주파 표면 디테일이 손실됩니다</b>. Armadillo 기준 27.8&nbsp;dB.</p>
+        <p class="note">Gaussian 하나가 넓은 면을 맡으면 normal이 하나뿐이라<br><b>고주파 표면 디테일이 손실됨</b>. Armadillo 기준 27.8&nbsp;dB.</p>
       </div>
       <div>
         <div class="lbl">해결</div>
         <ol class="items">
-          <li>고주파 디테일을 보존하도록, 위치별 normal·색 필드 도입 (DCT 기반)</li>
-          <li>렌더 오차를 줄이도록, 표면 Gaussian만 선별 분할·내부 유지</li>
+          <li>고주파 디테일을 표현할 수 있도록, 색과 normal의 지역 분포를 <br> 간단한 파라미터로 표현 (DCT 기반)</li>
+          <li>렌더 오차를 줄이도록, 표면 Gaussian만 선별 분할. 내부 Gaussian 유지</li>
         </ol>
         <p class="res">같은 Gaussian 수에서 Armadillo PSNR 27.8 → 37.3&nbsp;dB</p>
       </div>
@@ -419,7 +431,7 @@
       <div class="eyebrow"><span><span class="k">01</span>Computer Graphics Lab · 단계별 결과</span></div>
       <div class="grid">
         <h2 class="title" style="grid-column:1 / 7;">Mesh-to-Gaussian Splatting</h2>
-        <p class="desc" style="grid-column:7 / 13;"><b>부피로 형상을 먼저 잡고, 윤곽과 normal을 맞출수록 굴곡이 살아납니다.</b><br>최종 결과는 조명을 바꿔도 셰이딩이 유지됩니다.</p>
+        <p class="desc" style="grid-column:7 / 13; margin-top:0;"><b>부피로 형상을 먼저 잡고, 윤곽과 normal을 맞출수록 굴곡이 살아남</b><br>최종 결과는 <mark>조명을 바꿔도 셰이딩이 유지</mark>됨</p>
       </div>
     </header>
     <!-- 단계별 이미지 그리드: 열 제목(.cl) + 메시 3개 행(.rw, 각 8장). 캡션은 figcaption -->
@@ -460,13 +472,13 @@
     <!-- 하단 왼쪽: Armadillo 확대 비교 / 오른쪽: 3DGS와 Mesh2Splat 비교를 나란히 배치 -->
     <div class="grid detailrow">
       <div class="zoom">
-        <div class="lbl">Armadillo 확대 — normal 변화가 세밀할수록 굴곡이 살아납니다 <span class="mono">PSNR · N = 5,948</span></div>
+        <div class="lbl">Armadillo 확대 — DCT 필드가 세밀할수록 굴곡이 살아남 <span class="mono">PSNR · N = 5,948</span></div>
         <div class="zt"><figure><img src="assets/research/fig8-zoom-gt.jpg" alt=""><figcaption><span>메시 (GT)</span><span class="mono"></span></figcaption></figure><figure><img src="assets/research/fig8-zoom-1x1.jpg" alt=""><figcaption><span>1×1 (변화 없음)</span><span class="mono">27.77 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-2x2.jpg" alt=""><figcaption><span>2×2</span><span class="mono">35.51 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-4x4.jpg" alt=""><figcaption><span>4×4</span><span class="mono">36.74 dB</span></figcaption></figure><figure><img src="assets/research/fig8-zoom-8x8.jpg" alt=""><figcaption><span>8×8</span><span class="mono">37.31 dB</span></figcaption></figure></div>
       </div>
       <div class="mstack">
-        <div class="cmpbox"><div class="ih">이미지로 학습하는 방식 대비<span>3DGS · 4개 메시 기하평균</span></div>
+        <div class="cmpbox"><div class="ih">이미지로 학습하는 방식 대비<span>기존 3DGS 연구</span></div>
           <div class="nums"><div><span class="k">같은 화질에 필요한 Gaussian 수</span><b>2.8<small>배 적음</small></b></div><div class="k" style="margin-top:4px;"><b style="display:inline; font-size:16px; letter-spacing:0; margin:0;">Relighting 가능</b> · 3DGS는 조명이 색에 구워져 불가</div></div></div>
-        <div class="cmpbox"><div class="ih">메시를 직접 변환하는 방식 대비<span>Mesh2Splat · 4개 메시 평균 (배수는 기하평균)</span></div>
+        <div class="cmpbox"><div class="ih">메시를 직접 변환하는 방식 대비<span>삼각형 단위 splat 변환 방식(Mesh2Splat)</span></div>
           <div class="nums four"><div><span class="k">Gaussian 수</span><b>111<small>배 적음</small></b></div><div><span class="k">메모리</span><b>93%<small>절감</small></b></div><div><span class="k">그리기 속도</span><b>7.7<small>배 빠름</small></b></div><div><span class="k">화질 (PSNR)</span><b>3.3<small>dB 높음</small></b></div></div></div>
       </div>
     </div>
@@ -479,38 +491,43 @@
     <div class="folio"><span>Project 02</span><nav><span>About</span><span class="on">Work</span></nav></div>
     <!-- 머리글: 메타 줄(.eyebrow) · 제목(.title) · 설명(.desc) -->
     <header class="ph">
-      <div class="eyebrow"><span><span class="k">02</span>CLO Virtual Fashion · ML팀 인턴</span><span class="tech">2026.07 – 2026.08 · 3DGS / 2DGS / Blender Cycles</span></div>
+      <div class="eyebrow"><span><span class="k">02</span>CLO Virtual Fashion · ML팀 인턴</span><span class="tech">2026.07 – 2026.08 · 3DGS / 2DGS</span></div>
       <div class="grid">
         <h2 class="title">Gaussian Splatting:<br>Avatar Reconstruction</h2>
-        <p class="desc"><b>옷 입은 아바타의 패스 트레이싱 렌더를 Gaussian Splatting으로 변환했습니다.</b><br>의류를 확대해도 직조 패턴과 주름 디테일이 남습니다.</p>
+        <p class="desc"><b>옷 입은 아바타의 레이 트레이싱 렌더 결과로 가우시안 스플래팅을 학습해 <mark>실시간 렌더링</mark></b><br>기존 3DGS 학습 결과 대비 의류를 확대해도 <mark>직조 패턴과 주름 디테일</mark>이 남음</p>
       </div>
     </header>
     <!-- 그림 4칸 (.slots): 클릭하면 확대(lightbox). data-full = 확대용 원본 -->
     <div class="grid slots">
-      <figure><img src="assets/clo/avatar.jpg" alt="Textured Gaussian으로 베이킹한 아바타" role="button" tabindex="0"><figcaption>Textured Gaussian 결과</figcaption></figure>
-      <figure><img src="assets/clo/closeup-compare.jpg" data-full="assets/clo/closeup-compare-full.jpg" alt="3DGS와 Textured Gaussian의 의류 확대 렌더" role="button" tabindex="0"><figcaption>확대: 3DGS | Textured Gaussian</figcaption></figure>
+      <figure><img src="assets/clo/avatar.jpg" alt="Gaussian Splatting으로 재구성한 아바타" role="button" tabindex="0"><figcaption>Gaussian Splatting 학습 결과</figcaption></figure>
+      <figure><img src="assets/clo/closeup-compare.jpg" data-full="assets/clo/closeup-compare-full.jpg" alt="기존 3DGS와 개선 방식의 의류 확대 렌더" role="button" tabindex="0"><span class="tag" style="left:0;">기존 3DGS</span><span class="tag" style="left:calc(50% + 4px);">개선 방식</span><figcaption>확대: 기존 3DGS | 개선 방식</figcaption></figure>
       <figure><img src="assets/clo/hair.jpg" alt="strand로 생성한 곱슬머리 헤어의 Gaussian 결과" role="button" tabindex="0"><figcaption>헤어</figcaption></figure>
       <figure><video src="assets/clo/simulation.mp4" poster="assets/clo/simulation-poster.jpg" style="object-position:right center;" data-full="assets/clo/simulation-full.mp4" aria-label="빨간 원피스 시뮬레이션 영상" role="button" tabindex="0" loop muted playsinline preload="metadata"></video><figcaption>시뮬레이션</figcaption></figure>
     </div>
     <!-- 본문: 문제 / 접근 / 확장. 결과는 접근 목록 아래 .res 한 줄 -->
-    <div class="grid cols" style="grid-template-columns:32fr 36fr 32fr; column-gap:20px;">
+    <div class="grid cols av-body" style="grid-template-columns:auto auto 1fr; column-gap:48px;">
       <div>
         <div class="lbl">문제</div>
-        <p class="note">기본 3DGS에서는 확대 시 의류의 <b>직조 패턴과 주름이 뭉개졌습니다</b>.<br>패스 트레이싱 렌더는 실시간 표시가 어려웠습니다.</p>
+        <ol class="items">
+          <li>기본 3DGS에서는 확대 시 의류의 <b>직조 패턴과 주름이 뭉개짐</b></li>
+          <li>레이 트레이싱 렌더는 실시간 표시가 어려움</li>
+          <li>기존 방식으로는 사실적인 헤어 렌더링이 어려움</li>
+          <li>3DGS 관련 시뮬레이션 연구들은 삼각형의 크기 변화가<br>적다는 상정하에 진행된 연구가 많음</li>
+        </ol>
       </div>
       <div>
         <div class="lbl">접근</div>
         <ol class="items">
-          <li>의류 디테일을 보존하도록, <b>Textured Gaussian</b> 도입·표면 균등 초기화</li>
-          <li>표면을 맞추도록, AOV normal·depth 감독과 alpha hull loss 설계</li>
+          <li>의류 디테일을 보존하도록, <b>Gaussian 표현</b> 개선</li>
+          <li>표면을 정확히 맞추도록, <b>기하 정보 기반 loss</b> 설계</li>
         </ol>
-        <p class="res">3DGS 대비 의류 확대 렌더에서 직조 패턴과 주름 디테일 보존</p>
+        <p class="res">3DGS 대비 확대 시 바늘처럼 길게 늘어진 Gaussian(니들 아티팩트) 감소</p>
       </div>
       <div>
         <div class="lbl">확장</div>
         <ol class="items">
           <li>사실적인 헤어 렌더링을 위해 <b>Diffusion 모델 기반 strand 생성</b>,<br>복셀 기반 2DGS 초기화 아이디어 제시</li>
-          <li>시뮬레이션을 위해 삼각형 변형에 대응하도록 <b style="white-space:nowrap;">표면 앵커링, 표현용 스플랫 분리</b></li>
+          <li>시뮬레이션을 위해 삼각형 변형에 대응하도록<br><b style="white-space:nowrap;">표면 앵커링, 표현용 스플랫 분리</b></li>
         </ol>
       </div>
     </div>
@@ -526,7 +543,7 @@
       <div class="eyebrow"><span><span class="k">03</span>팀 프로젝트 · 알고리즘 담당</span><span class="tech">2026.04 – 2026.06 · Python / SMPL-X · GVHMR · HaMeR · ViTPose</span></div>
       <div class="grid">
         <h2 class="title">단안 영상 기반 3D 모션 추출</h2>
-        <p class="desc"><b>카메라 한 대 영상으로 손가락까지 움직이는 캐릭터 모션을 만드는 기술.</b><br>몸 모델과 손 모델을 손목에서 하나로 잇는 결합 방식을 설계했습니다.</p>
+        <p class="desc"><b>카메라 한 대로 영상에서 <mark>손가락까지 포함한 전신 모션 복원</mark> 프로젝트</b><br>몸 모델과 손 모델을 손목에서 잇는 결합 방식 설계</p>
       </div>
     </header>
     <!-- 비교 영상(원본 비율 9:4, 전체 폭 검은 띠). 패널 라벨은 .labels, 재생 컨트롤은 .vctl -->
@@ -550,20 +567,20 @@
       </div>
     </div>
     <!-- 본문: 문제 / 원인 / 한 일 (.items). 빨간 결과 줄은 .res -->
-    <div class="grid cols pcols" style="grid-template-columns:31fr 32fr 37fr;">
+    <div class="grid cols pcols" style="grid-template-columns:auto auto 1fr; column-gap:48px;">
       <div>
         <div class="lbl">문제</div>
-        <p class="note">몸 모델(GVHMR)과 손 모델(HaMeR)은 각각 잘 동작하지만, <br> 두 결과를 손목에서 <b>그대로 이어 붙일 수는 없었습니다</b>.</p>
+        <p class="note">몸 모델(GVHMR)과 손 모델(HaMeR)이 회전을 <b>서로 다른 기준</b>으로<br>출력해 손목에서 <b>그대로 이어 붙일 수 없는 문제</b> 확인</p>
       </div>
       <div>
         <div class="lbl">원인</div>
-        <p class="note">두 모델은 회전을 <b>서로 다른 기준</b>으로 내놓습니다.<br>또 팔뚝 축을 도는 손목 회전은 <b>영상에서 거의 보이지 않고</b>,<br>손 모델은 손이 <b>가려지면 틀립니다</b>.</p>
+        <p class="note">팔뚝 축을 도는 손목 회전(twist)은 <b>영상에서 거의 보이지 않고</b>,<br>손이 가려지면 <b>손 모델 결과가 틀리는 점</b>을 원인으로 분석</p>
       </div>
       <div>
         <div class="lbl">한 일</div>
         <ol class="items">
           <li>손 회전을 <b>몸 모델의 팔 기준으로 변환</b>해 결합</li>
-          <li>보이는 <b>swing은 손 모델</b>, 안 보이는 <b>twist는 몸 모델</b> 값 사용</li>
+          <li>보이는 <b>swing은 손 모델</b>·보이지 않는 <b>twist는 몸 모델</b> 값 사용</li>
           <li>손 모델이 틀린 프레임은 <b>걸러내고 앞뒤 프레임으로 보간</b></li>
         </ol>
       </div>
@@ -580,7 +597,7 @@
       <div class="eyebrow"><span><span class="k">04</span>개인 프로젝트 · 실시간 렌더링·GPU</span><span class="tech">2025.05 – 2025.06 · C++ / OpenGL / GLSL / 3DGS</span></div>
       <div class="grid">
         <h2 class="title">Gaussian Splat Viewer</h2>
-        <p class="desc"><b>가우시안 스플래팅 장면을 외부 엔진 없이 OpenGL로 직접 그리는 뷰어.</b><br>81.6만 개 깊이 정렬을 GPU로 옮겨, 회전 시 끊김을 137 → 21&nbsp;ms로 줄였습니다.</p>
+        <p class="desc"><b>가우시안 스플래팅 장면을 외부 엔진 없이 OpenGL로 직접 그리는 뷰어</b><br>81.6만 개 깊이 정렬을 GPU로 옮겨, <mark>회전 시 끊김을 137 → 21&nbsp;ms로 단축</mark></p>
       </div>
     </header>
     <!-- BEFORE / AFTER 영상 2개 (.cmp). 영상 위 라벨은 figcaption.ov -->
@@ -597,19 +614,22 @@
       </div>
     </div>
     <!-- 본문: 문제 / 원인 / 한 일 (.items). 빨간 결과 줄은 .res -->
-    <div class="grid cols pcols" style="grid-template-columns:33fr 26.5fr 40.5fr; column-gap:40px;">
+    <div class="grid cols pcols" style="grid-template-columns:auto auto 1fr; column-gap:32px;">
       <div>
         <div class="lbl">문제</div>
-        <p class="note">81.6만 개 Gaussian 장면을 회전하면 화면이 주기적으로 끊겼습니다.<br>평균은 18&nbsp;ms인데 <b>튀는 프레임이 <span style="white-space:nowrap;">107–137&nbsp;ms</span></b>였습니다.</p>
+        <p class="note">Gaussian Splatting 장면을 회전하면 화면이 주기적으로 끊김<br>평균은 18&nbsp;ms인데 <b>튀는 프레임이 <span style="white-space:nowrap;">107–137&nbsp;ms</span></b></p>
       </div>
       <div>
         <div class="lbl">원인</div>
-        <p class="note">프레임별 CPU 시간과 업로드량을 재 보니, <br> 튀는 프레임이 정렬하는 프레임과 정확히 겹쳤습니다.<br>81.6만 개를 <b>CPU에서 정렬하고, <span style="white-space:nowrap;">결과(3.3&nbsp;MB)를</span> <br> 다시 GPU로 올리는 일</b>이 한 프레임에 몰려 있었습니다.</p>
+        <ol class="items">
+          <li>프레임별 CPU 시간과 GPU 업로드량을 측정해, <b>튀는 프레임이</b><br><b>정렬 프레임과 겹치는 것</b>을 확인</li>
+          <li>81.6만 개를 <b>CPU에서 정렬하고 결과(3.3&nbsp;MB)를 GPU로<br>다시 올리는 작업</b>이 한 프레임에 몰리는 점을 원인으로 분석</li>
+        </ol>
       </div>
       <div>
         <div class="lbl">한 일</div>
         <ol class="items">
-          <li>정렬이 렌더링을 막지 않도록,<br>깊이 계산과 radix sort를 <b>compute shader로 구현</b></li>
+          <li>정렬이 렌더링을 막지 않도록, 깊이 계산과 radix sort를 <b>compute shader로 구현</b></li>
           <li>3.3&nbsp;MB를 다시 올리지 않도록, 정렬된 버퍼를 <b>그대로 그리기 순서로 사용</b></li>
           <li>결과가 맞는지 CPU 정렬과 순서를 대조하고, 단계별 GPU 시간을 재서 검증</li>
         </ol>
@@ -628,7 +648,7 @@
       <div class="eyebrow"><span><span class="k">05</span>컴퓨터그래픽스 과제</span><span class="tech">2024.09 – 2024.10 · 개인 · C++ / OpenGL / GLSL</span></div>
       <div class="grid">
         <h2 class="title">Computer Graphics<br>Fundamentals</h2>
-        <p class="desc"><b>렌더링 기초를 C++/OpenGL로 직접 구현한 과제 두 개.</b><br>셰이딩, 환경 매핑, 메시 법선 계산을 다뤘습니다.</p>
+        <p class="desc"><b>렌더링 기초를 C++/OpenGL로 구현한 <mark>컴퓨터그래픽스</mark> 과제</b><br>셰이딩, 환경 매핑, 메시 법선 계산 구현</p>
       </div>
     </header>
     <!-- 영상 2개: 왼쪽 Spherical Panorama Viewer / 오른쪽 Object Model Viewer -->
@@ -659,7 +679,7 @@
        슬라이드 9 · Contact
        =================================================================================== -->
   <section class="closing" data-label="Contact" data-deck-last-visible="">
-    <div class="folio inv"><span>Contact</span><span class="mono">NAM HEESU · CLO VIRTUAL FASHION — MACHINE LEARNING ENGINEER</span></div>
+    <div class="folio inv"><span>Contact</span><span class="mono">NAM HEESU — PORTFOLIO 2026</span></div>
     <!-- 이메일 크게 + 하단 이름/전화/지역 -->
     <div class="body">
       <div class="lab">CONTACT</div>
@@ -668,6 +688,7 @@
         <div><span>Name</span>남희수 · NAM HEE SU</div>
         <div><span>Tel</span>010-5829-3187</div>
         <div><span>Based</span>경기도 성남시</div>
+        <div><span>GitHub</span>github.com/namisu000</div>
       </div>
     </div>
   </section>

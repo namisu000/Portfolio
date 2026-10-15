@@ -10,7 +10,7 @@
  *      On touch devices, tapping the left/right half of the stage goes
  *      prev/next — taps on links, buttons and other interactive slide
  *      content are left alone.
- *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
+ *  (c) Home jumps back to slide 0 (the R shortcut and Reset button were removed).
  *  (d) bottom-center overlay showing slide count + hints, fades out on idle.
  *  (e) auto-scaling — inner canvas is a fixed design size (default 1920×1080)
  *      scaled with `transform: scale()` to fit the viewport, letterboxed.
@@ -185,7 +185,7 @@
 
     .overlay {
       position: fixed;
-      right: 22px;
+      left: 48px;
       bottom: 22px;
       transform: translate(0, 6px) scale(0.92);
       filter: blur(6px);
@@ -202,7 +202,7 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 260ms ease, transform 260ms cubic-bezier(.2,.8,.2,1), filter 260ms ease;
-      transform-origin: right bottom;
+      transform-origin: left bottom;
       z-index: 2147483000;
       user-select: none;
     }
@@ -288,6 +288,33 @@
       margin: 0 2px;
     }
 
+    /* Docked mode: while the thumbnail rail is showing, the controls sit
+       pinned at the bottom of the rail (always visible) instead of floating
+       over the slide. Row 1 = prev / count / next, row 2 = zoom — the
+       divider becomes a full-width line break. _fit toggles data-in-rail. */
+    .overlay[data-in-rail] {
+      left: 0;
+      bottom: 0;
+      width: var(--deck-rail-w, 188px);
+      box-sizing: border-box;
+      flex-wrap: wrap;
+      justify-content: center;
+      row-gap: 2px;
+      padding: 10px 8px 12px;
+      border-radius: 0;
+      background: #141414;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-right: 1px solid rgba(255,255,255,0.08);
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+      filter: none;
+    }
+    /* Slide stepping lives on the keyboard (← → / Home / End) and the rail
+       thumbnails; the overlay keeps only the zoom controls. The prev / count /
+       next elements stay in the DOM because _update writes to them. */
+    .overlay .prev, .overlay .count, .overlay .next, .overlay .divider { display: none; }
+
     /* ── Thumbnail rail ──────────────────────────────────────────────────
        Fixed column on the left; each thumbnail is a static deep-clone of
        the light-DOM slide scaled into a 16:9 (or design-aspect) frame. The
@@ -303,7 +330,8 @@
       border-right: 1px solid rgba(255,255,255,0.08);
       overflow-y: auto;
       overflow-x: hidden;
-      padding: 12px 10px;
+      /* bottom padding clears the docked slide controls (.overlay[data-in-rail]) */
+      padding: 12px 10px 64px;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
@@ -922,8 +950,6 @@
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>
         </button>
         <span class="divider"></span>
-        <button class="btn reset" type="button" aria-label="Reset to first slide" title="Reset (R)">Reset<span class="kbd">R</span></button>
-        <span class="divider"></span>
         <button class="btn zoom-out" type="button" aria-label="Zoom out" title="Zoom out (Ctrl −)">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M5 7h4M10.5 10.5L14 14"/></svg>
         </button>
@@ -935,7 +961,6 @@
 
       overlay.querySelector('.prev').addEventListener('click', () => this._advance(-1, 'click'));
       overlay.querySelector('.next').addEventListener('click', () => this._advance(1, 'click'));
-      overlay.querySelector('.reset').addEventListener('click', () => this._go(0, 'click'));
       overlay.querySelector('.zoom-out').addEventListener('click', () => this._stepZoom(-1));
       overlay.querySelector('.zoom-in').addEventListener('click', () => this._stepZoom(1));
       overlay.querySelector('.zoom-level').addEventListener('click', () => this._setZoom(1));
@@ -1275,10 +1300,12 @@
       }
       const rw = this._railWidth();
       if (stage) stage.style.left = rw + 'px';
-      // Overlay is centred on the viewport via left:50% + translate(-50%);
-      // marginLeft shifts the centre by rw/2 so it lands in the middle of
-      // the [rw, innerWidth] stage region.
-      if (this._overlay) this._overlay.style.marginLeft = (rw / 2) + 'px';
+      // With the rail showing, the overlay docks at the bottom of the rail
+      // (see .overlay[data-in-rail]); otherwise it floats bottom-left.
+      if (this._overlay) {
+        this._overlay.style.marginLeft = '0';
+        this._overlay.toggleAttribute('data-in-rail', rw > 0);
+      }
       const vw = window.innerWidth - rw;
       const vh = window.innerHeight;
       const s = Math.min(vw / this.designWidth, vh / this.designHeight) * this._zoom;
@@ -1473,8 +1500,6 @@
         this._go(0, 'keyboard');
       } else if (key === 'End') {
         this._go(this._slides.length - 1, 'keyboard');
-      } else if (key === 'r' || key === 'R') {
-        this._go(0, 'keyboard');
       } else if (/^[0-9]$/.test(key)) {
         // 1..9 jump to that slide; 0 jumps to 10.
         const n = key === '0' ? 9 : parseInt(key, 10) - 1;
